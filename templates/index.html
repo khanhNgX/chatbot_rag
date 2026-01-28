@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Thủ Tục Nhập Học 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f7f7f7;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        .message.bot .message-content {
+            background: white;
+            color: #333;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin: 0 10px;
+            flex-shrink: 0;
+        }
+
+        .message.bot .avatar {
+            background: #667eea;
+        }
+
+        .message.user .avatar {
+            background: #764ba2;
+        }
+
+        .input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+        }
+
+        #userInput {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #userInput:focus {
+            border-color: #667eea;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 10px;
+            background: white;
+            border-radius: 18px;
+            width: 60px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #667eea;
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .quick-questions {
+            padding: 15px 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            overflow-x: auto;
+        }
+
+        .quick-question {
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.3s;
+        }
+
+        .quick-question:hover {
+            background: #e0e0e0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Chatbot Thủ Tục Nhập Học</h1>
+            <p>Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội</p>
+        </div>
+
+        <div class="quick-questions">
+            <div class="quick-question" onclick="sendQuickQuestion('Học phí năm 2025 là bao nhiêu?')">💰 Học phí</div>
+            <div class="quick-question" onclick="sendQuickQuestion('Thủ tục nhập học gồm những bước nào?')">📋 Thủ tục</div>
+            <div class="quick-question" onclick="sendQuickQuestion('Lịch nhập học ngành Toán?')">📅 Lịch nhập học</div>
+            <div class="quick-question" onclick="sendQuickQuestion('Cần chuẩn bị hồ sơ gì?')">📄 Hồ sơ</div>
+            <div class="quick-question" onclick="sendQuickQuestion('Thông tin liên hệ?')">📞 Liên hệ</div>
+        </div>
+
+        <div class="chat-container" id="chatContainer">
+            <div class="message bot">
+                <div class="avatar">🤖</div>
+                <div class="message-content">
+                    Xin chào! Tôi là trợ lý ảo của Trường ĐHKHTN. Tôi có thể giúp bạn về:<br><br>
+                    • 💰 Học phí và các khoản phí<br>
+                    • 📋 Thủ tục nhập học<br>
+                    • 📅 Lịch nhập học theo ngành<br>
+                    • 📄 Hồ sơ cần chuẩn bị<br>
+                    • 📞 Thông tin liên hệ<br><br>
+                    Bạn muốn hỏi gì?
+                </div>
+            </div>
+            <div class="message bot" style="display: none;">
+                <div class="avatar">🤖</div>
+                <div class="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Nhập câu hỏi của bạn..." onkeypress="handleKeyPress(event)">
+            <div class="controls">
+                <button onclick="sendMessage()" id="sendBtn">Gửi</button>
+                <button onclick="resetChat()" style="background: #e74c3c;">Làm mới</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sessionId = 'session_' + Date.now();
+        let isTyping = false;
+
+        function sendQuickQuestion(question) {
+            document.getElementById('userInput').value = question;
+            sendMessage();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (!message || isTyping) return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Show typing indicator
+            showTyping(true);
+            isTyping = true;
+            
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        session_id: sessionId
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Hide typing and show response
+                showTyping(false);
+                addMessage(data.response, 'bot');
+                isTyping = false;
+                
+            } catch (error) {
+                showTyping(false);
+                addMessage('Xin lỗi, có lỗi xảy ra. Vui lòng thử lại sau.', 'bot');
+                isTyping = false;
+            }
+        }
+
+        function addMessage(text, sender) {
+            const chatContainer = document.getElementById('chatContainer');
+            const typingIndicator = chatContainer.querySelector('.typing-indicator').parentElement;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'avatar';
+            avatar.textContent = sender === 'user' ? '👤' : '🤖';
+            
+            const content = document.createElement('div');
+            content.className = 'message-content';
+            content.innerHTML = text.replace(/\n/g, '<br>');
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(content);
+            
+            chatContainer.insertBefore(messageDiv, typingIndicator);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function showTyping(show) {
+            const typingIndicator = document.querySelector('.typing-indicator').parentElement;
+            typingIndicator.style.display = show ? 'flex' : 'none';
+            
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        async function resetChat() {
+            if (!confirm('Bạn có chắc muốn bắt đầu hội thoại mới?')) return;
+            
+            try {
+                await fetch('/reset', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId
+                    })
+                });
+                
+                // Clear chat
+                const chatContainer = document.getElementById('chatContainer');
+                const typingIndicator = chatContainer.querySelector('.typing-indicator').parentElement;
+                chatContainer.innerHTML = '';
+                chatContainer.appendChild(typingIndicator);
+                
+                // Add welcome message
+                addMessage('Xin chào! Tôi là trợ lý ảo của Trường ĐHKHTN. Tôi có thể giúp bạn về:<br><br>• 💰 Học phí và các khoản phí<br>• 📋 Thủ tục nhập học<br>• 📅 Lịch nhập học theo ngành<br>• 📄 Hồ sơ cần chuẩn bị<br>• 📞 Thông tin liên hệ<br><br>Bạn muốn hỏi gì?', 'bot');
+                
+            } catch (error) {
+                alert('Có lỗi xảy ra khi làm mới chat');
+            }
+        }
+    </script>
+</body>
+</html>
