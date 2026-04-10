@@ -9,62 +9,98 @@ from typing import List, Dict, Any
 class PromptEngineer:
     """Xây dựng các prompts tối ưu cho RAG chatbot"""
     
-    def __init__(self):
-        self.system_prompt = self._create_system_prompt()
+    def __init__(self, mode: str = 'standard'):
+        self.mode = mode # 'standard' hoặc 'compact' (tiết kiệm quota)
+        self.system_prompt = self._create_system_prompt() if mode == 'standard' else self._create_compact_system_prompt()
     
     def _create_system_prompt(self) -> str:
-        """
-        Tạo system prompt theo template trong file md
-        
-        Mục tiêu:
-        - Hướng dẫn LLM trả lời dựa trên context
-        - Yêu cầu trích dẫn nguồn
-        - Format output dễ đọc
-        """
+        """Tạo system prompt đầy đủ"""
         return """Bạn là trợ lý tư vấn thủ tục nhập học của Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội.
 
 NHIỆM VỤ:
-- Trả lời câu hỏi của sinh viên dựa HOÀN TOÀN trên ngữ cảnh được cung cấp
-- Trích dẫn chính xác nguồn (PHẦN, Bước, Năm)
-- Trả lời ngắn gọn, rõ ràng, dễ hiểu bằng tiếng Việt
-- Nếu không có thông tin trong ngữ cảnh, nói rõ "Không tìm thấy thông tin trong tài liệu"
+- Trả lời câu hỏi của sinh viên dựa HOÀN TOÀN trên ngữ cảnh được cung cấp.
+- Trả lời ĐẦY ĐỦ Ý - KHÔNG ĐƯỢC bỏ sót thông tin quan trọng.
+- [QUAN TRỌNG] TÍNH TOÁN CHÍNH XÁC: Khi gặp các con số (học phí, lệ phí), hãy liệt kê từng mục và THỰC HIỆN PHÉP CỘNG BƯỚC-THEO-BƯỚC. Tuyệt đối không được sai sót số liệu tài chính.
+- Kiểm tra lại: Tổng số tiền = Khoản 1 + Khoản 2 + ...
 
-LƯU Ý:
-- Luôn đề cập năm học để tránh nhầm lẫn
-- Highlight các deadline quan trọng với emoji ⏰
-- Format số tiền dễ đọc (VD: 7.019.750đ)
-- Nếu có nhiều bước, liệt kê rõ ràng với số thứ tự
-- Sử dụng emoji phù hợp để câu trả lời sinh động hơn
+NGUYÊN TẮC TRẢ LỜI:
+[OK] CHÍNH XÁC SỐ LIỆU:
+- Luôn đối chiếu các con số trong câu trả lời với văn bản gốc.
+- Nếu phải tính tổng, hãy viết rõ: "Tổng cộng (Mục A + Mục B + Mục C) = [Kết quả]".
+- Định dạng tiền tệ: dùng dấu chấm phân cách hàng nghìn (ví dụ: 7.019.750đ).
 
-CÁCH TRẢ LỜI:
-- Ngắn gọn, đi thẳng vào vấn đề
-- Ưu tiên thông tin quan trọng nhất
-- Kết thúc bằng nguồn tham khảo nếu cần
-- Không bịa đặt thông tin không có trong ngữ cảnh
+[OK] ĐẦY ĐỦ VÀ CHI TIẾT:
+- LIỆT KÊ TẤT CẢ các loại hồ sơ, giấy tờ.
+- LIỆT KÊ ĐỦ các bước thủ tục.
+- Nhóm thông tin liên quan lại với nhau.
 
-FORMAT MẪU:
-Khi trả lời về học phí:
-"Tổng số tiền cần nộp là X đồng, bao gồm:
-1. [Khoản 1]: X đồng
-2. [Khoản 2]: X đồng
-...
-⏰ Thời gian nộp: [deadline]
-📚 Nguồn: PHẦN X, Thủ tục nhập học năm YYYY"
+[OK] FORMAT THÔNG MINH:
+- Sử dụng emoji: 💰 (tiền), 📅 (lịch), 📋 (hồ sơ), 📍 (địa điểm).
+- Highlight deadline với [TIME].
+- Trích dẫn nguồn [SOURCE] rõ ràng.
+
+VÍ DỤ TÍNH TOÁN SAI LẦM CẦN TRÁNH:
+- Tránh việc cộng nhẩm nhanh rồi đưa ra con số sai.
+
+VÍ DỤ TÍNH TOÁN ĐÚNG:
+Câu hỏi: "Tổng phí nhập học?"
+Context: "Phí A 50.000, Phí B 150.000, Phí C 800.000"
+Trả lời:
+Để tính tổng học phí, chúng ta thực hiện phép cộng chi tiết:
+1. Phí A: 50.000đ
+2. Phí B: 150.000đ
+3. Phí C: 800.000đ
+-----------------------
+Phép tính: 50.000 + 150.000 + 800.000 = 1.000.000đ
+=> Tổng học phí cần nộp là: 1.000.000đ
+
+VÍ DỤ FORMAT TRẢ LỜI:
+Câu hỏi về học phí:
+"💰 Chi tiết các khoản phí cần nộp (năm 2025):
+• Khoản 1: [Số tiền]
+• Khoản 2: [Số tiền]
+-----------------------
+[TÍNH TOÁN]: [Khoản 1] + [Khoản 2] + ... = [TỔNG]
+=> Tổng cộng: [TỔNG]
+
+[TIME] Hạn nộp: [Ngày] | 📍 Địa điểm: [Địa điểm]"
+Câu hỏi về hồ sơ:
+"[FORM] Các loại hồ sơ bạn cần chuẩn bị (2025):
+
+BẮT BUỘC:
+• Giấy báo kết quả thi THPT (Bản chính)
+• Giấy chứng nhận tốt nghiệp tạm thời (Bản chính)
+• Học bạ THPT (Công chứng)
+• Giấy khai sinh (Bản sao)
+• CCCD (2 mặt photo)
+• [Tiếp tục liệt kê TẤT CẢ các giấy tờ khác có trong context...]
+
+[TIME] Hạn nộp: [Ngày tháng năm]
+📍 Địa điểm: 334 Nguyễn Trãi, Thanh Xuân"
 
 Khi trả lời về lịch:
 "Lịch nhập học cho ngành [tên ngành]:
 📅 Ngày: [ngày tháng năm]
 🕐 Thời gian: [giờ]
 📍 Địa điểm: [địa chỉ]
-📚 Nguồn: PHẦN 4, Thủ tục nhập học năm YYYY"
+[SOURCE] Nguồn: PHẦN 4, Thủ tục nhập học năm 2025"
 
-Khi không có thông tin:
-"Xin lỗi, tôi không tìm thấy thông tin về [chủ đề] trong tài liệu.
-
-Bạn có thể liên hệ trực tiếp:
-📞 024.38581283
-📧 ctsv@hus.edu.vn"
+LƯU Ý CUỐI:
+- Ưu tiên sự đầy đủ (Full content) đối với danh sách hồ sơ và các bước thực hiện.
+- Trình bày mạch lạc, dễ hiểu.
 """
+
+    def _create_compact_system_prompt(self) -> str:
+        """
+        Compact system prompt để tiết kiệm quota (giảm ~60% tokens so với bản full)
+        """
+        return """Bạn là trợ lý tư vấn nhập học HUS - ĐHQG Hà Nội.
+QUY TẮC: 
+1. Chỉ dùng context được cung cấp. Không tự chế thông tin.
+2. Trả lời đầy đủ danh sách, giấy tờ, bước thực hiện. KHÔNG tóm tắt lược bỏ.
+3. Nếu không có thông tin, nói "Không tìm thấy trong tài liệu".
+4. Format: Dùng bullet points (•), highlight [TIME], format tiền (đ).
+5. Luôn trích dẫn nguồn [SOURCE] (Phần, Năm) cuối câu trả lời."""
     
     def create_context_prompt(self, chunks: List[Dict[str, Any]]) -> str:
         """
@@ -81,31 +117,24 @@ Bạn có thể liên hệ trực tiếp:
         if not chunks:
             return self._create_empty_context()
         
-        context_parts = ["\n----- NGỮ CẢNH TỪ TÀI LIỆU -----\n"]
+        # Header gọn nhẹ hơn
+        context_parts = ["\n[CONTEXT]"]
         
         for i, chunk in enumerate(chunks, 1):
             metadata = chunk.get('metadata', {})
             content = chunk.get('content', '')
             
-            # Extract metadata fields
-            chunk_type = metadata.get('type', 'N/A')
-            year = metadata.get('year', 'N/A')
-            title = metadata.get('title', 'N/A')
-            section_num = metadata.get('section_number', '')
+            # Metadata rút gọn
+            year = metadata.get('year', '')
+            section = metadata.get('section_number', '')
+            source = metadata.get('source', '')
             
-            # Format chunk header
-            context_parts.append(f"\n[CHUNK {i} - Type: {chunk_type}, Year: {year}]")
-            context_parts.append(f"Tiêu đề: {title}")
-            context_parts.append(f"Nội dung:")
-            context_parts.append(content)
+            # Format tối ưu: i) [Phần, Năm] Content
+            meta_str = f"(PHẦN {section}, {year})" if section and year else (f"(PHẦN {section})" if section else (f"({year})" if year else ""))
             
-            # Add source citation
-            if section_num:
-                context_parts.append(f"Nguồn: PHẦN {section_num}")
-            
-            context_parts.append("")  # Empty line separator
+            context_parts.append(f"C{i} {meta_str}: {content.strip()}")
         
-        context_parts.append("----- HẾT NGỮ CẢNH -----\n")
+        context_parts.append("[END CONTEXT]\n")
         
         return "\n".join(context_parts)
     
@@ -155,6 +184,61 @@ Hãy trả lời dựa trên ngữ cảnh trên. Nhớ trích dẫn nguồn nế
             'top_p': 0.9,
             'top_k': 40
         }
+    
+    def display_prompt_pipeline(self, query: str, chunks: List[Dict[str, Any]], 
+                               verbose: bool = True) -> Dict[str, Any]:
+        """
+        Hiển thị toàn bộ pipeline xử lý prompt
+        
+        Args:
+            query: Câu hỏi của user
+            chunks: Retrieved chunks từ retrieval
+            verbose: Có hiển thị chi tiết hay không
+            
+        Returns:
+            Dict chứa tất cả thông tin về prompt
+        """
+        context_prompt = self.create_context_prompt(chunks)
+        user_prompt = self.create_user_prompt(query)
+        full_prompt = context_prompt + "\n" + user_prompt
+        
+        result = {
+            'query': query,
+            'num_chunks': len(chunks),
+            'context_prompt': context_prompt,
+            'user_prompt': user_prompt,
+            'full_prompt': full_prompt,
+            'system_prompt': self.system_prompt,
+            'context_length': len(context_prompt),
+            'full_length': len(full_prompt),
+            'estimated_tokens': (len(self.system_prompt) + len(full_prompt)) // 4
+        }
+        
+        if verbose:
+            print("=" * 80)
+            print("[FORM] PROMPT PIPELINE DISPLAY")
+            print("=" * 80)
+            print(f"Query: {query}")
+            print(f"Chunks: {len(chunks)}")
+            print(f"Context Length: {len(context_prompt)} chars")
+            print(f"Full Prompt Length: {len(full_prompt)} chars")
+            print(f"Est. Tokens: ~{result['estimated_tokens']}")
+            print()
+            
+            print("─" * 80)
+            print("SYSTEM PROMPT:")
+            print("─" * 80)
+            print(self.system_prompt)
+            print()
+            
+            print("─" * 80)
+            print("CONTEXT + USER PROMPT:")
+            print("─" * 80)
+            print(full_prompt)
+            print()
+            print("=" * 80)
+        
+        return result
 
 
 class PromptTemplates:
@@ -203,7 +287,7 @@ def main():
     engineer = PromptEngineer()
     
     # Test system prompt
-    print("📝 System Prompt:")
+    print("[FORM] System Prompt:")
     print("-" * 70)
     print(engineer.system_prompt[:500] + "...")
     print()
@@ -231,7 +315,7 @@ Tổng cộng: 7.019.750đ""",
     query = "Học phí năm 2025 là bao nhiêu?"
     full_prompt = engineer.create_full_prompt(query, sample_chunks)
     
-    print("📄 Full Prompt Example:")
+    print("[DOCUMENT] Full Prompt Example:")
     print("-" * 70)
     print(full_prompt)
     print()
@@ -244,7 +328,7 @@ Tổng cộng: 7.019.750đ""",
         print(f"   {key}: {value}")
     print()
     
-    print("✅ PHASE 4 completed!")
+    print("[OK] PHASE 4 completed!")
 
 
 if __name__ == '__main__':

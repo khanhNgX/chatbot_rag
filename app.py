@@ -1,61 +1,36 @@
+# -*- coding: utf-8 -*-
 """
-Flask Web App cho Chatbot Thủ Tục Nhập Học
+Flask Web App cho RAG Chatbot (Hỗ trợ nhiều tài liệu TXT, DOCX, PDF)
 """
 
 from flask import Flask, render_template, request, jsonify
-import google.generativeai as genai
+import os
+from dotenv import load_dotenv
+
+# Import RAG phases
+from automation_retriever import AutomationRetriever
+from phase5_llm_generation import LLMGenerator
+from config import get_admission_year
+
+# Cấu hình
+load_dotenv()
+
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+if not GROQ_API_KEY:
+    raise ValueError("[WARNING] Vui lòng set GROQ_API_KEY trong file .env")
 
 app = Flask(__name__)
 
-# Cấu hình
-GEMINI_API_KEY = "AIzaSyAEPKOsnGnArFYckGojz-s4ymfvyhzj4Ic"
-genai.configure(api_key=GEMINI_API_KEY)
+# Khởi tạo RAG components (SỬ DỤNG BỘ MÁY AUTOMATION)
+# Retriever bây giờ sẽ tự động Rewrite Query và Tagging Query để lọc Metadata
+retriever = AutomationRetriever()
+# Generator chỉ gọi duy nhất Groq và tạo câu trả lời
+generator = LLMGenerator()
 
-# Load dữ liệu
-def load_admission_data():
-    """Đọc file thủ tục nhập học"""
-    try:
-        with open('data/Thủ tục nhập học 2025.txt', 'r', encoding='utf-8') as f:
-            return f.read()
-    except FileNotFoundError:
-        return ""
-
-ADMISSION_DATA = load_admission_data()
-
-# System prompt
-SYSTEM_PROMPT = f"""Bạn là trợ lý tư vấn thủ tục nhập học cho Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội.
-
-DỮ LIỆU THỦ TỤC NHẬP HỌC 2025:
-{ADMISSION_DATA}
-
-NHIỆM VỤ:
-- Trả lời các câu hỏi về thủ tục nhập học năm 2025
-- Hướng dẫn sinh viên thực hiện từng bước nhập học
-- Cung cấp thông tin chính xác về học phí, hồ sơ, lịch nhập học
-- Trả lời bằng tiếng Việt, thân thiện và chuyên nghiệp
-- Sử dụng emoji phù hợp để câu trả lời dễ đọc hơn
-
-CHÚ Ý:
-- Luôn dựa vào dữ liệu được cung cấp
-- Đưa ra thông tin chi tiết với số liệu cụ thể
-- Nếu không chắc chắn, khuyên sinh viên liên hệ: 024.38581283 hoặc ctsv@hus.edu.vn
-"""
+ADMISSION_YEAR = get_admission_year()
 
 # Lưu chat sessions
 chat_sessions = {}
-
-def get_model():
-    """Lấy model có sẵn"""
-    try:
-        models = genai.list_models()
-        for model in models:
-            if 'generateContent' in model.supported_generation_methods:
-                return model.name
-    except:
-        pass
-    return None
-
-MODEL_NAME = get_model()
 
 @app.route('/')
 def home():
@@ -64,7 +39,7 @@ def home():
 
 @app.route('/chat', methods=['POST'])
 def chat():
-    """API endpoint cho chat"""
+    """API endpoint cho chat sử dụng RAG pipeline"""
     try:
         data = request.json
         user_message = data.get('message', '')
@@ -73,42 +48,40 @@ def chat():
         if not user_message:
             return jsonify({'error': 'No message provided'}), 400
         
-        if not MODEL_NAME:
+        # 1. Retrieve context (Tìm kiếm trong toàn bộ data/ đã index)
+        print(f"[SEARCH] Đang tìm kiếm thông tin cho: {user_message}")
+        chunks = retriever.retrieve(user_message, top_k=8)
+        
+        # 2. Phân tích intent để truyền vào generator
+        analysis = retriever.query_analyzer.analyze(user_message)
+        intent = analysis.get('intent', 'general')
+        print(f"[TARGET] Intent: {intent}")
+        
+        # 3. Generate response
+        # generator.generate sẽ tự động xây dựng prompt với chunks và gọi Gemini
+        result = generator.generate(
+            query=user_message,
+            chunks=chunks,
+            intent=intent,
+            chat_history=None # Có thể mở rộng để dùng history của Gemini session
+        )
+        
+        if result['success']:
             return jsonify({
-                'response': 'Xin lỗi, không thể kết nối với AI model. Vui lòng liên hệ: 024.38581283'
+                'response': result['answer'],
+                'sources': [c.get('source', 'Unknown') for c in chunks[:3]]
+            })
+        else:
+            return jsonify({
+                'response': result['answer']
             })
         
-        # Tạo hoặc lấy chat session
-        if session_id not in chat_sessions:
-            model = genai.GenerativeModel(
-                model_name=MODEL_NAME,
-                generation_config={
-                    'temperature': 0.7,
-                    'max_output_tokens': 1024,
-                }
-            )
-            chat_sessions[session_id] = model.start_chat(history=[
-                {
-                    'role': 'user',
-                    'parts': [SYSTEM_PROMPT]
-                },
-                {
-                    'role': 'model',
-                    'parts': ['Tôi đã hiểu. Tôi sẽ trả lời các câu hỏi về thủ tục nhập học năm 2025.']
-                }
-            ])
-        
-        # Send message
-        chat = chat_sessions[session_id]
-        response = chat.send_message(user_message)
-        
-        return jsonify({
-            'response': response.text
-        })
-        
     except Exception as e:
+        print(f"[ERROR] Error trong app.py: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return jsonify({
-            'response': f'Xin lỗi, có lỗi xảy ra: {str(e)}\n\nVui lòng liên hệ: 024.38581283 hoặc ctsv@hus.edu.vn'
+            'response': f'Xin lỗi, có lỗi hệ thống xảy ra: {str(e)}'
         })
 
 @app.route('/reset', methods=['POST'])
@@ -117,20 +90,18 @@ def reset():
     try:
         data = request.json
         session_id = data.get('session_id', 'default')
-        
         if session_id in chat_sessions:
             del chat_sessions[session_id]
-        
         return jsonify({'success': True})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     print("=" * 70)
-    print("🎓 CHATBOT WEB - THỦ TỤC NHẬP HỌC 2025")
+    print(f"[EDUCATION] RAG CHATBOT - HỖ TRỢ ĐA TÀI LIỆU (Năm {ADMISSION_YEAR})")
     print("=" * 70)
     print()
-    print("✅ Server đang chạy tại: http://localhost:5000")
-    print("💡 Nhấn Ctrl+C để dừng server")
+    print("[OK] Server đang chạy tại: http://localhost:5000")
+    print("[TIP] Đảm bảo bạn đã chạy phase1_chunking.py và phase2_embedding.py")
     print()
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=False, host='0.0.0.0', port=5000)

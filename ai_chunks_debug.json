@@ -1,0 +1,234 @@
+[
+  {
+    "chunk_id": "p_0_Thủ tục nh",
+    "title": "PHẦN 1: Tra cứu danh sách trúng tuyển",
+    "content": "Hội đồng tuyển sinh Trường Đại học Khoa học Tự nhiên thông báo, hướng dẫn tới các thí sinh trúng tuyển hệ đại học chính quy năm 2025 nhập học trực tuyến và trực tiếp theo các hướng dẫn dưới đây:",
+    "topic": "general",
+    "level": "parent",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_0_Thủ tục nh_c_0",
+    "parent_id": "p_0_Thủ tục nh",
+    "title": "Tra cứu danh sách trúng tuyển",
+    "content": "Tra cứu danh sách trúng tuyển (sau ngày 22/8/2025) tại cổng thông tin tuyển sinh của nhà trường tại địa chỉ: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html (lưu ý thí sinh ghi lại Mã số sinh viên của mình trên kết quả tra cứu).",
+    "topic": "general",
+    "keywords": [
+      "tra cứu danh sách trúng tuyển"
+    ],
+    "level": "child",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_1_Thủ tục nh",
+    "title": "PHẦN 2: Xác nhận nhập học trực tuyến",
+    "content": "Thí sinh bắt buộc phải thực hiện xác nhận nhập học trực tuyến trên hệ thống tuyển sinh của Bộ Giáo dục và Đào tạo theo quy định (trước 17 giờ 00 thứ bảy, ngày 30/8/2025).",
+    "topic": "admission_docs",
+    "level": "parent",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_1_Thủ tục nh_c_0",
+    "parent_id": "p_1_Thủ tục nh",
+    "title": "Xác nhận nhập học trực tuyến",
+    "content": "Thí sinh bắt buộc phải thực hiện xác nhận nhập học trực tuyến trên hệ thống tuyển sinh của Bộ Giáo dục và Đào tạo theo quy định (trước 17 giờ 00 thứ bảy, ngày 30/8/2025).",
+    "topic": "admission_docs",
+    "keywords": [
+      "xác nhận nhập học trực tuyến"
+    ],
+    "level": "child",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_2_Thủ tục nh",
+    "title": "PHẦN 3: Nộp học phí tạm thu, lệ phí nhập học",
+    "content": "Nộp học phí tạm thu, lệ phí nhập học...theo hình thức chuyển khoản (thực hiện từ ngày 25/8/2025 đến hết ngày 05/9/2025) theo hướng dẫn download tại đây",
+    "topic": "fee",
+    "level": "parent",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_2_Thủ tục nh_c_0",
+    "parent_id": "p_2_Thủ tục nh",
+    "title": "Các khoản tiền",
+    "content": "1. Tiền làm hồ sơ, tài liệu cho sinh viên…:…………………….................……….............  50.000đ\n2. Hồ sơ sức khỏe, khám sức khỏe:.....................................................................180.000đ\n3. Bảo hiểm Y tế (bắt buộc theo quy định của Nhà nước):.............................. 789.750đ (hưởng 15 tháng tính từ 1/10/2025 với những thí sinh có thẻ bảo hiểm y tế theo gia đình sẽ được hoàn trả sau khi cập nhật trên hệ thống BHXH).\n4. Tạm thu học phí học kì 1 năm học 2025-2026 là: ........................................6.000.000đ (Các mức học phí đã được thông báo trong đề án tuyển sinh của nhà trường)",
+    "topic": "fee",
+    "keywords": [
+      "học phí tạm thu",
+      "lệ phí nhập học"
+    ],
+    "level": "child",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_3_Thủ tục nh",
+    "title": "PHẦN 4: Chuẩn bị hồ sơ; nộp hồ sơ trực tuyến",
+    "content": "Chuẩn bị hồ sơ; nộp hồ sơ trực tuyến (trước 17 giờ ngày 28/8/2025) và nộp hồ sơ trực tiếp (trong ngày 27-28/8/2025) tại Trường Đại học Khoa học Khoa học Tự nhiên theo hướng dẫn gồm các bước sau:",
+    "topic": "admission_docs",
+    "level": "parent",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_3_Thủ tục nh_c_0",
+    "parent_id": "p_3_Thủ tục nh",
+    "title": "Chuẩn bị hồ sơ",
+    "content": "B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất  theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có:\n+ Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025\n+ Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025)\n+ Học bạ THPT (tất cả các trang)\n+ Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có)",
+    "topic": "admission_docs",
+    "keywords": [
+      "chuẩn bị hồ sơ"
+    ],
+    "level": "child",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_3_Thủ tục nh_c_1",
+    "parent_id": "p_3_Thủ tục nh",
+    "title": "Nộp hồ sơ trực tuyến",
+    "content": "B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn)\nB3: Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây   (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025)\nB4: Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "topic": "admission_docs",
+    "keywords": [
+      "nộp hồ sơ trực tuyến"
+    ],
+    "level": "child",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_4_Thủ tục nh",
+    "title": "Lịch nhập học",
+    "content": "Sáng từ 7 giờ 30 ÷ 11 giờ 00; Chiều từ 13 giờ 30 ÷ 17 giờ 00",
+    "topic": "schedule",
+    "level": "parent",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_4_Thủ tục nh_c_0",
+    "parent_id": "p_4_Thủ tục nh",
+    "title": "Sáng thứ Tư, ngày 27/8/2025",
+    "content": "Vật lý học;  Khoa học vật liệu;  Công nghệ kỹ thuật hạt nhân;  Kỹ thuật điện tử và tin học;\nCông nghệ bán dẫn; Địa chất học; Quản lý tài nguyên và môi trường;",
+    "topic": "schedule",
+    "keywords": [
+      "sáng thứ tư",
+      "ngày 27/8/2025"
+    ],
+    "level": "child",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_4_Thủ tục nh_c_1",
+    "parent_id": "p_4_Thủ tục nh",
+    "title": "Chiều thứ Tư, ngày 27/8/2025",
+    "content": "Sinh học; Công nghệ sinh học; Sinh dược học;\nKhoa học môi trường;Công nghệ kĩ thuật môi trường; Khoa học và công nghệ thực phẩm; Môi trường sức khỏe và an toàn;",
+    "topic": "schedule",
+    "keywords": [
+      "chiều thứ tư",
+      "ngày 27/8/2025"
+    ],
+    "level": "child",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_4_Thủ tục nh_c_2",
+    "parent_id": "p_4_Thủ tục nh",
+    "title": "Sáng thứ Năm, ngày 28/8/2025",
+    "content": "Toán học; Toán Tin; Khoa học máy tính và thông tin; Khoa học dữ liệu;\nĐịa lý tự nhiên; Khoa học thông tin địa không gian; Quản lý đất đai; Quản lý phát triển đô thị và bất động sản.",
+    "topic": "schedule",
+    "keywords": [
+      "sáng thứ năm",
+      "ngày 28/8/2025"
+    ],
+    "level": "child",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_4_Thủ tục nh_c_3",
+    "parent_id": "p_4_Thủ tục nh",
+    "title": "Chiều thứ Năm, ngày 28/8/2025",
+    "content": "Hóa học; Công nghệ kỹ thuật hóa học;  Hóa dược;\nKhí tượng và khí hậu học; Tài nguyên và môi trường nước; Hải dương học;",
+    "topic": "schedule",
+    "keywords": [
+      "chiều thứ năm",
+      "ngày 28/8/2025"
+    ],
+    "level": "child",
+    "source": "Thủ tục nhập học 2025.txt",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_0_02.hd-nop-",
+    "title": "Hướng dẫn nộp học phí",
+    "content": "Sinh viên lựa chọn kênh thanh toán phù hợp: kênh chuyển tiền tại tất cả các Ngân hàng trên toàn quốc. Có thể thanh toán tại quầy giao dịch, Internet banking, Mobile banking, Thanh toán tự động (UNC tự động), chi tiết như sau:",
+    "topic": "fee",
+    "level": "parent",
+    "source": "02.hd-nop-hoc-phi-qua-ma-dinh-danh.pdf",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_0_02.hd-nop-_c_0",
+    "parent_id": "p_0_02.hd-nop-",
+    "title": "Chuyển tiền từ Ngân hàng BIDV",
+    "content": "Vào app BIDV/Chuyển tiền/Nội bộ BIDV/Nhập số tài khoản: V4KHTN + Mã sinh viên (gõ liền, không dấu cách)",
+    "topic": "fee",
+    "keywords": [
+      "BIDV",
+      "chuyển tiền"
+    ],
+    "level": "child",
+    "source": "02.hd-nop-hoc-phi-qua-ma-dinh-danh.pdf",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_0_02.hd-nop-_c_1",
+    "parent_id": "p_0_02.hd-nop-",
+    "title": "Chuyển tiền từ Ngân hàng khác",
+    "content": "Chọn: Chuyển tiền => Chọn: Chuyển tiền nhanh 24/7 => Nhập số tài khoản: có định dạng V4KHTN + Mã sinh viên (Gõ liền, không dấu cách) => Chọn ngân hàng: BIDV (Ngân hàng TMCP Đầu tư và phát triển Việt Nam)",
+    "topic": "fee",
+    "keywords": [
+      "chuyển tiền",
+      "ngân hàng khác"
+    ],
+    "level": "child",
+    "source": "02.hd-nop-hoc-phi-qua-ma-dinh-danh.pdf",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_0_02.hd-nop-_c_2",
+    "parent_id": "p_0_02.hd-nop-",
+    "title": "Kiểm tra và hoàn thành nộp học phí",
+    "content": "Kiểm tra đúng tên sinh viên, tại dòng “Số tiền”: gõ chính xác số tiền cần thanh toán, đối chiếu với số tiền hệ thống thông báo. => Nhập mã số OTP => Hoàn thành nộp học phí",
+    "topic": "fee",
+    "keywords": [
+      "kiểm tra",
+      "hoàn thành"
+    ],
+    "level": "child",
+    "source": "02.hd-nop-hoc-phi-qua-ma-dinh-danh.pdf",
+    "year": 2025
+  },
+  {
+    "chunk_id": "p_0_02.hd-nop-_c_3",
+    "parent_id": "p_0_02.hd-nop-",
+    "title": "Nộp tiền mặt tại các quầy của Ngân hàng",
+    "content": "Sinh viên thông báo về việc nộp học phí cho Trường Đại học Khoa học Tự nhiên – Khối ĐH tại ngân hàng BIDV. Cung cấp cho Giao dịch viên Số tài khoản định danh: ví dụ (V4KHTN+Mã sinh viên). Sinh viên cần nộp chính xác số tiền hệ thống đã thông báo, nếu không sẽ bị từ chối thanh toán.",
+    "topic": "fee",
+    "keywords": [
+      "nộp tiền mặt",
+      "ngân hàng"
+    ],
+    "level": "child",
+    "source": "02.hd-nop-hoc-phi-qua-ma-dinh-danh.pdf",
+    "year": 2025
+  }
+]
