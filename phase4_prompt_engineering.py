@@ -20,6 +20,8 @@ class PromptEngineer:
 NHIỆM VỤ:
 - Trả lời câu hỏi của sinh viên dựa HOÀN TOÀN trên ngữ cảnh được cung cấp.
 - Trả lời ĐẦY ĐỦ Ý - KHÔNG ĐƯỢC bỏ sót thông tin quan trọng.
+- [BẮT BUỘC] Mọi dữ kiện quan trọng (số tiền, ngày giờ, địa điểm, giấy tờ) phải bám đúng context; nếu không có bằng chứng thì ghi rõ: "Không tìm thấy trong tài liệu hiện có".
+- [BẮT BUỘC] Không tự suy diễn hoặc bổ sung thông tin ngoài context.
 - [QUAN TRỌNG] TÍNH TOÁN CHÍNH XÁC: Khi gặp các con số (học phí, lệ phí), hãy liệt kê từng mục và THỰC HIỆN PHÉP CỘNG BƯỚC-THEO-BƯỚC. Tuyệt đối không được sai sót số liệu tài chính.
 - Kiểm tra lại: Tổng số tiền = Khoản 1 + Khoản 2 + ...
 
@@ -103,39 +105,26 @@ QUY TẮC:
 5. Luôn trích dẫn nguồn [SOURCE] (Phần, Năm) cuối câu trả lời."""
     
     def create_context_prompt(self, chunks: List[Dict[str, Any]]) -> str:
-        """
-        Tạo context prompt từ retrieved chunks
-        
-        Template theo file md:
-        ----- NGỮ CẢNH TỪ TÀI LIỆU -----
-        [CHUNK 1 - Type: ..., Year: ...]
-        Tiêu đề: ...
-        Nội dung: ...
-        Nguồn: ...
-        ----- HẾT NGỮ CẢNH -----
-        """
+        """Tạo context prompt từ retrieved chunks theo định dạng evidence-first."""
         if not chunks:
             return self._create_empty_context()
-        
-        # Header gọn nhẹ hơn
+
         context_parts = ["\n[CONTEXT]"]
-        
+
         for i, chunk in enumerate(chunks, 1):
-            metadata = chunk.get('metadata', {})
-            content = chunk.get('content', '')
-            
-            # Metadata rút gọn
+            metadata = chunk.get('metadata', {}) or {}
+            content = chunk.get('content', '').strip()
+            chunk_id = chunk.get('chunk_id', '')
             year = metadata.get('year', '')
             section = metadata.get('section_number', '')
-            source = metadata.get('source', '')
-            
-            # Format tối ưu: i) [Phần, Năm] Content
-            meta_str = f"(PHẦN {section}, {year})" if section and year else (f"(PHẦN {section})" if section else (f"({year})" if year else ""))
-            
-            context_parts.append(f"C{i} {meta_str}: {content.strip()}")
-        
+            source = chunk.get('source', '') or metadata.get('source', 'Unknown')
+
+            context_parts.append(
+                f"C{i} | chunk_id={chunk_id} | source={source} | section={section} | year={year}\n"
+                f"Nội dung: {content}"
+            )
+
         context_parts.append("[END CONTEXT]\n")
-        
         return "\n".join(context_parts)
     
     def _create_empty_context(self) -> str:
@@ -156,7 +145,11 @@ Không tìm thấy thông tin liên quan trong tài liệu.
         """
         return f"""CÂU HỎI: {query}
 
-Hãy trả lời dựa trên ngữ cảnh trên. Nhớ trích dẫn nguồn nếu cần thiết."""
+YÊU CẦU TRẢ LỜI:
+1) Chỉ dùng thông tin có trong [CONTEXT].
+2) Mọi dữ kiện quan trọng phải có trích dẫn nguồn rõ ràng (chunk_id hoặc [SOURCE]).
+3) Nếu thiếu thông tin để kết luận, bắt buộc ghi: "Không tìm thấy trong tài liệu hiện có".
+4) Không suy diễn ngoài tài liệu."""
     
     def create_full_prompt(self, query: str, chunks: List[Dict[str, Any]]) -> str:
         """

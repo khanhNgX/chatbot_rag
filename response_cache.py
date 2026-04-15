@@ -4,32 +4,35 @@ Response caching layer - để chatbot vẫn hoạt động khi API hết quota
 import json
 import os
 import time
-from typing import Dict, Optional, List, Any
+import unicodedata
+from typing import Dict, Optional
 import re
 
+
 class ResponseCache:
-    """Cache responses để sử dụng khi API quota hết"""
-    
+    """Cache responses chất lượng cao để tăng ổn định khi trả lời"""
+
     def __init__(self, cache_file: str = "response_cache.json"):
         self.cache_file = cache_file
         self.cache = self._load_cache()
         self.templates = self._load_templates()
-    
+        self.cleanup()
+
     def _load_cache(self) -> Dict:
         """Load cache từ file"""
         if os.path.exists(self.cache_file):
             try:
                 with open(self.cache_file, 'r', encoding='utf-8') as f:
                     return json.load(f)
-            except:
+            except Exception:
                 return {}
         return {}
-    
+
     def _save_cache(self):
         """Save cache vào file"""
         with open(self.cache_file, 'w', encoding='utf-8') as f:
             json.dump(self.cache, f, ensure_ascii=False, indent=2)
-    
+
     def _load_templates(self) -> Dict:
         """Template responses cho các intent phổ biến"""
         return {
@@ -145,49 +148,174 @@ Tôi là chatbot hỗ trợ thông tin tuyển sinh 2025 của Trường Đại 
 - Email: ctsv@hus.edu.vn"""
             }
         }
-    
-    def get(self, query: str) -> Optional[str]:
-        """Lấy response từ cache"""
-        query_key = self._normalize_query(query)
-        return self.cache.get(query_key)
-    
-    def save(self, query: str, response: str):
-        """Lưu response vào cache"""
-        query_key = self._normalize_query(query)
+
+    def get(
+        self,
+        query: str,
+        intent: Optional[str] = None,
+        session_id: str = 'default',
+        user_id: str = 'anonymous',
+        style_id: Optional[str] = None
+    ) -> Optional[Dict]:
+        """Lấy response từ cache (chỉ ưu tiên bản chất lượng cao)."""
+        query_key = self._cache_key(
+            query,
+            intent,
+            session_id=session_id,
+            user_id=user_id,
+            style_id=style_id
+        )
+        item = self.cache.get(query_key)
+
+        # Khi đã dùng style_id thì bắt buộc match đúng style-key để tránh đạp khuôn từ cache cũ
+        if not item and style_id is None:
+            # Backward-compatible fallback cho scoped-key cũ chưa có style
+            scoped_legacy_key = self._cache_key(
+                query,
+                intent,
+                session_id=session_id,
+                user_id=user_id,
+                style_id=None
+            )
+            item = self.cache.get(scoped_legacy_key)
+
+            # Backward-compatible fallback cho key cũ chưa có scope user/session
+            if not item:
+                legacy_key = self._cache_key(query, intent)
+                item = self.cache.get(legacy_key)
+
+        if not item:
+            return None
+        if item.get('quality', 'high') != 'high':
+            return None
+        return item
+
+    def save(
+        self,
+        query: str,
+        response: str,
+        intent: Optional[str] = None,
+        source_type: str = 'api',
+        quality: str = 'high',
+        session_id: str = 'default',
+        user_id: str = 'anonymous',
+        style_id: Optional[str] = None
+    ):
+        """Lưu response vào cache với metadata chất lượng."""
+        query_key = self._cache_key(
+            query,
+            intent,
+            session_id=session_id,
+            user_id=user_id,
+            style_id=style_id
+        )
         self.cache[query_key] = {
             'response': response,
-            'timestamp': time.time()
+            'timestamp': time.time(),
+            'intent': intent or 'general',
+            'source_type': source_type,
+            'quality': quality,
+            'session_id': session_id,
+            'user_id': user_id,
+            'style_id': style_id
         }
         self._save_cache()
-    
+
+    def _cache_key(
+        self,
+        query: str,
+        intent: Optional[str] = None,
+        session_id: Optional[str] = None,
+        user_id: Optional[str] = None,
+        style_id: Optional[str] = None
+    ) -> str:
+        normalized = self._normalize_query(query)
+        if session_id is None and user_id is None:
+            # Legacy key format để tương thích dữ liệu cũ
+            return f"{intent or 'general'}::{normalized}"
+        sid = self._normalize_scope_token(session_id or 'default')
+        uid = self._normalize_scope_token(user_id or 'anonymous')
+        if style_id is None:
+            return f"{uid}::{sid}::{intent or 'general'}::{normalized}"
+        sty = self._normalize_scope_token(style_id)
+        return f"{uid}::{sid}::{intent or 'general'}::{sty}::{normalized}"
+
+    @staticmethod
+    def _normalize_scope_token(value: str) -> str:
+        v = unicodedata.normalize('NFKC', str(value or '')).strip().lower()
+        v = re.sub(r'[^\w\-\.]+', '_', v)
+        return v or 'unknown'
+
+    def clear_session(self, session_id: str, user_id: str = 'anonymous'):
+        """Xóa cache theo scope session/user."""
+        sid = self._normalize_scope_token(session_id)
+        uid = self._normalize_scope_token(user_id)
+        prefix = f"{uid}::{sid}::"
+        old_keys = [k for k in self.cache.keys() if k.startswith(prefix)]
+        for k in old_keys:
+            self.cache.pop(k, None)
+        if old_keys:
+            self._save_cache()
+
     def _normalize_query(self, query: str) -> str:
-        """
-        Normalize query để sử dụng làm key.
-        Loại bỏ dấu câu, viết thường, loại bỏ khoảng trắng thừa.
-        """
-        if not query:
-            return ""
-        
-        # Viết thường
-        q = query.lower()
-        
-        # Loại bỏ dấu câu phổ biến
-        q = re.sub(r'[?.!,;:\-_]', ' ', q)
-        
-        # Loại bỏ khoảng trắng thừa
-        q = ' '.join(q.split())
-        
+        """Normalize query để sử dụng làm key."""
+        q = unicodedata.normalize('NFKC', (query or '').lower().strip())
+        q = re.sub(r'[^\w\sÀ-ỹ]', ' ', q)
+        q = re.sub(r'\s+', ' ', q).strip()
         return q
-    
+
+    def cleanup(self):
+        """Dọn cache cũ về key mới và loại entry chất lượng thấp/template."""
+        cleaned = {}
+        template_texts = [v.get('template', '') for v in self.templates.values()]
+
+        for old_key, item in self.cache.items():
+            if not isinstance(item, dict):
+                continue
+
+            response = item.get('response', '')
+            source_type = item.get('source_type', 'api')
+            quality = item.get('quality', 'high')
+            intent = item.get('intent')
+
+            is_exact_template = any(response.strip() == t.strip() for t in template_texts if t)
+            is_template_like = (
+                ('[PIN] Tôi có thể giúp bạn về:' in response) or
+                ('[INFO] Thông tin chi tiết:' in response and '[SOURCE]' not in response) or
+                ('Dựa trên thông tin từ tài liệu tuyển sinh 2025' in response and '[SOURCE]' not in response)
+            )
+
+            if source_type in {'template', 'error'} or quality == 'low' or is_exact_template or is_template_like:
+                continue
+
+            if '::' in old_key:
+                new_key = old_key
+            else:
+                new_key = self._cache_key(old_key, intent)
+
+            existed = cleaned.get(new_key)
+            if not existed or item.get('timestamp', 0) > existed.get('timestamp', 0):
+                cleaned[new_key] = {
+                    'response': response,
+                    'timestamp': item.get('timestamp', time.time()),
+                    'intent': intent or 'general',
+                    'source_type': source_type,
+                    'quality': quality,
+                    'session_id': item.get('session_id', 'default'),
+                    'user_id': item.get('user_id', 'anonymous'),
+                    'style_id': item.get('style_id')
+                }
+
+        self.cache = cleaned
+        self._save_cache()
+
     def get_template_response(self, query: str, intent: Optional[str] = None) -> Optional[str]:
         """Lấy template response dựa trên intent hoặc keyword"""
         query_lower = query.lower()
-        
-        # Nếu có intent, ưu tiên intent
+
         if intent and intent in self.templates:
             return self.templates[intent]['template']
-        
-        # Tìm template dựa trên keywords
+
         for intent_name, intent_data in self.templates.items():
             if intent_name == 'generic':
                 continue
@@ -195,12 +323,13 @@ Tôi là chatbot hỗ trợ thông tin tuyển sinh 2025 của Trường Đại 
             for keyword in keywords:
                 if keyword in query_lower:
                     return intent_data['template']
-        
-        # Fallback to generic
+
         return self.templates['generic']['template']
+
 
 # Global cache instance
 _cache_instance = None
+
 
 def get_cache():
     """Get hoặc tạo cache instance"""

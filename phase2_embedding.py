@@ -173,23 +173,30 @@ class VectorStorage:
                 found_metadatas.append(chunk)
         return {"ids": found_ids, "documents": found_docs, "metadatas": found_metadatas}
 
-    def find(self, where: Dict) -> Dict[str, Any]:
-        """Tìm kiếm chunks theo metadata (không dùng vector)"""
+    def find(self, where: Dict[str, Any] = None) -> Dict[str, Any]:
+        """Tìm chunks theo metadata filter (tương thích với automation_retriever)."""
+        if not where:
+            return {
+                "ids": [chunk.get("chunk_id") for chunk in self.data["chunks"]],
+                "documents": [chunk.get("content", "") for chunk in self.data["chunks"]],
+                "metadatas": self.data["chunks"]
+            }
+
+        found_ids = []
         found_docs = []
         found_metadatas = []
-        found_ids = []
-        
-        for i, chunk in enumerate(self.data["chunks"]):
+
+        for chunk in self.data["chunks"]:
             match = True
-            for k, v in where.items():
-                if chunk.get(k) != v:
+            for key, value in where.items():
+                if chunk.get(key) != value:
                     match = False
                     break
             if match:
-                found_ids.append(chunk.get("chunk_id", f"idx_{i}"))
-                found_docs.append(chunk["content"])
+                found_ids.append(chunk.get("chunk_id"))
+                found_docs.append(chunk.get("content", ""))
                 found_metadatas.append(chunk)
-                
+
         return {"ids": found_ids, "documents": found_docs, "metadatas": found_metadatas}
 
     def save(self):
@@ -219,7 +226,16 @@ class EmbeddingPipeline:
     def __init__(self):
         self.embedding_gen = EmbeddingGenerator()
         self.vector_storage = VectorStorage()
-    
+
+    def _invalidate_response_cache(self, cache_file: str = "response_cache.json"):
+        """Reset cache sau reindex để tránh trả lời cũ lệch dữ liệu mới."""
+        try:
+            with open(cache_file, 'w', encoding='utf-8') as f:
+                json.dump({}, f, ensure_ascii=False, indent=2)
+            print(f"[CACHE] Đã reset {cache_file} sau khi reindex")
+        except Exception as e:
+            print(f"[WARNING] Không thể reset cache: {e}")
+
     def process_chunks(self, chunks: List[Dict[str, Any]]):
         print(f"🔨 Đang xử lý {len(chunks)} chunks bằng REST API...")
         embeddings = []
@@ -232,9 +248,10 @@ class EmbeddingPipeline:
             else:
                 print(f"   [WARNING] Lỗi chunk {chunk['chunk_id']}, dùng vector rỗng.")
                 embeddings.append([0.0] * 3072)
-        
+
         self.vector_storage.create_collection()
         self.vector_storage.add_chunks(chunks, embeddings)
+        self._invalidate_response_cache()
         print(f"[OK] PHASE 2 hoàn thành! Tổng: {len(chunks)} chunks.")
 
 def main():
