@@ -26,17 +26,17 @@ from config import get_admission_year
 # Cấu hình
 load_dotenv()
 
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
-if not GEMINI_API_KEY:
-    raise ValueError("[WARNING] Vui lòng set GEMINI_API_KEY trong file .env")
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+if not GROQ_API_KEY:
+    raise ValueError("[WARNING] Vui lòng set GROQ_API_KEY trong file .env")
 
 app = Flask(__name__)
 
 # Khởi tạo RAG components
 # Retriever dùng để tìm kiếm context từ ChromaDB (đã index tất cả file trong data/)
 retriever = HybridRetriever()
-# Generator dùng để gọi Gemini và tạo câu trả lời từ context
-generator = LLMGenerator(GEMINI_API_KEY)
+# Generator dùng Groq API và tạo câu trả lời từ context
+generator = LLMGenerator(GROQ_API_KEY)
 
 ADMISSION_YEAR = get_admission_year()
 
@@ -93,19 +93,36 @@ def chat():
         if not user_message:
             return jsonify({'error': 'No message provided'}), 400
 
-        # 1. Retrieve context (Tìm kiếm trong toàn bộ data/ đã index)
-        print(f"[SEARCH] Đang tìm kiếm thông tin cho: {user_message}")
-        chunks = retriever.retrieve(user_message, top_k=8)
-
-        # 2. Phân tích intent để truyền vào generator
-        analysis = retriever.query_analyzer.analyze(user_message)
-        intent = analysis.get('intent', 'general')
-        print(f"[TARGET] Intent: {intent}")
-
-        # 3. Nạp history theo session/user
+        # 1. Nạp history theo session/user
         history = chat_sessions.get(session_key, [])
 
-        # 4. Generate response
+        # 2. Retrieve context (Tìm kiếm trong toàn bộ data/ đã index)
+        print(f"[SEARCH] Đang tìm kiếm thông tin cho: {user_message}")
+        chunks = retriever.retrieve(user_message, top_k=8, chat_history=history)
+
+        # 3. Phân tích intent/query frame để truyền vào generator
+        analysis = retriever.query_analyzer.analyze(user_message, chat_history=history)
+        intent = analysis.get('intent', 'general')
+        query_frame = analysis.get('query_frame', {})
+        print(f"[TARGET] Intent: {intent}")
+        if query_frame:
+            print(f"[FRAME] scope={query_frame.get('scope')} nav={query_frame.get('nav_target_candidates', [])}")
+
+        # 4. Chặn câu hỏi ngoài phạm vi dữ liệu tuyển sinh
+        if intent == 'general':
+            answer = (
+                "Mình chỉ có dữ liệu về thủ tục nhập học, nên chưa có thông tin cho câu hỏi này.\n"
+                "Bạn có thể hỏi về: học phí, hồ sơ, lịch nhập học, xác nhận nhập học hoặc các bước thủ tục."
+            )
+            history.append({'role': 'user', 'content': user_message})
+            history.append({'role': 'assistant', 'content': answer})
+            if len(history) > MAX_HISTORY_TURNS:
+                history = history[-MAX_HISTORY_TURNS:]
+            chat_sessions[session_key] = history
+            return jsonify({'response': answer, 'sources': []})
+
+        # 5. Generate response
+        # giữ contract UI cũ (response) nhưng có thể truyền analysis mở rộng nội bộ về sau.
         style_id = _style_id_from_history(history, session_key=session_key)
         result = generator.generate(
             query=user_message,
@@ -166,10 +183,30 @@ def chat_stream():
                 yield _event('error', {'message': 'No message provided'})
                 return
 
-            chunks = retriever.retrieve(user_message, top_k=8)
-            analysis = retriever.query_analyzer.analyze(user_message)
-            intent = analysis.get('intent', 'general')
             history = chat_sessions.get(session_key, [])
+            chunks = retriever.retrieve(user_message, top_k=8, chat_history=history)
+            analysis = retriever.query_analyzer.analyze(user_message, chat_history=history)
+            intent = analysis.get('intent', 'general')
+            query_frame = analysis.get('query_frame', {})
+            if query_frame:
+                print(f"[FRAME] stream scope={query_frame.get('scope')} nav={query_frame.get('nav_target_candidates', [])}")
+
+            if intent == 'general':
+                answer = (
+                    "Mình chỉ có dữ liệu về thủ tục nhập học, nên chưa có thông tin cho câu hỏi này.\n"
+                    "Bạn có thể hỏi về: học phí, hồ sơ, lịch nhập học, xác nhận nhập học hoặc các bước thủ tục."
+                )
+                history.append({'role': 'user', 'content': user_message})
+                history.append({'role': 'assistant', 'content': answer})
+                if len(history) > MAX_HISTORY_TURNS:
+                    history = history[-MAX_HISTORY_TURNS:]
+                chat_sessions[session_key] = history
+
+                chunk_size = 80
+                for i in range(0, len(answer), chunk_size):
+                    yield _event('chunk', {'text': answer[i:i + chunk_size]})
+                yield _event('done', {'sources': [], 'success': True, 'style_id': 'domain_guard'})
+                return
 
             style_id = _style_id_from_history(history, session_key=session_key)
             result = generator.generate(

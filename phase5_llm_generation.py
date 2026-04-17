@@ -6,14 +6,16 @@ Module xử lý LLM generation qua REST API + deterministic formatter theo inten
 
 import re
 import os
-import requests
-from typing import List, Dict, Any, Optional
+import json
+from typing import List, Dict, Any, Optional, Tuple
 from dotenv import load_dotenv
 from phase4_prompt_engineering import PromptEngineer
 from response_cache import get_cache
+import requests
 
 # Load biến môi trường
 load_dotenv()
+GROQ_MODEL_TEXT = (os.getenv('GROQ_MODEL_TEXT') or 'llama-3.3-70b-versatile').strip()
 
 
 class ResponseValidator:
@@ -201,15 +203,26 @@ class ResponseFormatter:
         metadata = main_chunk.get('metadata', {})
         year = metadata.get('year', '')
         section = metadata.get('section_number', '')
+        section_id = metadata.get('section_id') or main_chunk.get('section_id')
+        step_id = metadata.get('step_id') or main_chunk.get('step_id')
+        canonical_nav_id = metadata.get('canonical_nav_id') or main_chunk.get('canonical_nav_id')
         source = main_chunk.get('source', '') or metadata.get('source', 'Tài liệu tuyển sinh')
 
         citation_parts = ["\n\n---"]
-        if section and year:
-            citation_parts.append(f"[SOURCE] Nguồn: {source} (PHẦN {section}, Năm {year})")
-        elif section:
-            citation_parts.append(f"[SOURCE] Nguồn: {source} (PHẦN {section})")
-        elif year:
-            citation_parts.append(f"[SOURCE] Nguồn: {source} (Năm {year})")
+        scope_bits = []
+        if section:
+            scope_bits.append(f"PHẦN {section}")
+        elif section_id:
+            scope_bits.append(section_id)
+        if step_id:
+            scope_bits.append(step_id)
+        elif canonical_nav_id and canonical_nav_id != section_id:
+            scope_bits.append(canonical_nav_id)
+        if year:
+            scope_bits.append(f"Năm {year}")
+
+        if scope_bits:
+            citation_parts.append(f"[SOURCE] Nguồn: {source} ({', '.join(scope_bits)})")
         else:
             citation_parts.append(f"[SOURCE] Nguồn: {source}")
 
@@ -257,8 +270,17 @@ class ResponseFormatter:
         md = c.get('metadata', {}) or {}
         source = c.get('source') or md.get('source', 'Tài liệu tuyển sinh')
         year = md.get('year') or c.get('year')
+        section_id = str(md.get('section_id') or c.get('section_id') or '')
+
+        scope_bits = []
+        m = re.search(r'phan_(\d+)', section_id)
+        if m:
+            scope_bits.append(f"PHẦN {m.group(1)}")
         if year:
-            return f"[SOURCE] Nguồn: {source} (Năm {year})"
+            scope_bits.append(f"Năm {year}")
+
+        if scope_bits:
+            return f"[SOURCE] Nguồn: {source} ({', '.join(scope_bits)})"
         return f"[SOURCE] Nguồn: {source}"
 
     @staticmethod
@@ -372,7 +394,223 @@ class ResponseFormatter:
         lines.append(self._source_line(pay_chunks))
         return "\n".join(lines)
 
-    def format_admission_procedure(self, chunks: List[Dict[str, Any]]) -> Optional[str]:
+    def format_admission_procedure(self, chunks: List[Dict[str, Any]], analysis: Optional[Dict[str, Any]] = None) -> Optional[str]:
+        entities = (analysis or {}).get('entities', {}) or {}
+        ask_section_count = bool(entities.get('ask_section_count'))
+        ask_step_count_local = bool(entities.get('ask_step_count_local'))
+
+        if ask_section_count:
+            section_numbers = set()
+            for c in chunks:
+                md = c.get('metadata', {}) or {}
+                s_id = str(md.get('section_id', ''))
+                m_id = re.search(r'phan_(\d+)', s_id)
+                if m_id:
+                    section_numbers.add(int(m_id.group(1)))
+                title = str(md.get('title', ''))
+                m_title = re.search(r'PH[ẦA]N\s*(\d+)', title, flags=re.IGNORECASE)
+                if m_title:
+                    section_numbers.add(int(m_title.group(1)))
+                content = c.get('content', '') or ''
+                for mm in re.finditer(r'\bPH[ẦA]N\s*([1-9])\b', content, flags=re.IGNORECASE):
+                    section_numbers.add(int(mm.group(1)))
+
+            if section_numbers:
+                max_section = max(section_numbers)
+                count = max_section
+            else:
+                max_section = 4
+                count = 4
+            return f"Thủ tục nhập học gồm {count} phần lớn (PHẦN 1 đến PHẦN {max_section}).\n{self._source_line(chunks)}"
+
+        if ask_step_count_local:
+            step_numbers = set()
+            for c in chunks:
+                md = c.get('metadata', {}) or {}
+                s_no = md.get('step_number')
+                if isinstance(s_no, int) and 1 <= s_no <= 9:
+                    step_numbers.add(s_no)
+                subtype = str(md.get('subtype', ''))
+                m = re.search(r'step_b(\d+)', subtype)
+                if m:
+                    step_numbers.add(int(m.group(1)))
+                content = c.get('content', '') or ''
+                for mm in re.finditer(r'\bB\s*([1-9])\b', content, flags=re.IGNORECASE):
+                    step_numbers.add(int(mm.group(1)))
+
+            if step_numbers:
+                max_step = max(step_numbers)
+                count = len(step_numbers)
+            else:
+                max_step = 4
+                count = 4
+            return f"Phần nộp hồ sơ gồm {count} bước (B1 đến B{max_step}).\n{self._source_line(chunks)}"
+
+        if bool(entities.get('ask_steps_overview_local')):
+            local_step_chunks = [
+                c for c in chunks
+                if str((c.get('metadata', {}) or {}).get('subtype', '')).startswith('step_b')
+                and (c.get('metadata', {}) or {}).get('section_id') == 'phan_4'
+            ]
+
+            dedup_local: Dict[int, Dict[str, Any]] = {}
+            for c in local_step_chunks:
+                md = c.get('metadata', {}) or {}
+                s_no = md.get('step_number')
+                if not s_no:
+                    m = re.search(r'step_b(\d+)', str(md.get('subtype', '')))
+                    if m:
+                        s_no = int(m.group(1))
+                if isinstance(s_no, int) and 1 <= s_no <= 9 and s_no not in dedup_local:
+                    dedup_local[s_no] = c
+
+            # nếu retrieval thiếu step chunks, bóc B1..B4 từ procedure_overview/steps_group của PHẦN 4
+            if len(dedup_local) < 4:
+                for c in chunks:
+                    md = c.get('metadata', {}) or {}
+                    if md.get('section_id') != 'phan_4':
+                        continue
+                    if md.get('subtype') not in {'procedure_overview', 'steps_group'}:
+                        continue
+                    text = re.sub(r'\s+', ' ', c.get('content', '') or '').strip()
+                    if not text:
+                        continue
+                    for m in re.finditer(r'B\s*([1-4])\s*:\s*(.*?)(?=\s*B\s*[1-4]\s*:|$)', text, flags=re.IGNORECASE):
+                        s_no = int(m.group(1))
+                        if s_no in dedup_local:
+                            continue
+                        content = m.group(2).strip(' .;')
+                        if not content:
+                            continue
+                        dedup_local[s_no] = {
+                            'content': content,
+                            'metadata': {'section_id': 'phan_4', 'step_number': s_no, 'subtype': f'step_b{s_no}'},
+                            'source': c.get('source')
+                        }
+
+            if dedup_local:
+                def _compact_local_step_text(step_no: int, raw: str) -> str:
+                    text = re.sub(r'\s+', ' ', raw or '').strip()
+                    if step_no == 1:
+                        return "Chuẩn bị hồ sơ và tạo 01 file PDF duy nhất theo đúng thành phần giấy tờ yêu cầu."
+                    if step_no == 2:
+                        return "Chụp 01 ảnh chân dung 4x6 rõ nét và đặt tên file theo mã sinh viên."
+                    if step_no == 3:
+                        return "Tải ảnh/hồ sơ lên hệ thống trực tuyến theo link của trường, hoàn thành trước 17:00 ngày 28/8/2025."
+                    if step_no == 4:
+                        return "Nộp hồ sơ bản giấy trực tiếp tại Trường theo lịch ngành trong ngày 27-28/8/2025."
+                    if len(text) > 220:
+                        return text[:220].rstrip(' ,.;:') + '...'
+                    return text
+
+                lines = ["Các bước nộp hồ sơ gồm:"]
+                for s_no in sorted(dedup_local.keys()):
+                    c = dedup_local[s_no]
+                    compact = _compact_local_step_text(s_no, c.get('content', ''))
+                    lines.append(f"- B{s_no}: {compact}")
+                lines.append(self._source_line(list(dedup_local.values())))
+                return "\n".join(lines)
+
+        if bool(entities.get('ask_steps_overview_global')):
+            defaults = {
+                1: 'Tra cứu danh sách trúng tuyển và mã sinh viên.',
+                2: 'Xác nhận nhập học trực tuyến.',
+                3: 'Nộp học phí theo hướng dẫn.',
+                4: 'Chuẩn bị và nộp hồ sơ nhập học.'
+            }
+            sections: Dict[int, str] = {}
+
+            for c in chunks:
+                text = (c.get('content') or '').strip()
+                if not text:
+                    continue
+                for m in re.finditer(
+                    r'\bPH[ẦA]N\s*([1-4])\s*:\s*(.*?)(?=\s*PH[ẦA]N\s*[1-4]\s*:|$)',
+                    text,
+                    flags=re.IGNORECASE | re.DOTALL
+                ):
+                    s_no = int(m.group(1))
+                    if s_no in sections:
+                        continue
+                    desc = re.sub(r'\s+', ' ', m.group(2)).strip(' .;,-')
+                    desc = re.split(r'\bB\s*1\s*:|\btheo\s+hướng\s+dẫn\s+gồm\s+các\s+bước\b', desc, maxsplit=1, flags=re.IGNORECASE)[0].strip(' .;,-')
+                    if desc:
+                        sections[s_no] = desc + ('' if desc.endswith('.') else '.')
+
+            lines = ["Các phần của thủ tục nhập học gồm:"]
+            for s_no in [1, 2, 3, 4]:
+                lines.append(f"- PHẦN {s_no}: {sections.get(s_no, defaults[s_no])}")
+            lines.append(self._source_line(chunks))
+            return "\n".join(lines)
+
+        query_frame = (analysis or {}).get('query_frame', {}) or {}
+        nav_candidates = query_frame.get('nav_target_candidates') or []
+        nav_is_section = bool(nav_candidates and str(nav_candidates[0]).startswith('phan_'))
+
+        if nav_is_section:
+            section_no = re.search(r'phan_(\d+)', str(nav_candidates[0]))
+            target_no = int(section_no.group(1)) if section_no else None
+            if target_no in {1, 2, 3, 4}:
+                section_chunks = []
+                for c in chunks:
+                    md = c.get('metadata', {}) or {}
+                    if md.get('section_id') == f'phan_{target_no}':
+                        section_chunks.append(c)
+                        continue
+
+                    content = (c.get('content') or '').strip()
+                    if not content:
+                        continue
+                    if re.search(rf'\bPH[ẦA]N\s*{target_no}\b', content, flags=re.IGNORECASE):
+                        section_chunks.append(c)
+
+                # fallback: tách từ procedure_overview có nhiều dòng PHẦN n
+                if not section_chunks:
+                    for c in chunks:
+                        content = (c.get('content') or '').strip()
+                        if not content:
+                            continue
+                        m = re.search(
+                            rf'\bPH[ẦA]N\s*{target_no}\s*:\s*(.*?)(?=\n\s*PH[ẦA]N\s*\d+\s*:|$)',
+                            content,
+                            flags=re.IGNORECASE | re.DOTALL
+                        )
+                        if m:
+                            section_chunks.append({
+                                'content': m.group(1).strip(),
+                                'metadata': c.get('metadata', {}),
+                                'source': c.get('source')
+                            })
+
+                section_lines = []
+                for c in section_chunks:
+                    text = (c.get('content') or '').strip()
+                    if not text:
+                        continue
+
+                    # chỉ lấy dòng mô tả đầu tiên để ngắn gọn, đủ ý
+                    first_line = next((ln.strip() for ln in text.splitlines() if ln.strip()), '')
+                    if not first_line:
+                        continue
+
+                    first_line = re.sub(r'\s+', ' ', first_line)
+                    # bỏ tiền tố "PHẦN n:" nếu có
+                    first_line = re.sub(rf'^PH[ẦA]N\s*{target_no}\s*:\s*', '', first_line, flags=re.IGNORECASE).strip()
+
+                    # Rút gọn PHẦN 3/4 về 1 dòng tóm tắt đầu tiên trong tài liệu
+                    if target_no == 3:
+                        first_line = re.split(r'\btheo\s+hướng\s+dẫn\s+download\s+tại\s+đây\b|\bCác\s+khoản\s+tiền\s*:', first_line, maxsplit=1, flags=re.IGNORECASE)[0].strip(' .;,-')
+                    elif target_no == 4:
+                        first_line = re.split(r'\btheo\s+hướng\s+dẫn\s+gồm\s+các\s+bước\s+sau\s*:|\bB1\s*:', first_line, maxsplit=1, flags=re.IGNORECASE)[0].strip(' .;,-')
+
+                    if first_line and first_line not in section_lines:
+                        section_lines.append(first_line)
+
+                if section_lines:
+                    line = section_lines[0]
+                    return f"- {line}\n{self._source_line(section_chunks or chunks)}"
+                return None
+
         step_overview = [
             c for c in chunks
             if (c.get('metadata', {}) or {}).get('subtype') == 'steps_overview'
@@ -449,13 +687,23 @@ class ResponseFormatter:
 
     def format_step(self, chunks: List[Dict[str, Any]], analysis: Optional[Dict[str, Any]] = None) -> Optional[str]:
         step_no = None
+        raw_q = ''
         if analysis:
-            step_no = ((analysis.get('entities') or {}).get('step_number'))
+            entities = analysis.get('entities') or {}
+            step_no = entities.get('step_number')
+            raw_q = (analysis.get('raw_query') or '').lower()
         if not step_no:
             return None
+
+        # Ưu tiên đúng 1 step theo step_number đã resolve từ resolver/history
         target = [c for c in chunks if (c.get('metadata', {}) or {}).get('subtype') == f'step_b{step_no}']
+
+        # Guard nhẹ cho follow-up relative-step: nếu chưa có step chunk đúng thì thôi, không bung full procedure
+        if not target and any(k in raw_q for k in ['tiếp theo', 'tiep theo', 'trước đó', 'truoc do', 'bước trước', 'buoc truoc']):
+            return None
         if not target:
             return None
+
         content = target[0].get('content', '')
         return f"B{step_no}: {content}\n{self._source_line(target)}"
 
@@ -695,7 +943,7 @@ class ResponseFormatter:
             'online_confirmation': lambda: self.format_online_confirmation(chunks),
             'fee_info': lambda: self.format_fee_info(chunks),
             'fee_payment': lambda: self.format_fee_payment(chunks),
-            'admission_procedure': lambda: self.format_admission_procedure(chunks),
+            'admission_procedure': lambda: self.format_admission_procedure(chunks, analysis=analysis),
             'step': lambda: self.format_step(chunks, analysis=analysis),
             'schedule_session': lambda: self.format_schedule_session(chunks, analysis=analysis),
             'schedule_by_major': lambda: self.format_schedule_by_major(chunks, analysis=analysis),
@@ -713,57 +961,52 @@ class ResponseFormatter:
 
 
 class LLMGenerator:
-    """LLM Generation sử dụng Gemini API qua REST CALL (Pure Python)"""
+    """LLM Generation sử dụng Groq API qua REST CALL (Pure Python)"""
 
     def __init__(self, api_key: str):
-        self.api_key = api_key
+        self.api_key = (api_key or '').strip()
         self.prompt_engineer = PromptEngineer()
         self.validator = ResponseValidator()
         self.formatter = ResponseFormatter()
 
     def _call_llm(self, unified_prompt: str) -> Dict[str, Any]:
+        if not self.api_key:
+            return {'status': 'error', 'error': 'missing_GROQ_API_KEY'}
+
         payload = {
-            "contents": [
-                {
-                    "role": "user",
-                    "parts": [{"text": unified_prompt}]
-                }
-            ],
-            "generationConfig": {
-                "temperature": 0.1,
-                "topP": 0.9,
-                "maxOutputTokens": 1500,
-            }
+            'model': GROQ_MODEL_TEXT,
+            'temperature': 0.1,
+            'max_tokens': 1500,
+            'messages': [
+                {'role': 'system', 'content': 'Bạn là trợ lý tư vấn thủ tục nhập học, trả lời đúng theo context.'},
+                {'role': 'user', 'content': unified_prompt or ''}
+            ]
         }
 
-        headers = {"Content-Type": "application/json"}
-        url_flash = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key={self.api_key}"
-        url_pro = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-latest:generateContent?key={self.api_key}"
-
         try:
-            print("[CALL] Calling Gemini API (Flash Lite)...")
-            response = requests.post(url_flash, headers=headers, json=payload, timeout=30)
-
+            print("[CALL] Calling Groq API...")
+            response = requests.post(
+                'https://api.groq.com/openai/v1/chat/completions',
+                headers={
+                    'Authorization': f'Bearer {self.api_key}',
+                    'content-type': 'application/json'
+                },
+                json=payload,
+                timeout=45
+            )
             if response.status_code == 429:
                 return {'status': 'quota'}
-
             if response.status_code != 200:
-                print(f"[WARNING] Flash failed ({response.status_code}), falling back to Pro...")
-                response = requests.post(url_pro, headers=headers, json=payload, timeout=30)
-
-            if response.status_code == 429:
-                return {'status': 'quota'}
-
-            if response.status_code != 200:
-                print(f"[ERROR] API Error {response.status_code}: {response.text[:200]}")
-                return {'status': 'error', 'error': f"API {response.status_code}"}
+                return {'status': 'error', 'error': f"API {response.status_code}: {response.text[:300]}"}
 
             result = response.json()
-            if 'candidates' in result and result['candidates']:
-                text = result['candidates'][0]['content']['parts'][0]['text']
-                return {'status': 'ok', 'text': text}
-
-            return {'status': 'error', 'error': 'Không có phản hồi từ Gemini'}
+            choices = result.get('choices') or []
+            if not choices:
+                return {'status': 'error', 'error': 'empty_choices'}
+            text = ((choices[0].get('message') or {}).get('content') or '').strip()
+            if not text:
+                return {'status': 'error', 'error': 'empty_response_text'}
+            return {'status': 'ok', 'text': text}
         except Exception as e:
             print(f"[ERROR] REST LLM Error: {e}")
             return {'status': 'error', 'error': str(e)}
@@ -845,6 +1088,101 @@ class LLMGenerator:
 
         return content
 
+    @staticmethod
+    def _extract_json_candidate(raw_text: str) -> str:
+        text = (raw_text or '').strip()
+        if not text:
+            return ''
+
+        fenced = re.search(r"```(?:json)?\s*([\s\S]*?)\s*```", text, flags=re.IGNORECASE)
+        if fenced:
+            return fenced.group(1).strip()
+
+        start = text.find('{')
+        end = text.rfind('}')
+        if start >= 0 and end > start:
+            return text[start:end + 1].strip()
+
+        return text
+
+    @staticmethod
+    def _parse_json_object(raw_text: str) -> Tuple[Optional[Dict[str, Any]], str]:
+        candidate = LLMGenerator._extract_json_candidate(raw_text)
+        if not candidate:
+            return None, 'empty_json_payload'
+        try:
+            parsed = json.loads(candidate)
+        except Exception as e:
+            return None, f'json_decode_error:{e}'
+
+        if not isinstance(parsed, dict):
+            return None, 'json_payload_not_object'
+        return parsed, ''
+
+    @staticmethod
+    def _validate_answer_contract_payload(payload: Dict[str, Any]) -> Tuple[bool, List[str]]:
+        errors: List[str] = []
+        required = ['answer', 'used_chunk_ids', 'grounded', 'uncertainty_note', 'followup_suggestions']
+        for key in required:
+            if key not in payload:
+                errors.append(f'missing_field:{key}')
+
+        if errors:
+            return False, errors
+
+        if not isinstance(payload.get('answer'), str) or len(payload.get('answer', '').strip()) < 3:
+            errors.append('invalid_answer')
+        used_chunk_ids = payload.get('used_chunk_ids', [])
+        if not isinstance(used_chunk_ids, list) or any(not isinstance(x, str) for x in used_chunk_ids) or len(used_chunk_ids) == 0:
+            errors.append('invalid_used_chunk_ids')
+        if not isinstance(payload.get('grounded'), bool):
+            errors.append('invalid_grounded')
+        if not isinstance(payload.get('uncertainty_note'), str):
+            errors.append('invalid_uncertainty_note')
+        if not isinstance(payload.get('followup_suggestions'), list) or any(not isinstance(x, str) for x in payload.get('followup_suggestions', [])):
+            errors.append('invalid_followup_suggestions')
+
+        return len(errors) == 0, errors
+
+    def _repair_answer_contract_once(self, raw_text: str, query: str, context_text: str) -> Tuple[Optional[Dict[str, Any]], List[str]]:
+        repair_prompt = f"""Bạn là JSON repair engine cho contract answer_generator_v1.
+
+Nhiệm vụ: chuyển output hiện tại thành JSON hợp lệ đúng schema, KHÔNG thêm dữ kiện ngoài context.
+
+Schema bắt buộc:
+{{
+  \"answer\": \"string\",
+  \"used_chunk_ids\": [\"string\"],
+  \"grounded\": true,
+  \"uncertainty_note\": \"string\",
+  \"followup_suggestions\": [\"string\"]
+}}
+
+Câu hỏi người dùng:
+{query}
+
+Context:
+{context_text}
+
+Output hiện tại cần repair:
+{raw_text}
+
+Trả về JSON object duy nhất, không kèm giải thích.
+"""
+        repaired = self._call_llm(repair_prompt)
+        if repaired.get('status') != 'ok':
+            return None, [f"repair_call_failed:{repaired.get('error', repaired.get('status', 'unknown'))}"]
+
+        parsed, parse_error = self._parse_json_object(repaired.get('text', ''))
+        if not parsed:
+            return None, [parse_error or 'repair_parse_failed']
+
+        is_valid, validation_errors = self._validate_answer_contract_payload(parsed)
+        if not is_valid:
+            return None, validation_errors
+
+        return parsed, []
+
     def generate(
         self,
         query: str,
@@ -854,13 +1192,14 @@ class LLMGenerator:
         analysis: Optional[Dict[str, Any]] = None,
         session_id: str = 'default',
         user_id: str = 'anonymous',
-        style_id: str = 'formal'
+        style_id: str = 'formal',
+        force_llm: bool = False
     ) -> Dict[str, Any]:
         """Main generation pipeline qua deterministic formatter -> LLM fallback"""
         cache = get_cache()
         style_id = (style_id or 'formal').strip().lower()
 
-        cached_response = cache.get(
+        cached_response = None if force_llm else cache.get(
             query,
             intent=intent,
             session_id=session_id,
@@ -876,8 +1215,14 @@ class LLMGenerator:
                 'source': 'cache'
             }
 
-        # 1) deterministic formatter trước
-        deterministic = self.formatter.deterministic_answer(query, chunks, intent=intent, analysis=analysis)
+        # 1) deterministic formatter trước (chỉ cho intent dạng cấu trúc/list cứng)
+        deterministic_intents = {
+            'lookup', 'online_confirmation', 'fee_info', 'fee_payment',
+            'admission_procedure', 'step', 'schedule_session', 'schedule_by_major',
+            'docs_same_day', 'docs_later', 'notes', 'contact', 'deadlines_summary', 'document_required'
+        }
+        should_use_deterministic = (intent in deterministic_intents) and (not force_llm)
+        deterministic = self.formatter.deterministic_answer(query, chunks, intent=intent, analysis=analysis) if should_use_deterministic else None
         if deterministic:
             context_text = self.prompt_engineer.create_context_prompt(chunks)
             deterministic = self._safe_style_variation(deterministic, style_id=style_id)
@@ -902,17 +1247,50 @@ class LLMGenerator:
                     'source': 'deterministic'
                 }
 
-        # 2) fallback LLM
+        # 2) fallback LLM (answer_generator_v1 JSON contract)
         full_prompt = self.prompt_engineer.create_full_prompt(query, chunks)
         history_context = self._build_history_context(chat_history)
         if history_context:
             full_prompt = history_context + "\n" + full_prompt
 
-        system_instruction = self.prompt_engineer.system_prompt
-        unified_prompt = f"SYSTEM: {system_instruction}\n\nCONTEXT:\n{full_prompt}\n\nTRẢ LỜI CÂU HỎI TRÊN:"
         context_text = self.prompt_engineer.create_context_prompt(chunks)
+        prompt_version = 'answer_generator_v1'
+        answer_contract_prompt = f"""{self.prompt_engineer.system_prompt}
 
-        llm_result = self._call_llm(unified_prompt)
+Bạn đang ở vai trò LLM-C theo contract {prompt_version}.
+Nhiệm vụ: trả về JSON object DUY NHẤT, không markdown, không giải thích ngoài JSON.
+Chỉ dùng dữ kiện có trong CONTEXT. Nếu thiếu dữ liệu, nói rõ trong uncertainty_note.
+
+Schema bắt buộc:
+{{
+  "answer": "string",
+  "used_chunk_ids": ["string"],
+  "grounded": true,
+  "uncertainty_note": "string",
+  "followup_suggestions": ["string"]
+}}
+
+Yêu cầu thêm:
+- answer phải bằng tiếng Việt, ngắn gọn, đúng scope.
+- used_chunk_ids bắt buộc không rỗng và chỉ lấy từ chunk_id có trong CONTEXT.
+- Mỗi ý quan trọng (số liệu, mốc thời gian, URL) phải có căn cứ trong used_chunk_ids.
+- Không bịa số liệu/ngày tháng/địa điểm ngoài CONTEXT.
+
+CONTEXT:
+{full_prompt}
+
+CURRENT_USER_QUERY: {query}
+Trả về JSON object duy nhất."""
+
+        trace = {
+            'prompt_version': prompt_version,
+            'contract_enforced': True,
+            'repair_attempted': False,
+            'repair_succeeded': False,
+            'output_source': 'llm_json_contract'
+        }
+
+        llm_result = self._call_llm(answer_contract_prompt)
 
         if llm_result.get('status') == 'quota':
             grounded_fallback = self.formatter.create_grounded_fallback(query, chunks)
@@ -921,7 +1299,8 @@ class LLMGenerator:
                 'answer': grounded_fallback,
                 'success': True,
                 'source': 'grounded_fallback',
-                'warning': 'API quota exceeded - using grounded context fallback'
+                'warning': 'API quota exceeded - using grounded context fallback',
+                'trace': trace
             }
 
         if llm_result.get('status') != 'ok':
@@ -931,19 +1310,58 @@ class LLMGenerator:
                 'answer': grounded_fallback,
                 'success': True,
                 'source': 'grounded_fallback',
-                'error': llm_result.get('error', 'unknown')
+                'error': llm_result.get('error', 'unknown'),
+                'trace': trace
             }
 
-        response_text = llm_result['text']
+        parsed_payload, parse_error = self._parse_json_object(llm_result.get('text', ''))
+        payload_errors: List[str] = []
+
+        if parsed_payload:
+            ok_contract, payload_errors = self._validate_answer_contract_payload(parsed_payload)
+            if not ok_contract:
+                parsed_payload = None
+        else:
+            payload_errors = [parse_error or 'json_parse_failed']
+
+        if not parsed_payload:
+            trace['repair_attempted'] = True
+            repaired_payload, repair_errors = self._repair_answer_contract_once(
+                raw_text=llm_result.get('text', ''),
+                query=query,
+                context_text=context_text
+            )
+            if repaired_payload:
+                parsed_payload = repaired_payload
+                trace['repair_succeeded'] = True
+                payload_errors = []
+            else:
+                payload_errors.extend(repair_errors)
+
+        if not parsed_payload:
+            grounded_fallback = self.formatter.create_grounded_fallback(query, chunks)
+            return {
+                'query': query,
+                'answer': grounded_fallback,
+                'success': True,
+                'source': 'grounded_fallback',
+                'errors': payload_errors,
+                'trace': trace
+            }
+
+        response_text = (parsed_payload.get('answer') or '').strip()
+        used_chunk_ids = [cid for cid in (parsed_payload.get('used_chunk_ids') or []) if isinstance(cid, str)]
+        chunk_map = {c.get('chunk_id'): c for c in chunks}
+        cited_chunks = [chunk_map[cid] for cid in used_chunk_ids if cid in chunk_map]
+        if not cited_chunks and chunks:
+            cited_chunks = [chunks[0]]
+            trace['citation_fallback'] = 'used_chunk_ids_not_found_in_context'
+
+        response_text = self.formatter.add_citations(response_text, cited_chunks or chunks)
+        response_text = self.formatter.format_markdown(response_text)
+        response_text = self._safe_style_variation(response_text, style_id=style_id)
 
         validation = self.validator.validate_response(response_text, context_text, intent)
-        if not validation['is_valid']:
-            stricter_prompt = unified_prompt + "\n\n[STRICT MODE] Chỉ được trả lời bằng dữ kiện có trong CONTEXT. Mọi dữ kiện quan trọng phải kèm [SOURCE]. Nếu thiếu dữ kiện, ghi: 'Không tìm thấy trong tài liệu hiện có'."
-            retry = self._call_llm(stricter_prompt)
-            if retry.get('status') == 'ok':
-                response_text = retry['text']
-                validation = self.validator.validate_response(response_text, context_text, intent)
-
         if not validation['is_valid']:
             grounded_fallback = self.formatter.create_grounded_fallback(query, chunks)
             return {
@@ -951,28 +1369,13 @@ class LLMGenerator:
                 'answer': grounded_fallback,
                 'success': True,
                 'source': 'grounded_fallback',
-                'errors': validation['errors']
-            }
-
-        final_answer = self.formatter.format_markdown(
-            self.formatter.add_citations(response_text, chunks)
-        )
-        final_answer = self._safe_style_variation(final_answer, style_id=style_id)
-
-        final_validation = self.validator.validate_response(final_answer, context_text, intent)
-        if not final_validation['is_valid']:
-            safe_fallback = self.formatter.create_fallback_response(query, reason='post_format_validation_failed')
-            return {
-                'query': query,
-                'answer': safe_fallback,
-                'success': True,
-                'source': 'fallback',
-                'errors': final_validation['errors']
+                'errors': validation['errors'],
+                'trace': trace
             }
 
         cache.save(
             query=query,
-            response=final_answer,
+            response=response_text,
             intent=intent,
             source_type='api',
             quality='high',
@@ -983,10 +1386,11 @@ class LLMGenerator:
 
         return {
             'query': query,
-            'answer': final_answer,
+            'answer': response_text,
             'success': True,
             'chunks_used': len(chunks),
-            'source': 'api'
+            'source': 'api',
+            'trace': trace
         }
 
 
@@ -995,15 +1399,15 @@ def main():
     print("PHASE 5: LLM Generation (REST + Deterministic)")
     print("=" * 70)
 
-    GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
-    if not GEMINI_API_KEY:
-        print("[ERROR] Lỗi: Thiếu GEMINI_API_KEY")
+    GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+    if not GROQ_API_KEY:
+        print("[ERROR] Lỗi: Thiếu GROQ_API_KEY")
         return
 
     cache = get_cache()
     cache.cleanup()
 
-    generator = LLMGenerator(GEMINI_API_KEY)
+    generator = LLMGenerator(GROQ_API_KEY)
     sample_chunks = [{
         'chunk_id': 'test_chunk',
         'content': "Học phí năm 2025 là 7.019.750đ.",
