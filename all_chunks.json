@@ -11,6 +11,10 @@
     "title": "Tổng quan nhập học 2025",
     "content": "Tổng quan thủ tục nhập học năm 2025. Tài liệu có 4 phần chính (PHẦN 1-4), bao gồm tra cứu trúng tuyển, xác nhận trực tuyến, nộp học phí/lệ phí, quy trình B1-B4, lịch theo ngành, hồ sơ và lưu ý.",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": null,
+    "step_id": null,
+    "canonical_nav_id": null,
+    "ancestor_ids": [],
     "metadata": {
       "level": 0,
       "parent_id": null,
@@ -19,6 +23,10 @@
       "intent_key": "deadlines_summary",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": null,
+      "step_id": null,
+      "canonical_nav_id": null,
+      "ancestor_ids": [],
       "dates": [
         "22/8/2025",
         "30/8/2025",
@@ -69,6 +77,12 @@
     "title": "PHẦN 1",
     "content": "Tra cứu danh sách trúng tuyển (sau ngày 22/8/2025) tại cổng thông tin tuyển sinh của nhà trường tại địa chỉ: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html (lưu ý thí sinh ghi lại Mã số sinh viên của mình trên kết quả tra cứu).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_1",
+    "step_id": null,
+    "canonical_nav_id": "phan_1",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview"
+    ],
     "metadata": {
       "level": 1,
       "parent_id": "Thủ tục nhập học 2025_l0_overview",
@@ -77,6 +91,12 @@
       "intent_key": "lookup",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_1",
+      "step_id": null,
+      "canonical_nav_id": "phan_1",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview"
+      ],
       "section_number": 1,
       "links": [
         "https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html"
@@ -105,6 +125,12 @@
     "title": "PHẦN 2",
     "content": "Thí sinh bắt buộc phải thực hiện xác nhận nhập học trực tuyến trên hệ thống tuyển sinh của Bộ Giáo dục và Đào tạo theo quy định (trước 17 giờ 00 thứ bảy, ngày 30/8/2025).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_2",
+    "step_id": null,
+    "canonical_nav_id": "phan_2",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview"
+    ],
     "metadata": {
       "level": 1,
       "parent_id": "Thủ tục nhập học 2025_l0_overview",
@@ -113,6 +139,12 @@
       "intent_key": "online_confirmation",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_2",
+      "step_id": null,
+      "canonical_nav_id": "phan_2",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview"
+      ],
       "section_number": 2,
       "links": [],
       "dates": [
@@ -137,6 +169,12 @@
     "title": "PHẦN 3",
     "content": "Nộp học phí tạm thu, lệ phí nhập học...theo hình thức chuyển khoản (thực hiện từ ngày 25/8/2025 đến hết ngày 05/9/2025) theo hướng dẫn download tại đây Các khoản tiền: 1. Tiền làm hồ sơ, tài liệu cho sinh viên...:............................................................... 50.000đ 2. Hồ sơ sức khỏe, khám sức khỏe:.....................................................................180.000đ 3. Bảo hiểm Y tế (bắt buộc theo quy định của Nhà nước):.............................. 789.750đ (hưởng 15 tháng tính từ 1/10/2025 với những thí sinh có thẻ bảo hiểm y tế theo gia đình sẽ được hoàn trả sau khi cập nhật trên hệ thống BHXH). 4. Tạm thu học phí học kì 1 năm học 2025-2026 là: ........................................6.000.000đ (Các mức học phí đã được thông báo trong đề án tuyển sinh của nhà trường)",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_3",
+    "step_id": null,
+    "canonical_nav_id": "phan_3",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview"
+    ],
     "metadata": {
       "level": 1,
       "parent_id": "Thủ tục nhập học 2025_l0_overview",
@@ -145,6 +183,12 @@
       "intent_key": "fee_info",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_3",
+      "step_id": null,
+      "canonical_nav_id": "phan_3",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview"
+      ],
       "section_number": 3,
       "links": [],
       "dates": [
@@ -173,6 +217,12 @@
     "title": "PHẦN 4",
     "content": "Chuẩn bị hồ sơ; nộp hồ sơ trực tuyến (trước 17 giờ ngày 28/8/2025) và nộp hồ sơ trực tiếp (trong ngày 27-28/8/2025) tại Trường Đại học Khoa học Khoa học Tự nhiên theo hướng dẫn gồm các bước sau: B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có) B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn) B3: Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025) B4: Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội Sáng từ 7 giờ 30 ÷ 11 giờ 00; Chiều từ 13 giờ 30 ÷ 17 giờ 00 Sáng thứ Tư, ngày 27/8/2025 Vật lý học; Khoa học vật liệu; Công nghệ kỹ thuật hạt nhân; Kỹ thuật điện tử và tin học; Công nghệ bán dẫn; Địa chất học; Quản lý tài nguyên và môi trường; Chiều thứ Tư, ngày 27/8/2025 Sinh học; Công nghệ sinh học; Sinh dược học; Khoa học môi trường;Công nghệ kĩ thuật môi trường; Khoa học và công nghệ thực phẩm; Môi trường sức khỏe và an toàn; Sáng thứ Năm, ngày 28/8/2025 Toán học; Toán Tin; Khoa học máy tính và thông tin; Khoa học dữ liệu; Địa lý tự nhiên; Khoa học thông tin địa không gian; Quản lý đất đai; Quản lý phát triển đô thị và bất động sản. Chiều thứ Năm, ngày 28/8/2025 Hóa học; Công nghệ kỹ thuật hóa học; Hóa dược; Khí tượng và khí hậu học; Tài nguyên và môi trường nước; Hải dương học; Thí sinh nộp các hồ sơ dưới đây: + Nộp trong ngày nhập học: 1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025 2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025). 3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra. 4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có). 5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học). 6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm. 7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội. + Nộp (từ ngày 07 đến 28/9/2025) theo lớp khi đi học chính thức: 8. Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức). 9. Bản sao Giấy khai sinh 10. Bản photo hai mặt căn cước công dân 11. Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức). 12. Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức) 13. Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp Lưu ý: 1. Sinh viên tập trung gặp gỡ các khoa đào tạo, giáo viên chủ nhiệm theo các ngành học, tập trung học nội quy, tuần sinh hoạt đầu năm học từ ngày 27 đến ngày 29/8/2025 theo khung giờ quy định có trong tài liệu hướng dẫn ngày nhập học (file đính kèm) và bắt đầu học tập theo thời khóa biểu trên giảng đường (download tại đây) từ ngày 03 tháng 9 năm 2025. 2. Sinh viên theo dõi thông báo tuyển sinh vào học chương trình đào tạo đặc biệt (tài năng, chất lượng cao) theo thông báo cụ thể từ ngày 28 tháng 8 năm 2025 hoặc (download tại đây). 3. Chỉ những thí sinh hoàn thành đầy đủ các bước trên mới được công nhận chính thức là sinh viên của Trường. 4. Một số mục hồ sơ còn thiếu, sinh viên nộp bổ sung tại phòng Công tác sinh viên và truyền thông (phòng 320 tầng 3 nhà T1) theo lớp trước ngày 28/9/2025. 5. Sinh viên thường xuyên kiểm tra email cá nhân để nhận các thông tin hướng dẫn đầu năm học. Thông tin về nhập học xin liên hệ: Phòng Công tác sinh viên & truyền thông, Trường Đại học Khoa học Tự nhiên, số 334 đường Nguyễn Trãi, Phường Thanh Xuân, thành phố Hà Nội (điện thoại: 024.38581283; email: ctsv@hus.edu.vn; fanpage: https://www.facebook.com/CTSVHUS).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview"
+    ],
     "metadata": {
       "level": 1,
       "parent_id": "Thủ tục nhập học 2025_l0_overview",
@@ -181,6 +231,12 @@
       "intent_key": "admission_procedure",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview"
+      ],
       "section_number": 4,
       "links": [
         "http://tuyensinh.hus.vnu.edu.vn",
@@ -221,6 +277,13 @@
     "title": "Tra cứu danh sách trúng tuyển",
     "content": "Tra cứu danh sách trúng tuyển (sau ngày 22/8/2025) tại cổng thông tin tuyển sinh của nhà trường tại địa chỉ: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html (lưu ý thí sinh ghi lại Mã số sinh viên của mình trên kết quả tra cứu).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_1",
+    "step_id": null,
+    "canonical_nav_id": "phan_1",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_1"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l1_section_1",
@@ -229,6 +292,13 @@
       "intent_key": "lookup",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_1",
+      "step_id": null,
+      "canonical_nav_id": "phan_1",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_1"
+      ],
       "links": [
         "https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html"
       ],
@@ -255,6 +325,14 @@
     "title": "Mốc tra cứu và cổng thông tin",
     "content": "Tra cứu danh sách trúng tuyển (sau ngày 22/8/2025) tại cổng thông tin tuyển sinh của nhà trường tại địa chỉ: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html (lưu ý thí sinh ghi lại Mã số sinh viên của mình trên kết quả tra cứu).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_1",
+    "step_id": null,
+    "canonical_nav_id": "phan_1",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_1",
+      "Thủ tục nhập học 2025_l2_lookup"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_lookup",
@@ -263,6 +341,14 @@
       "intent_key": "lookup",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_1",
+      "step_id": null,
+      "canonical_nav_id": "phan_1",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_1",
+        "Thủ tục nhập học 2025_l2_lookup"
+      ],
       "deadline_start": "22/8/2025",
       "url": "https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html"
     },
@@ -281,6 +367,13 @@
     "title": "Xác nhận nhập học trực tuyến",
     "content": "Thí sinh bắt buộc phải thực hiện xác nhận nhập học trực tuyến trên hệ thống tuyển sinh của Bộ Giáo dục và Đào tạo theo quy định (trước 17 giờ 00 thứ bảy, ngày 30/8/2025).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_2",
+    "step_id": null,
+    "canonical_nav_id": "phan_2",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_2"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l1_section_2",
@@ -289,6 +382,13 @@
       "intent_key": "online_confirmation",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_2",
+      "step_id": null,
+      "canonical_nav_id": "phan_2",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_2"
+      ],
       "dates": [
         "30/8/2025"
       ]
@@ -309,6 +409,14 @@
     "title": "Hạn xác nhận trực tuyến",
     "content": "Thí sinh bắt buộc phải thực hiện xác nhận nhập học trực tuyến trên hệ thống tuyển sinh của Bộ Giáo dục và Đào tạo theo quy định (trước 17 giờ 00 thứ bảy, ngày 30/8/2025).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_2",
+    "step_id": null,
+    "canonical_nav_id": "phan_2",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_2",
+      "Thủ tục nhập học 2025_l2_online_confirmation"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_online_confirmation",
@@ -317,6 +425,14 @@
       "intent_key": "online_confirmation",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_2",
+      "step_id": null,
+      "canonical_nav_id": "phan_2",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_2",
+        "Thủ tục nhập học 2025_l2_online_confirmation"
+      ],
       "deadline_end": "30/8/2025",
       "time_slot": "trước 17 giờ 00"
     },
@@ -335,6 +451,13 @@
     "title": "Nộp học phí tạm thu, lệ phí nhập học",
     "content": "Nộp học phí tạm thu, lệ phí nhập học...theo hình thức chuyển khoản (thực hiện từ ngày 25/8/2025 đến hết ngày 05/9/2025) theo hướng dẫn download tại đây Các khoản tiền: 1. Tiền làm hồ sơ, tài liệu cho sinh viên...:............................................................... 50.000đ 2. Hồ sơ sức khỏe, khám sức khỏe:.....................................................................180.000đ 3. Bảo hiểm Y tế (bắt buộc theo quy định của Nhà nước):.............................. 789.750đ (hưởng 15 tháng tính từ 1/10/2025 với những thí sinh có thẻ bảo hiểm y tế theo gia đình sẽ được hoàn trả sau khi cập nhật trên hệ thống BHXH). 4. Tạm thu học phí học kì 1 năm học 2025-2026 là: ........................................6.000.000đ (Các mức học phí đã được thông báo trong đề án tuyển sinh của nhà trường)",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_3",
+    "step_id": null,
+    "canonical_nav_id": "phan_3",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_3"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l1_section_3",
@@ -343,6 +466,13 @@
       "intent_key": "fee_info",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_3",
+      "step_id": null,
+      "canonical_nav_id": "phan_3",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_3"
+      ],
       "dates": [
         "25/8/2025",
         "05/9/2025",
@@ -367,6 +497,14 @@
     "title": "Tổng các khoản tiền",
     "content": "1. Tiền làm hồ sơ, tài liệu cho sinh viên...: 50,000đ; 2. Hồ sơ sức khỏe, khám sức khỏe: 180,000đ; 3. Bảo hiểm Y tế (bắt buộc theo quy định của Nhà nước): 789,750đ; 4. Tạm thu học phí học kì 1 năm học 2025-2026 là: 6,000,000đ",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_3",
+    "step_id": null,
+    "canonical_nav_id": "phan_3",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_3",
+      "Thủ tục nhập học 2025_l2_fees"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_fees",
@@ -375,6 +513,14 @@
       "intent_key": "fee_info",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_3",
+      "step_id": null,
+      "canonical_nav_id": "phan_3",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_3",
+        "Thủ tục nhập học 2025_l2_fees"
+      ],
       "total_required": 7019750,
       "fee_count": 4
     },
@@ -393,6 +539,14 @@
     "title": "Khung thời gian nộp học phí",
     "content": "Nộp học phí thực hiện từ ngày 25/8/2025 đến hết ngày 05/9/2025.",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_3",
+    "step_id": null,
+    "canonical_nav_id": "phan_3",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_3",
+      "Thủ tục nhập học 2025_l2_fees"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_fees",
@@ -401,6 +555,14 @@
       "intent_key": "fee_payment",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_3",
+      "step_id": null,
+      "canonical_nav_id": "phan_3",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_3",
+        "Thủ tục nhập học 2025_l2_fees"
+      ],
       "deadline_start": "25/8/2025",
       "deadline_end": "05/9/2025"
     },
@@ -419,6 +581,14 @@
     "title": "Hình thức nộp học phí",
     "content": "Nộp học phí theo hình thức chuyển khoản.",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_3",
+    "step_id": null,
+    "canonical_nav_id": "phan_3",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_3",
+      "Thủ tục nhập học 2025_l2_fees"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_fees",
@@ -427,6 +597,14 @@
       "intent_key": "fee_payment",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_3",
+      "step_id": null,
+      "canonical_nav_id": "phan_3",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_3",
+        "Thủ tục nhập học 2025_l2_fees"
+      ],
       "payment_method": "chuyển khoản"
     },
     "payment_method": "chuyển khoản"
@@ -443,6 +621,14 @@
     "title": "Khoản phí 1",
     "content": "Tiền làm hồ sơ, tài liệu cho sinh viên...: 50,000đ",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_3",
+    "step_id": null,
+    "canonical_nav_id": "phan_3",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_3",
+      "Thủ tục nhập học 2025_l2_fees"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_fees",
@@ -451,6 +637,14 @@
       "intent_key": "fee_info",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_3",
+      "step_id": null,
+      "canonical_nav_id": "phan_3",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_3",
+        "Thủ tục nhập học 2025_l2_fees"
+      ],
       "item_no": 1,
       "amount": 50000
     },
@@ -469,6 +663,14 @@
     "title": "Khoản phí 2",
     "content": "Hồ sơ sức khỏe, khám sức khỏe: 180,000đ",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_3",
+    "step_id": null,
+    "canonical_nav_id": "phan_3",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_3",
+      "Thủ tục nhập học 2025_l2_fees"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_fees",
@@ -477,6 +679,14 @@
       "intent_key": "fee_info",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_3",
+      "step_id": null,
+      "canonical_nav_id": "phan_3",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_3",
+        "Thủ tục nhập học 2025_l2_fees"
+      ],
       "item_no": 2,
       "amount": 180000
     },
@@ -495,6 +705,14 @@
     "title": "Khoản phí 3",
     "content": "Bảo hiểm Y tế (bắt buộc theo quy định của Nhà nước): 789,750đ (hưởng 15 tháng tính từ 1/10/2025 với những thí sinh có thẻ bảo hiểm y tế theo gia đình sẽ được hoàn trả sau khi cập nhật trên hệ thống BHXH).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_3",
+    "step_id": null,
+    "canonical_nav_id": "phan_3",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_3",
+      "Thủ tục nhập học 2025_l2_fees"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_fees",
@@ -503,6 +721,14 @@
       "intent_key": "fee_info",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_3",
+      "step_id": null,
+      "canonical_nav_id": "phan_3",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_3",
+        "Thủ tục nhập học 2025_l2_fees"
+      ],
       "item_no": 3,
       "amount": 789750
     },
@@ -521,6 +747,14 @@
     "title": "Khoản phí 4",
     "content": "Tạm thu học phí học kì 1 năm học 2025-2026 là: 6,000,000đ (Các mức học phí đã được thông báo trong đề án tuyển sinh của nhà trường)",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_3",
+    "step_id": null,
+    "canonical_nav_id": "phan_3",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_3",
+      "Thủ tục nhập học 2025_l2_fees"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_fees",
@@ -529,6 +763,14 @@
       "intent_key": "fee_info",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_3",
+      "step_id": null,
+      "canonical_nav_id": "phan_3",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_3",
+        "Thủ tục nhập học 2025_l2_fees"
+      ],
       "item_no": 4,
       "amount": 6000000
     },
@@ -547,6 +789,13 @@
     "title": "Quy trình chuẩn bị và nộp hồ sơ",
     "content": "Chuẩn bị hồ sơ; nộp hồ sơ trực tuyến (trước 17 giờ ngày 28/8/2025) và nộp hồ sơ trực tiếp (trong ngày 27-28/8/2025) tại Trường Đại học Khoa học Khoa học Tự nhiên theo hướng dẫn gồm các bước sau: B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có) B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn) B3: Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025) B4: Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội Sáng từ 7 giờ 30 ÷ 11 giờ 00; Chiều từ 13 giờ 30 ÷ 17 giờ 00 Sáng thứ Tư, ngày 27/8/2025 Vật lý học; Khoa học vật liệu; Công nghệ kỹ thuật hạt nhân; Kỹ thuật điện tử và tin học; Công nghệ bán dẫn; Địa chất học; Quản lý tài nguyên và môi trường; Chiều thứ Tư, ngày 27/8/2025 Sinh học; Công nghệ sinh học; Sinh dược học; Khoa học môi trường;Công nghệ kĩ thuật môi trường; Khoa học và công nghệ thực phẩm; Môi trường sức khỏe và an toàn; Sáng thứ Năm, ngày 28/8/2025 Toán học; Toán Tin; Khoa học máy tính và thông tin; Khoa học dữ liệu; Địa lý tự nhiên; Khoa học thông tin địa không gian; Quản lý đất đai; Quản lý phát triển đô thị và bất động sản. Chiều thứ Năm, ngày 28/8/2025 Hóa học; Công nghệ kỹ thuật hóa học; Hóa dược; Khí tượng và khí hậu học; Tài nguyên và môi trường nước; Hải dương học; Thí sinh nộp các hồ sơ dưới đây: + Nộp trong ngày nhập học: 1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025 2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025). 3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra. 4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có). 5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học). 6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm. 7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội. + Nộp (từ ngày 07 đến 28/9/2025) theo lớp khi đi học chính thức: 8. Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức). 9. Bản sao Giấy khai sinh 10. Bản photo hai mặt căn cước công dân 11. Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức). 12. Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức) 13. Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp Lưu ý: 1. Sinh viên tập trung gặp gỡ các khoa đào tạo, giáo viên chủ nhiệm theo các ngành học, tập trung học nội quy, tuần sinh hoạt đầu năm học từ ngày 27 đến ngày 29/8/2025 theo khung giờ quy định có trong tài liệu hướng dẫn ngày nhập học (file đính kèm) và bắt đầu học tập theo thời khóa biểu trên giảng đường (download tại đây) từ ngày 03 tháng 9 năm 2025. 2. Sinh viên theo dõi thông báo tuyển sinh vào học chương trình đào tạo đặc biệt (tài năng, chất lượng cao) theo thông báo cụ thể từ ngày 28 tháng 8 năm 2025 hoặc (download tại đây). 3. Chỉ những thí sinh hoàn thành đầy đủ các bước trên mới được công nhận chính thức là sinh viên của Trường. 4. Một số mục hồ sơ còn thiếu, sinh viên nộp bổ sung tại phòng Công tác sinh viên và truyền thông (phòng 320 tầng 3 nhà T1) theo lớp trước ngày 28/9/2025. 5. Sinh viên thường xuyên kiểm tra email cá nhân để nhận các thông tin hướng dẫn đầu năm học. Thông tin về nhập học xin liên hệ: Phòng Công tác sinh viên & truyền thông, Trường Đại học Khoa học Tự nhiên, số 334 đường Nguyễn Trãi, Phường Thanh Xuân, thành phố Hà Nội (điện thoại: 024.38581283; email: ctsv@hus.edu.vn; fanpage: https://www.facebook.com/CTSVHUS).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l1_section_4",
@@ -555,6 +804,13 @@
       "intent_key": "admission_procedure",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4"
+      ],
       "dates": [
         "28/8/2025",
         "27/8/2025",
@@ -581,6 +837,13 @@
     "title": "Các bước B1-B4",
     "content": "B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có) B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn) B3: Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025) B4: Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l1_section_4",
@@ -588,7 +851,14 @@
       "subtype": "steps_group",
       "intent_key": "admission_procedure",
       "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4"
+      ]
     }
   },
   {
@@ -603,6 +873,14 @@
     "title": "Bước B1",
     "content": "Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có)",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": "b1_phan_4",
+    "canonical_nav_id": "b1_phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_steps"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_steps",
@@ -611,6 +889,14 @@
       "intent_key": "step",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": "b1_phan_4",
+      "canonical_nav_id": "b1_phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_steps"
+      ],
       "step_number": 1
     },
     "step_number": 1
@@ -627,6 +913,14 @@
     "title": "Bước B2",
     "content": "Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn)",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": "b2_phan_4",
+    "canonical_nav_id": "b2_phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_steps"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_steps",
@@ -635,6 +929,14 @@
       "intent_key": "step",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": "b2_phan_4",
+      "canonical_nav_id": "b2_phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_steps"
+      ],
       "step_number": 2
     },
     "step_number": 2
@@ -651,6 +953,14 @@
     "title": "Bước B3",
     "content": "Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025)",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": "b3_phan_4",
+    "canonical_nav_id": "b3_phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_steps"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_steps",
@@ -659,6 +969,14 @@
       "intent_key": "step",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": "b3_phan_4",
+      "canonical_nav_id": "b3_phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_steps"
+      ],
       "step_number": 3
     },
     "step_number": 3
@@ -675,6 +993,14 @@
     "title": "Bước B4",
     "content": "Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": "b4_phan_4",
+    "canonical_nav_id": "b4_phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_steps"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_steps",
@@ -683,6 +1009,14 @@
       "intent_key": "step",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": "b4_phan_4",
+      "canonical_nav_id": "b4_phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_steps"
+      ],
       "step_number": 4
     },
     "step_number": 4
@@ -699,6 +1033,13 @@
     "title": "Lịch nộp hồ sơ bản giấy theo ngành",
     "content": "Sáng từ 7 giờ 30 ÷ 11 giờ 00; Chiều từ 13 giờ 30 ÷ 17 giờ 00 Sáng thứ Tư, ngày 27/8/2025 Vật lý học; Khoa học vật liệu; Công nghệ kỹ thuật hạt nhân; Kỹ thuật điện tử và tin học; Công nghệ bán dẫn; Địa chất học; Quản lý tài nguyên và môi trường; Chiều thứ Tư, ngày 27/8/2025 Sinh học; Công nghệ sinh học; Sinh dược học; Khoa học môi trường;Công nghệ kĩ thuật môi trường; Khoa học và công nghệ thực phẩm; Môi trường sức khỏe và an toàn; Sáng thứ Năm, ngày 28/8/2025 Toán học; Toán Tin; Khoa học máy tính và thông tin; Khoa học dữ liệu; Địa lý tự nhiên; Khoa học thông tin địa không gian; Quản lý đất đai; Quản lý phát triển đô thị và bất động sản. Chiều thứ Năm, ngày 28/8/2025 Hóa học; Công nghệ kỹ thuật hóa học; Hóa dược; Khí tượng và khí hậu học; Tài nguyên và môi trường nước; Hải dương học;",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l1_section_4",
@@ -706,7 +1047,14 @@
       "subtype": "schedule_group",
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4"
+      ]
     }
   },
   {
@@ -721,6 +1069,14 @@
     "title": "Khung giờ buổi sáng",
     "content": "Buổi sáng: từ 7 giờ 30 đến 11 giờ 00",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -729,6 +1085,14 @@
       "intent_key": "schedule_session",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "time_slot": "Sáng",
       "session_start": "7 giờ 30",
       "session_end": "11 giờ 00"
@@ -749,6 +1113,14 @@
     "title": "Khung giờ buổi chiều",
     "content": "Buổi chiều: từ 13 giờ 30 đến 17 giờ 00",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -757,6 +1129,14 @@
       "intent_key": "schedule_session",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "time_slot": "Chiều",
       "session_start": "13 giờ 30",
       "session_end": "17 giờ 00"
@@ -777,6 +1157,14 @@
     "title": "Lịch ngành Vật lý học",
     "content": "Sáng ngày 27/8/2025: Vật lý học",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -785,6 +1173,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Vật lý học",
       "major_norm": "vat ly hoc",
       "date": "27/8/2025",
@@ -807,6 +1203,14 @@
     "title": "Lịch ngành Khoa học vật liệu",
     "content": "Sáng ngày 27/8/2025: Khoa học vật liệu",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -815,6 +1219,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Khoa học vật liệu",
       "major_norm": "khoa hoc vat lieu",
       "date": "27/8/2025",
@@ -837,6 +1249,14 @@
     "title": "Lịch ngành Công nghệ kỹ thuật hạt nhân",
     "content": "Sáng ngày 27/8/2025: Công nghệ kỹ thuật hạt nhân",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -845,6 +1265,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Công nghệ kỹ thuật hạt nhân",
       "major_norm": "cong nghe ky thuat hat nhan",
       "date": "27/8/2025",
@@ -867,6 +1295,14 @@
     "title": "Lịch ngành Kỹ thuật điện tử và tin học",
     "content": "Sáng ngày 27/8/2025: Kỹ thuật điện tử và tin học",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -875,6 +1311,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Kỹ thuật điện tử và tin học",
       "major_norm": "ky thuat dien tu va tin hoc",
       "date": "27/8/2025",
@@ -897,6 +1341,14 @@
     "title": "Lịch ngành Công nghệ bán dẫn",
     "content": "Sáng ngày 27/8/2025: Công nghệ bán dẫn",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -905,6 +1357,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Công nghệ bán dẫn",
       "major_norm": "cong nghe ban dan",
       "date": "27/8/2025",
@@ -927,6 +1387,14 @@
     "title": "Lịch ngành Địa chất học",
     "content": "Sáng ngày 27/8/2025: Địa chất học",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -935,6 +1403,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Địa chất học",
       "major_norm": "dia chat hoc",
       "date": "27/8/2025",
@@ -957,6 +1433,14 @@
     "title": "Lịch ngành Quản lý tài nguyên và môi trường",
     "content": "Sáng ngày 27/8/2025: Quản lý tài nguyên và môi trường",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -965,6 +1449,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Quản lý tài nguyên và môi trường",
       "major_norm": "quan ly tai nguyen va moi truong",
       "date": "27/8/2025",
@@ -987,6 +1479,14 @@
     "title": "Lịch ngành Sinh học",
     "content": "Chiều ngày 27/8/2025: Sinh học",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -995,6 +1495,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Sinh học",
       "major_norm": "sinh hoc",
       "date": "27/8/2025",
@@ -1017,6 +1525,14 @@
     "title": "Lịch ngành Công nghệ sinh học",
     "content": "Chiều ngày 27/8/2025: Công nghệ sinh học",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1025,6 +1541,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Công nghệ sinh học",
       "major_norm": "cong nghe sinh hoc",
       "date": "27/8/2025",
@@ -1047,6 +1571,14 @@
     "title": "Lịch ngành Sinh dược học",
     "content": "Chiều ngày 27/8/2025: Sinh dược học",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1055,6 +1587,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Sinh dược học",
       "major_norm": "sinh duoc hoc",
       "date": "27/8/2025",
@@ -1077,6 +1617,14 @@
     "title": "Lịch ngành Khoa học môi trường",
     "content": "Chiều ngày 27/8/2025: Khoa học môi trường",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1085,6 +1633,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Khoa học môi trường",
       "major_norm": "khoa hoc moi truong",
       "date": "27/8/2025",
@@ -1107,6 +1663,14 @@
     "title": "Lịch ngành Công nghệ kĩ thuật môi trường",
     "content": "Chiều ngày 27/8/2025: Công nghệ kĩ thuật môi trường",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1115,6 +1679,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Công nghệ kĩ thuật môi trường",
       "major_norm": "cong nghe ki thuat moi truong",
       "date": "27/8/2025",
@@ -1137,6 +1709,14 @@
     "title": "Lịch ngành Khoa học và công nghệ thực phẩm",
     "content": "Chiều ngày 27/8/2025: Khoa học và công nghệ thực phẩm",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1145,6 +1725,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Khoa học và công nghệ thực phẩm",
       "major_norm": "khoa hoc va cong nghe thuc pham",
       "date": "27/8/2025",
@@ -1167,6 +1755,14 @@
     "title": "Lịch ngành Môi trường sức khỏe và an toàn",
     "content": "Chiều ngày 27/8/2025: Môi trường sức khỏe và an toàn",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1175,6 +1771,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Môi trường sức khỏe và an toàn",
       "major_norm": "moi truong suc khoe va an toan",
       "date": "27/8/2025",
@@ -1197,6 +1801,14 @@
     "title": "Lịch ngành Toán học",
     "content": "Sáng ngày 28/8/2025: Toán học",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1205,6 +1817,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Toán học",
       "major_norm": "toan hoc",
       "date": "28/8/2025",
@@ -1227,6 +1847,14 @@
     "title": "Lịch ngành Toán Tin",
     "content": "Sáng ngày 28/8/2025: Toán Tin",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1235,6 +1863,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Toán Tin",
       "major_norm": "toan tin",
       "date": "28/8/2025",
@@ -1257,6 +1893,14 @@
     "title": "Lịch ngành Khoa học máy tính và thông tin",
     "content": "Sáng ngày 28/8/2025: Khoa học máy tính và thông tin",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1265,6 +1909,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Khoa học máy tính và thông tin",
       "major_norm": "khoa hoc may tinh va thong tin",
       "date": "28/8/2025",
@@ -1287,6 +1939,14 @@
     "title": "Lịch ngành Khoa học dữ liệu",
     "content": "Sáng ngày 28/8/2025: Khoa học dữ liệu",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1295,6 +1955,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Khoa học dữ liệu",
       "major_norm": "khoa hoc du lieu",
       "date": "28/8/2025",
@@ -1317,6 +1985,14 @@
     "title": "Lịch ngành Địa lý tự nhiên",
     "content": "Sáng ngày 28/8/2025: Địa lý tự nhiên",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1325,6 +2001,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Địa lý tự nhiên",
       "major_norm": "dia ly tu nhien",
       "date": "28/8/2025",
@@ -1347,6 +2031,14 @@
     "title": "Lịch ngành Khoa học thông tin địa không gian",
     "content": "Sáng ngày 28/8/2025: Khoa học thông tin địa không gian",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1355,6 +2047,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Khoa học thông tin địa không gian",
       "major_norm": "khoa hoc thong tin dia khong gian",
       "date": "28/8/2025",
@@ -1377,6 +2077,14 @@
     "title": "Lịch ngành Quản lý đất đai",
     "content": "Sáng ngày 28/8/2025: Quản lý đất đai",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1385,6 +2093,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Quản lý đất đai",
       "major_norm": "quan ly dat dai",
       "date": "28/8/2025",
@@ -1407,6 +2123,14 @@
     "title": "Lịch ngành Quản lý phát triển đô thị và bất động sản",
     "content": "Sáng ngày 28/8/2025: Quản lý phát triển đô thị và bất động sản",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1415,6 +2139,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Quản lý phát triển đô thị và bất động sản",
       "major_norm": "quan ly phat trien do thi va bat dong san",
       "date": "28/8/2025",
@@ -1437,6 +2169,14 @@
     "title": "Lịch ngành Hóa học",
     "content": "Chiều ngày 28/8/2025: Hóa học",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1445,6 +2185,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Hóa học",
       "major_norm": "hoa hoc",
       "date": "28/8/2025",
@@ -1467,6 +2215,14 @@
     "title": "Lịch ngành Công nghệ kỹ thuật hóa học",
     "content": "Chiều ngày 28/8/2025: Công nghệ kỹ thuật hóa học",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1475,6 +2231,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Công nghệ kỹ thuật hóa học",
       "major_norm": "cong nghe ky thuat hoa hoc",
       "date": "28/8/2025",
@@ -1497,6 +2261,14 @@
     "title": "Lịch ngành Hóa dược",
     "content": "Chiều ngày 28/8/2025: Hóa dược",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1505,6 +2277,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Hóa dược",
       "major_norm": "hoa duoc",
       "date": "28/8/2025",
@@ -1527,6 +2307,14 @@
     "title": "Lịch ngành Khí tượng và khí hậu học",
     "content": "Chiều ngày 28/8/2025: Khí tượng và khí hậu học",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1535,6 +2323,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Khí tượng và khí hậu học",
       "major_norm": "khi tuong va khi hau hoc",
       "date": "28/8/2025",
@@ -1557,6 +2353,14 @@
     "title": "Lịch ngành Tài nguyên và môi trường nước",
     "content": "Chiều ngày 28/8/2025: Tài nguyên và môi trường nước",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1565,6 +2369,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Tài nguyên và môi trường nước",
       "major_norm": "tai nguyen va moi truong nuoc",
       "date": "28/8/2025",
@@ -1587,6 +2399,14 @@
     "title": "Lịch ngành Hải dương học",
     "content": "Chiều ngày 28/8/2025: Hải dương học",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_schedule"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_schedule",
@@ -1595,6 +2415,14 @@
       "intent_key": "schedule_by_major",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_schedule"
+      ],
       "major": "Hải dương học",
       "major_norm": "hai duong hoc",
       "date": "28/8/2025",
@@ -1617,6 +2445,14 @@
     "title": "Tổng hợp các bước B1-B4",
     "content": "B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có) B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn) B3: Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025) B4: Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_steps"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_steps",
@@ -1624,7 +2460,15 @@
       "subtype": "steps_overview",
       "intent_key": "admission_procedure",
       "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_steps"
+      ]
     }
   },
   {
@@ -1639,6 +2483,13 @@
     "title": "Danh mục hồ sơ cần nộp",
     "content": "Thí sinh nộp các hồ sơ dưới đây: + Nộp trong ngày nhập học: 1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025 2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025). 3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra. 4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có). 5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học). 6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm. 7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội. + Nộp (từ ngày 07 đến 28/9/2025) theo lớp khi đi học chính thức: 8. Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức). 9. Bản sao Giấy khai sinh 10. Bản photo hai mặt căn cước công dân 11. Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức). 12. Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức) 13. Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l1_section_4",
@@ -1646,7 +2497,14 @@
       "subtype": "docs_group",
       "intent_key": "document_required",
       "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4"
+      ]
     }
   },
   {
@@ -1659,8 +2517,16 @@
     "topic": "docs_same_day",
     "year": 2025,
     "title": "Hồ sơ nộp trong ngày nhập học",
-    "content": "1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025 2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025). 3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra. 4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có). 5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học). 6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm. 7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội.",
+    "content": "1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025 2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025). 3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra. 4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có). 5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học). 6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm. 7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội. + Nộp (từ ngày 07 đến 28/9/2025) theo lớp khi đi học chính thức: 8. Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức). 9. Bản sao Giấy khai sinh 10. Bản photo hai mặt căn cước công dân 11. Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức). 12. Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức) 13. Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l2_docs",
@@ -1668,7 +2534,15 @@
       "subtype": "docs_same_day_group",
       "intent_key": "docs_same_day",
       "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs"
+      ]
     }
   },
   {
@@ -1683,6 +2557,15 @@
     "title": "Hồ sơ trong ngày mục 1",
     "content": "Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
@@ -1691,6 +2574,15 @@
       "intent_key": "docs_same_day",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
       "item_no": 1
     },
     "item_no": 1
@@ -1707,6 +2599,15 @@
     "title": "Hồ sơ trong ngày mục 2",
     "content": "Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
@@ -1715,6 +2616,15 @@
       "intent_key": "docs_same_day",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
       "item_no": 2
     },
     "item_no": 2
@@ -1731,6 +2641,15 @@
     "title": "Hồ sơ trong ngày mục 3",
     "content": "Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra.",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
@@ -1739,6 +2658,15 @@
       "intent_key": "docs_same_day",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
       "item_no": 3
     },
     "item_no": 3
@@ -1755,6 +2683,15 @@
     "title": "Hồ sơ trong ngày mục 4",
     "content": "Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
@@ -1763,6 +2700,15 @@
       "intent_key": "docs_same_day",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
       "item_no": 4
     },
     "item_no": 4
@@ -1779,6 +2725,15 @@
     "title": "Hồ sơ trong ngày mục 5",
     "content": "01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
@@ -1787,6 +2742,15 @@
       "intent_key": "docs_same_day",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
       "item_no": 5
     },
     "item_no": 5
@@ -1803,6 +2767,15 @@
     "title": "Hồ sơ trong ngày mục 6",
     "content": "Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm.",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
@@ -1811,6 +2784,15 @@
       "intent_key": "docs_same_day",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
       "item_no": 6
     },
     "item_no": 6
@@ -1825,8 +2807,17 @@
     "topic": "docs_same_day",
     "year": 2025,
     "title": "Hồ sơ trong ngày mục 7",
-    "content": "Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội.",
+    "content": "Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội. + Nộp (từ ngày 07 đến 28/9/2025) theo lớp khi đi học chính thức:",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
@@ -1835,9 +2826,270 @@
       "intent_key": "docs_same_day",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
       "item_no": 7
     },
     "item_no": 7
+  },
+  {
+    "chunk_id": "Thủ tục nhập học 2025_l3_docs_same_day_8",
+    "level": 3,
+    "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+    "type": "detail",
+    "subtype": "docs_same_day_item",
+    "intent_key": "docs_same_day",
+    "topic": "docs_same_day",
+    "year": 2025,
+    "title": "Hồ sơ trong ngày mục 8",
+    "content": "Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức).",
+    "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
+    "metadata": {
+      "level": 3,
+      "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+      "type": "detail",
+      "subtype": "docs_same_day_item",
+      "intent_key": "docs_same_day",
+      "source": "Thủ tục nhập học 2025.txt",
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
+      "item_no": 8
+    },
+    "item_no": 8
+  },
+  {
+    "chunk_id": "Thủ tục nhập học 2025_l3_docs_same_day_9",
+    "level": 3,
+    "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+    "type": "detail",
+    "subtype": "docs_same_day_item",
+    "intent_key": "docs_same_day",
+    "topic": "docs_same_day",
+    "year": 2025,
+    "title": "Hồ sơ trong ngày mục 9",
+    "content": "Bản sao Giấy khai sinh",
+    "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
+    "metadata": {
+      "level": 3,
+      "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+      "type": "detail",
+      "subtype": "docs_same_day_item",
+      "intent_key": "docs_same_day",
+      "source": "Thủ tục nhập học 2025.txt",
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
+      "item_no": 9
+    },
+    "item_no": 9
+  },
+  {
+    "chunk_id": "Thủ tục nhập học 2025_l3_docs_same_day_10",
+    "level": 3,
+    "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+    "type": "detail",
+    "subtype": "docs_same_day_item",
+    "intent_key": "docs_same_day",
+    "topic": "docs_same_day",
+    "year": 2025,
+    "title": "Hồ sơ trong ngày mục 10",
+    "content": "Bản photo hai mặt căn cước công dân",
+    "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
+    "metadata": {
+      "level": 3,
+      "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+      "type": "detail",
+      "subtype": "docs_same_day_item",
+      "intent_key": "docs_same_day",
+      "source": "Thủ tục nhập học 2025.txt",
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
+      "item_no": 10
+    },
+    "item_no": 10
+  },
+  {
+    "chunk_id": "Thủ tục nhập học 2025_l3_docs_same_day_11",
+    "level": 3,
+    "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+    "type": "detail",
+    "subtype": "docs_same_day_item",
+    "intent_key": "docs_same_day",
+    "topic": "docs_same_day",
+    "year": 2025,
+    "title": "Hồ sơ trong ngày mục 11",
+    "content": "Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức).",
+    "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
+    "metadata": {
+      "level": 3,
+      "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+      "type": "detail",
+      "subtype": "docs_same_day_item",
+      "intent_key": "docs_same_day",
+      "source": "Thủ tục nhập học 2025.txt",
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
+      "item_no": 11
+    },
+    "item_no": 11
+  },
+  {
+    "chunk_id": "Thủ tục nhập học 2025_l3_docs_same_day_12",
+    "level": 3,
+    "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+    "type": "detail",
+    "subtype": "docs_same_day_item",
+    "intent_key": "docs_same_day",
+    "topic": "docs_same_day",
+    "year": 2025,
+    "title": "Hồ sơ trong ngày mục 12",
+    "content": "Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức)",
+    "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
+    "metadata": {
+      "level": 3,
+      "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+      "type": "detail",
+      "subtype": "docs_same_day_item",
+      "intent_key": "docs_same_day",
+      "source": "Thủ tục nhập học 2025.txt",
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
+      "item_no": 12
+    },
+    "item_no": 12
+  },
+  {
+    "chunk_id": "Thủ tục nhập học 2025_l3_docs_same_day_13",
+    "level": 3,
+    "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+    "type": "detail",
+    "subtype": "docs_same_day_item",
+    "intent_key": "docs_same_day",
+    "topic": "docs_same_day",
+    "year": 2025,
+    "title": "Hồ sơ trong ngày mục 13",
+    "content": "Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp",
+    "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs",
+      "Thủ tục nhập học 2025_l2_docs_same_day"
+    ],
+    "metadata": {
+      "level": 3,
+      "parent_id": "Thủ tục nhập học 2025_l2_docs_same_day",
+      "type": "detail",
+      "subtype": "docs_same_day_item",
+      "intent_key": "docs_same_day",
+      "source": "Thủ tục nhập học 2025.txt",
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs",
+        "Thủ tục nhập học 2025_l2_docs_same_day"
+      ],
+      "item_no": 13
+    },
+    "item_no": 13
   },
   {
     "chunk_id": "Thủ tục nhập học 2025_l2_docs_later",
@@ -1849,8 +3101,16 @@
     "topic": "docs_later",
     "year": 2025,
     "title": "Hồ sơ nộp theo lớp sau nhập học",
-    "content": "8. Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức). 9. Bản sao Giấy khai sinh 10. Bản photo hai mặt căn cước công dân 11. Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức). 12. Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức) 13. Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp",
+    "content": "Thí sinh nộp các hồ sơ dưới đây: + Nộp trong ngày nhập học: 1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025 2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025). 3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra. 4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có). 5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học). 6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm. 7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội. + Nộp (từ ngày 07 đến 28/9/2025) theo lớp khi đi học chính thức: 8. Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức). 9. Bản sao Giấy khai sinh 10. Bản photo hai mặt căn cước công dân 11. Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức). 12. Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức) 13. Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l2_docs",
@@ -1859,155 +3119,19 @@
       "intent_key": "docs_later",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs"
+      ],
       "deadline_start": "07/09/2025",
       "deadline_end": "28/09/2025"
     },
     "deadline_start": "07/09/2025",
     "deadline_end": "28/09/2025"
-  },
-  {
-    "chunk_id": "Thủ tục nhập học 2025_l3_docs_later_8",
-    "level": 3,
-    "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-    "type": "detail",
-    "subtype": "docs_later_item",
-    "intent_key": "docs_later",
-    "topic": "docs_later",
-    "year": 2025,
-    "title": "Hồ sơ nộp sau mục 8",
-    "content": "Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức).",
-    "source": "Thủ tục nhập học 2025.txt",
-    "metadata": {
-      "level": 3,
-      "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-      "type": "detail",
-      "subtype": "docs_later_item",
-      "intent_key": "docs_later",
-      "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025,
-      "item_no": 8
-    },
-    "item_no": 8
-  },
-  {
-    "chunk_id": "Thủ tục nhập học 2025_l3_docs_later_9",
-    "level": 3,
-    "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-    "type": "detail",
-    "subtype": "docs_later_item",
-    "intent_key": "docs_later",
-    "topic": "docs_later",
-    "year": 2025,
-    "title": "Hồ sơ nộp sau mục 9",
-    "content": "Bản sao Giấy khai sinh",
-    "source": "Thủ tục nhập học 2025.txt",
-    "metadata": {
-      "level": 3,
-      "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-      "type": "detail",
-      "subtype": "docs_later_item",
-      "intent_key": "docs_later",
-      "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025,
-      "item_no": 9
-    },
-    "item_no": 9
-  },
-  {
-    "chunk_id": "Thủ tục nhập học 2025_l3_docs_later_10",
-    "level": 3,
-    "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-    "type": "detail",
-    "subtype": "docs_later_item",
-    "intent_key": "docs_later",
-    "topic": "docs_later",
-    "year": 2025,
-    "title": "Hồ sơ nộp sau mục 10",
-    "content": "Bản photo hai mặt căn cước công dân",
-    "source": "Thủ tục nhập học 2025.txt",
-    "metadata": {
-      "level": 3,
-      "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-      "type": "detail",
-      "subtype": "docs_later_item",
-      "intent_key": "docs_later",
-      "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025,
-      "item_no": 10
-    },
-    "item_no": 10
-  },
-  {
-    "chunk_id": "Thủ tục nhập học 2025_l3_docs_later_11",
-    "level": 3,
-    "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-    "type": "detail",
-    "subtype": "docs_later_item",
-    "intent_key": "docs_later",
-    "topic": "docs_later",
-    "year": 2025,
-    "title": "Hồ sơ nộp sau mục 11",
-    "content": "Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức).",
-    "source": "Thủ tục nhập học 2025.txt",
-    "metadata": {
-      "level": 3,
-      "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-      "type": "detail",
-      "subtype": "docs_later_item",
-      "intent_key": "docs_later",
-      "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025,
-      "item_no": 11
-    },
-    "item_no": 11
-  },
-  {
-    "chunk_id": "Thủ tục nhập học 2025_l3_docs_later_12",
-    "level": 3,
-    "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-    "type": "detail",
-    "subtype": "docs_later_item",
-    "intent_key": "docs_later",
-    "topic": "docs_later",
-    "year": 2025,
-    "title": "Hồ sơ nộp sau mục 12",
-    "content": "Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức)",
-    "source": "Thủ tục nhập học 2025.txt",
-    "metadata": {
-      "level": 3,
-      "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-      "type": "detail",
-      "subtype": "docs_later_item",
-      "intent_key": "docs_later",
-      "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025,
-      "item_no": 12
-    },
-    "item_no": 12
-  },
-  {
-    "chunk_id": "Thủ tục nhập học 2025_l3_docs_later_13",
-    "level": 3,
-    "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-    "type": "detail",
-    "subtype": "docs_later_item",
-    "intent_key": "docs_later",
-    "topic": "docs_later",
-    "year": 2025,
-    "title": "Hồ sơ nộp sau mục 13",
-    "content": "Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp",
-    "source": "Thủ tục nhập học 2025.txt",
-    "metadata": {
-      "level": 3,
-      "parent_id": "Thủ tục nhập học 2025_l2_docs_later",
-      "type": "detail",
-      "subtype": "docs_later_item",
-      "intent_key": "docs_later",
-      "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025,
-      "item_no": 13
-    },
-    "item_no": 13
   },
   {
     "chunk_id": "Thủ tục nhập học 2025_l3_docs_same_day_overview",
@@ -2019,8 +3143,16 @@
     "topic": "admission_procedure",
     "year": 2025,
     "title": "Hồ sơ nộp trong ngày nhập học (tóm tắt)",
-    "content": "(1) Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025; (2) Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025).; (3) Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra.; (4) Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có).; (5) 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học).; (6) Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm.; (7) Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội.",
+    "content": "(1) Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025; (2) Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025).; (3) Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra.; (4) Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có).; (5) 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học).; (6) Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm.; (7) Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội. + Nộp (từ ngày 07 đến 28/9/2025) theo lớp khi đi học chính thức:; (8) Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức).; (9) Bản sao Giấy khai sinh; (10) Bản photo hai mặt căn cước công dân; (11) Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức).; (12) Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức); (13) Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_docs"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_docs",
@@ -2028,34 +3160,16 @@
       "subtype": "docs_same_day_overview",
       "intent_key": "admission_procedure",
       "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025
-    }
-  },
-  {
-    "chunk_id": "Thủ tục nhập học 2025_l3_docs_later_overview",
-    "level": 3,
-    "parent_id": "Thủ tục nhập học 2025_l2_docs",
-    "type": "detail",
-    "subtype": "docs_later_overview",
-    "intent_key": "admission_procedure",
-    "topic": "admission_procedure",
-    "year": 2025,
-    "title": "Hồ sơ nộp theo lớp (tóm tắt)",
-    "content": "(8) Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức).; (9) Bản sao Giấy khai sinh; (10) Bản photo hai mặt căn cước công dân; (11) Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức).; (12) Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức); (13) Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp",
-    "source": "Thủ tục nhập học 2025.txt",
-    "metadata": {
-      "level": 3,
-      "parent_id": "Thủ tục nhập học 2025_l2_docs",
-      "type": "detail",
-      "subtype": "docs_later_overview",
-      "intent_key": "admission_procedure",
-      "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
-      "deadline_start": "07/09/2025",
-      "deadline_end": "28/09/2025"
-    },
-    "deadline_start": "07/09/2025",
-    "deadline_end": "28/09/2025"
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_docs"
+      ]
+    }
   },
   {
     "chunk_id": "Thủ tục nhập học 2025_l2_notes",
@@ -2069,6 +3183,13 @@
     "title": "Lưu ý cho tân sinh viên",
     "content": "1. Sinh viên tập trung gặp gỡ các khoa đào tạo, giáo viên chủ nhiệm theo các ngành học, tập trung học nội quy, tuần sinh hoạt đầu năm học từ ngày 27 đến ngày 29/8/2025 theo khung giờ quy định có trong tài liệu hướng dẫn ngày nhập học (file đính kèm) và bắt đầu học tập theo thời khóa biểu trên giảng đường (download tại đây) từ ngày 03 tháng 9 năm 2025. 2. Sinh viên theo dõi thông báo tuyển sinh vào học chương trình đào tạo đặc biệt (tài năng, chất lượng cao) theo thông báo cụ thể từ ngày 28 tháng 8 năm 2025 hoặc (download tại đây). 3. Chỉ những thí sinh hoàn thành đầy đủ các bước trên mới được công nhận chính thức là sinh viên của Trường. 4. Một số mục hồ sơ còn thiếu, sinh viên nộp bổ sung tại phòng Công tác sinh viên và truyền thông (phòng 320 tầng 3 nhà T1) theo lớp trước ngày 28/9/2025. 5. Sinh viên thường xuyên kiểm tra email cá nhân để nhận các thông tin hướng dẫn đầu năm học.",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l1_section_4",
@@ -2076,7 +3197,14 @@
       "subtype": "notes_group",
       "intent_key": "notes",
       "source": "Thủ tục nhập học 2025.txt",
-      "year": 2025
+      "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4"
+      ]
     }
   },
   {
@@ -2091,6 +3219,14 @@
     "title": "Lưu ý 1",
     "content": "Sinh viên tập trung gặp gỡ các khoa đào tạo, giáo viên chủ nhiệm theo các ngành học, tập trung học nội quy, tuần sinh hoạt đầu năm học từ ngày 27 đến ngày 29/8/2025 theo khung giờ quy định có trong tài liệu hướng dẫn ngày nhập học (file đính kèm) và bắt đầu học tập theo thời khóa biểu trên giảng đường (download tại đây) từ ngày 03 tháng 9 năm",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_notes"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_notes",
@@ -2099,6 +3235,14 @@
       "intent_key": "notes",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_notes"
+      ],
       "item_no": 1
     },
     "item_no": 1
@@ -2115,6 +3259,14 @@
     "title": "Lưu ý 2025",
     "content": "2. Sinh viên theo dõi thông báo tuyển sinh vào học chương trình đào tạo đặc biệt (tài năng, chất lượng cao) theo thông báo cụ thể từ ngày 28 tháng 8 năm 2025 hoặc (download tại đây).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_notes"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_notes",
@@ -2123,6 +3275,14 @@
       "intent_key": "notes",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_notes"
+      ],
       "item_no": 2025
     },
     "item_no": 2025
@@ -2139,6 +3299,14 @@
     "title": "Lưu ý 3",
     "content": "Chỉ những thí sinh hoàn thành đầy đủ các bước trên mới được công nhận chính thức là sinh viên của Trường.",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_notes"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_notes",
@@ -2147,6 +3315,14 @@
       "intent_key": "notes",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_notes"
+      ],
       "item_no": 3
     },
     "item_no": 3
@@ -2163,6 +3339,14 @@
     "title": "Lưu ý 4",
     "content": "Một số mục hồ sơ còn thiếu, sinh viên nộp bổ sung tại phòng Công tác sinh viên và truyền thông (phòng 320 tầng 3 nhà T1) theo lớp trước ngày 28/9/2025.",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_notes"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_notes",
@@ -2171,6 +3355,14 @@
       "intent_key": "notes",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_notes"
+      ],
       "item_no": 4
     },
     "item_no": 4
@@ -2187,6 +3379,14 @@
     "title": "Lưu ý 5",
     "content": "Sinh viên thường xuyên kiểm tra email cá nhân để nhận các thông tin hướng dẫn đầu năm học.",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4",
+      "Thủ tục nhập học 2025_l2_notes"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_notes",
@@ -2195,6 +3395,14 @@
       "intent_key": "notes",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4",
+        "Thủ tục nhập học 2025_l2_notes"
+      ],
       "item_no": 5
     },
     "item_no": 5
@@ -2211,6 +3419,13 @@
     "title": "Thông tin liên hệ",
     "content": "Phòng Công tác sinh viên & truyền thông, Trường Đại học Khoa học Tự nhiên, số 334 đường Nguyễn Trãi, Phường Thanh Xuân, thành phố Hà Nội (điện thoại: 024.38581283; email: ctsv@hus.edu.vn; fanpage: https://www.facebook.com/CTSVHUS).",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": "phan_4",
+    "step_id": null,
+    "canonical_nav_id": "phan_4",
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l1_section_4"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l1_section_4",
@@ -2219,6 +3434,13 @@
       "intent_key": "contact",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": "phan_4",
+      "step_id": null,
+      "canonical_nav_id": "phan_4",
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l1_section_4"
+      ],
       "phone": "024.38581283",
       "email": "ctsv@hus.edu.vn",
       "fanpage": "https://www.facebook.com/CTSVHUS"
@@ -2239,6 +3461,12 @@
     "title": "Tổng hợp mốc thời gian",
     "content": "- 22/8/2025 - 30/8/2025 - 25/8/2025 - 05/9/2025 - 1/10/2025 - 28/8/2025 - 27/8/2025 - 28/9/2025 - 29/8/2025",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": null,
+    "step_id": null,
+    "canonical_nav_id": null,
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview"
+    ],
     "metadata": {
       "level": 2,
       "parent_id": "Thủ tục nhập học 2025_l0_overview",
@@ -2247,6 +3475,12 @@
       "intent_key": "deadlines_summary",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": null,
+      "step_id": null,
+      "canonical_nav_id": null,
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview"
+      ],
       "dates": [
         "22/8/2025",
         "30/8/2025",
@@ -2283,6 +3517,13 @@
     "title": "Mốc thời gian 1",
     "content": "22/8/2025",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": null,
+    "step_id": null,
+    "canonical_nav_id": null,
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l2_deadlines"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_deadlines",
@@ -2291,6 +3532,13 @@
       "intent_key": "deadlines_summary",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": null,
+      "step_id": null,
+      "canonical_nav_id": null,
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l2_deadlines"
+      ],
       "date": "22/8/2025"
     },
     "date": "22/8/2025"
@@ -2307,6 +3555,13 @@
     "title": "Mốc thời gian 2",
     "content": "30/8/2025",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": null,
+    "step_id": null,
+    "canonical_nav_id": null,
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l2_deadlines"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_deadlines",
@@ -2315,6 +3570,13 @@
       "intent_key": "deadlines_summary",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": null,
+      "step_id": null,
+      "canonical_nav_id": null,
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l2_deadlines"
+      ],
       "date": "30/8/2025"
     },
     "date": "30/8/2025"
@@ -2331,6 +3593,13 @@
     "title": "Mốc thời gian 3",
     "content": "25/8/2025",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": null,
+    "step_id": null,
+    "canonical_nav_id": null,
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l2_deadlines"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_deadlines",
@@ -2339,6 +3608,13 @@
       "intent_key": "deadlines_summary",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": null,
+      "step_id": null,
+      "canonical_nav_id": null,
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l2_deadlines"
+      ],
       "date": "25/8/2025"
     },
     "date": "25/8/2025"
@@ -2355,6 +3631,13 @@
     "title": "Mốc thời gian 4",
     "content": "05/9/2025",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": null,
+    "step_id": null,
+    "canonical_nav_id": null,
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l2_deadlines"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_deadlines",
@@ -2363,6 +3646,13 @@
       "intent_key": "deadlines_summary",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": null,
+      "step_id": null,
+      "canonical_nav_id": null,
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l2_deadlines"
+      ],
       "date": "05/9/2025"
     },
     "date": "05/9/2025"
@@ -2379,6 +3669,13 @@
     "title": "Mốc thời gian 5",
     "content": "1/10/2025",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": null,
+    "step_id": null,
+    "canonical_nav_id": null,
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l2_deadlines"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_deadlines",
@@ -2387,6 +3684,13 @@
       "intent_key": "deadlines_summary",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": null,
+      "step_id": null,
+      "canonical_nav_id": null,
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l2_deadlines"
+      ],
       "date": "1/10/2025"
     },
     "date": "1/10/2025"
@@ -2403,6 +3707,13 @@
     "title": "Mốc thời gian 6",
     "content": "28/8/2025",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": null,
+    "step_id": null,
+    "canonical_nav_id": null,
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l2_deadlines"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_deadlines",
@@ -2411,6 +3722,13 @@
       "intent_key": "deadlines_summary",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": null,
+      "step_id": null,
+      "canonical_nav_id": null,
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l2_deadlines"
+      ],
       "date": "28/8/2025"
     },
     "date": "28/8/2025"
@@ -2427,6 +3745,13 @@
     "title": "Mốc thời gian 7",
     "content": "27/8/2025",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": null,
+    "step_id": null,
+    "canonical_nav_id": null,
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l2_deadlines"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_deadlines",
@@ -2435,6 +3760,13 @@
       "intent_key": "deadlines_summary",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": null,
+      "step_id": null,
+      "canonical_nav_id": null,
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l2_deadlines"
+      ],
       "date": "27/8/2025"
     },
     "date": "27/8/2025"
@@ -2451,6 +3783,13 @@
     "title": "Mốc thời gian 8",
     "content": "28/9/2025",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": null,
+    "step_id": null,
+    "canonical_nav_id": null,
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l2_deadlines"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_deadlines",
@@ -2459,6 +3798,13 @@
       "intent_key": "deadlines_summary",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": null,
+      "step_id": null,
+      "canonical_nav_id": null,
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l2_deadlines"
+      ],
       "date": "28/9/2025"
     },
     "date": "28/9/2025"
@@ -2475,6 +3821,13 @@
     "title": "Mốc thời gian 9",
     "content": "29/8/2025",
     "source": "Thủ tục nhập học 2025.txt",
+    "section_id": null,
+    "step_id": null,
+    "canonical_nav_id": null,
+    "ancestor_ids": [
+      "Thủ tục nhập học 2025_l0_overview",
+      "Thủ tục nhập học 2025_l2_deadlines"
+    ],
     "metadata": {
       "level": 3,
       "parent_id": "Thủ tục nhập học 2025_l2_deadlines",
@@ -2483,6 +3836,13 @@
       "intent_key": "deadlines_summary",
       "source": "Thủ tục nhập học 2025.txt",
       "year": 2025,
+      "section_id": null,
+      "step_id": null,
+      "canonical_nav_id": null,
+      "ancestor_ids": [
+        "Thủ tục nhập học 2025_l0_overview",
+        "Thủ tục nhập học 2025_l2_deadlines"
+      ],
       "date": "29/8/2025"
     },
     "date": "29/8/2025"

@@ -27,66 +27,92 @@ class AutomationPipeline:
         """Chạy toàn bộ quy trình tự động hóa"""
         print("=" * 70)
         print("🚀 KHỞI CHẠY AUTOMATION PIPELINE (AI-POWERED)")
+        print(f"   Năm tuyển sinh: {ADMISSION_YEAR}")
         print("=" * 70)
-        
-        # 1. Scan documents
-        files = []
+
+        # 1. Scan documents - chỉ lấy file đúng năm tuyển sinh
+        all_files = []
         for ext in ['*.txt', '*.docx', '*.pdf']:
-            files.extend(glob.glob(os.path.join(data_dir, ext)))
-        
-        # 2. Kiểm tra xem file nào đã có trong DB
+            all_files.extend(glob.glob(os.path.join(data_dir, ext)))
+
+        year_str = str(ADMISSION_YEAR)
+        files = [f for f in all_files if year_str in os.path.basename(f)]
+        if not files:
+            print(f"[WARNING] Không tìm thấy file nào chứa năm {year_str} trong {data_dir}/")
+            print(f"          Các file có: {[os.path.basename(f) for f in all_files]}")
+            return
+
+        print(f"[FILTER] Chỉ xử lý {len(files)} file cho năm {year_str}:")
+        for f in files:
+            print(f"         - {os.path.basename(f)}")
+
+        # 2. Load DB và xóa chunks cũ của năm này (rebuild sạch cho năm đó)
         self.vector_db.load()
-        indexed_files = set([c.get('source') for c in self.vector_db.data.get('chunks', [])])
-        
+        existing_chunks = self.vector_db.data.get('chunks', [])
+        existing_embeddings = self.vector_db.data.get('embeddings', [])
+
+        keep_chunks = []
+        keep_embeddings = []
+        removed = 0
+        for i, c in enumerate(existing_chunks):
+            c_year = c.get('year') or (c.get('metadata') or {}).get('year')
+            if c_year == ADMISSION_YEAR:
+                removed += 1
+            else:
+                keep_chunks.append(c)
+                if i < len(existing_embeddings):
+                    keep_embeddings.append(existing_embeddings[i])
+
+        if removed:
+            print(f"[CLEAN] Đã xóa {removed} chunks cũ của năm {year_str} khỏi DB")
+
         all_ai_chunks = []
-        
-        # 3. AI Hierarchical Scanning (Chỉ nạp file MỚI)
+
+        # 3. AI Hierarchical Scanning
         for file_path in files:
             file_name = os.path.basename(file_path)
-            if file_name in indexed_files:
-                print(f"[SKIP] Bỏ qua file đã có trong bộ nhớ: {file_name}")
-                continue
-                
-            print(f"\n[SCAN] Đang nạp tài liệu MỚI: {file_name}")
+            print(f"\n[SCAN] Đang nạp tài liệu: {file_name}")
             raw_text = TextExtractor.extract(file_path)
             if not raw_text: continue
-            
-            # Gọi LLM thực hiện One-Shot Hierarchy cho file mới
+
             chunks = self.ai.auto_hierarchical_scan(raw_text, file_name)
-            print(f"[OK] Đã tạo {len(chunks)} chunks cho file mới.")
+            print(f"[OK] Đã tạo {len(chunks)} chunks.")
             all_ai_chunks.extend(chunks)
 
         if not all_ai_chunks:
             print("[ERROR] Không tạo được chunks nào.")
             return
 
-        # 3. Embedding & Storage
+        # 4. Embedding & Storage
         print(f"\n[EMBEDDING] Đang tạo vector cho {len(all_ai_chunks)} chunks...")
-        
+
         embeddings = []
         final_chunks = []
-        
+
         for i, chunk in enumerate(all_ai_chunks):
-            # Giữ nguyên ID và các thông tin phân cấp từ AI
-            chunk['year'] = ADMISSION_YEAR 
-            
-            # Sử dụng EmbeddingGenerator để chuẩn bị text
+            chunk['year'] = ADMISSION_YEAR
+
             text_to_embed = self.embedding_gen.prepare_text_for_embedding(chunk)
             embedding = self.embedding_gen.generate_embedding(text_to_embed)
-            
+
             embeddings.append(embedding)
             final_chunks.append(chunk)
-            
-        # Lưu vào DB (CHẾ ĐỘ CỘNG DỒN - APPEND)
-        # Không gọi create_collection() để giữ các file đã nạp trước đó
-        self.vector_db.load() # Load lại DB hiện tại trước khi thêm mới
-        self.vector_db.add_chunks(chunks=final_chunks, embeddings=embeddings)
-        
+
+        # Gộp chunks giữ lại (năm khác) + chunks mới (năm hiện tại)
+        merged_chunks = keep_chunks + final_chunks
+        merged_embeddings = keep_embeddings + embeddings
+
+        self.vector_db.data['chunks'] = merged_chunks
+        self.vector_db.data['embeddings'] = merged_embeddings
+        self.vector_db.save()
+
         # Lưu bản backup JSON
         with open('ai_chunks_debug.json', 'w', encoding='utf-8') as f:
             json.dump(final_chunks, f, ensure_ascii=False, indent=2)
-            
-        print(f"\n[SUCCESS] Hoàn thành! Đã cộng dồn thêm {len(final_chunks)} chunks vào Vector DB.")
+
+        print(f"\n[SUCCESS] Hoàn thành! Vector DB chứa {len(merged_chunks)} chunks tổng cộng.")
+        print(f"          - Giữ lại từ năm khác: {len(keep_chunks)}")
+        print(f"          - Mới cho năm {ADMISSION_YEAR}: {len(final_chunks)}")
         print("=" * 70)
 
 if __name__ == "__main__":

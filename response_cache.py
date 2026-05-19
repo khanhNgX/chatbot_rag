@@ -8,6 +8,12 @@ import unicodedata
 from typing import Dict, Optional
 import re
 
+from config import get_admission_year
+
+ADMISSION_YEAR = get_admission_year()
+ADMISSION_YEAR_STR = str(ADMISSION_YEAR)
+ADMISSION_YEAR_NEXT_STR = str(ADMISSION_YEAR + 1)
+
 
 class ResponseCache:
     """Cache responses chất lượng cao để tăng ổn định khi trả lời"""
@@ -38,7 +44,7 @@ class ResponseCache:
         return {
             'fee_info': {
                 'keywords': ['học phí', 'tiền học', 'lệ phí', 'fee'],
-                'template': """Dựa trên thông tin từ tài liệu tuyển sinh 2025, học phí được tính theo các quy định của Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội.
+                'template': f"""Dựa trên thông tin từ tài liệu tuyển sinh {ADMISSION_YEAR_STR}, học phí được tính theo các quy định của Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội.
 
 [INFO] Thông tin chi tiết:
 - Học phí được tính theo số tín chỉ hoặc theo học kỳ
@@ -52,12 +58,12 @@ class ResponseCache:
             },
             'schedule': {
                 'keywords': ['lịch', 'thời gian', 'ngày', 'kỳ', 'đợt', 'deadline'],
-                'template': """Lịch tuyển sinh năm 2025 của Trường Đại học Khoa học Tự nhiên:
+                'template': f"""Lịch tuyển sinh năm {ADMISSION_YEAR_STR} của Trường Đại học Khoa học Tự nhiên:
 
 📅 Thông tin quan trọng:
-- Đợt 1: Đăng ký từ tháng 3-4/2025
-- Đợt 2: Đăng ký từ tháng 6-7/2025
-- Đợt 3: Đăng ký từ tháng 8-9/2025
+- Đợt 1: Đăng ký từ tháng 3-4/{ADMISSION_YEAR_STR}
+- Đợt 2: Đăng ký từ tháng 6-7/{ADMISSION_YEAR_STR}
+- Đợt 3: Đăng ký từ tháng 8-9/{ADMISSION_YEAR_STR}
 
 [TIME] Lưu ý: Các ngành khác nhau có thời gian đăng ký khác nhau
 
@@ -67,7 +73,7 @@ class ResponseCache:
             },
             'admission_procedure': {
                 'keywords': ['thủ tục', 'nhập học', 'hồ sơ', 'giấy tờ', 'cách đăng ký'],
-                'template': """Thủ tục nhập học 2025 tại Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội:
+                'template': f"""Thủ tục nhập học {ADMISSION_YEAR_STR} tại Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội:
 
 [FORM] Hồ sơ cần chuẩn bị:
 1. Giấy chứng nhận kết quả thi THPT hoặc điểm xét tuyển
@@ -87,7 +93,7 @@ class ResponseCache:
             },
             'document_required': {
                 'keywords': ['giấy tờ', 'hồ sơ', 'cần', 'yêu cầu', 'document'],
-                'template': """Giấy tờ cần thiết cho thủ tục nhập học 2025:
+                'template': f"""Giấy tờ cần thiết cho thủ tục nhập học {ADMISSION_YEAR_STR}:
 
 [OK] Bắt buộc:
 - CMND/Hộ chiếu
@@ -108,7 +114,7 @@ class ResponseCache:
             },
             'admission_score': {
                 'keywords': ['điểm', 'xét tuyển', 'điểm chuẩn', 'score'],
-                'template': """Điểm xét tuyển 2025 của Trường Đại học Khoa học Tự nhiên:
+                'template': f"""Điểm xét tuyển {ADMISSION_YEAR_STR} của Trường Đại học Khoa học Tự nhiên:
 
 [STATS] Thông tin chung:
 - Xét tuyển dựa trên kết quả thi THPT Quốc gia
@@ -122,7 +128,7 @@ class ResponseCache:
 - Sinh học: ~23-25 điểm
 - Công nghệ thông tin: ~27-29 điểm
 
-[WARNING] Điểm chuẩn năm 2025 sẽ được công bố sau kỳ thi THPT
+[WARNING] Điểm chuẩn năm {ADMISSION_YEAR_STR} sẽ được công bố sau kỳ thi THPT
 
 [PHONE] Thông tin cập nhật:
 - Website: tuyensinh.hus.edu.vn
@@ -130,9 +136,9 @@ class ResponseCache:
             },
             'generic': {
                 'keywords': [],
-                'template': """Cảm ơn câu hỏi của bạn!
+                'template': f"""Cảm ơn câu hỏi của bạn!
 
-Tôi là chatbot hỗ trợ thông tin tuyển sinh 2025 của Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội.
+Tôi là chatbot hỗ trợ thông tin tuyển sinh {ADMISSION_YEAR_STR} của Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội.
 
 [PIN] Tôi có thể giúp bạn về:
 - [OK] Thủ tục nhập học
@@ -282,7 +288,7 @@ Tôi là chatbot hỗ trợ thông tin tuyển sinh 2025 của Trường Đại 
             is_template_like = (
                 ('[PIN] Tôi có thể giúp bạn về:' in response) or
                 ('[INFO] Thông tin chi tiết:' in response and '[SOURCE]' not in response) or
-                ('Dựa trên thông tin từ tài liệu tuyển sinh 2025' in response and '[SOURCE]' not in response)
+                (f'Dựa trên thông tin từ tài liệu tuyển sinh {ADMISSION_YEAR_STR}' in response and '[SOURCE]' not in response)
             )
 
             if source_type in {'template', 'error'} or quality == 'low' or is_exact_template or is_template_like:

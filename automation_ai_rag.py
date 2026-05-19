@@ -2,17 +2,23 @@
 """
 AUTOMATION AI-RAG PIPELINE
 Tự động hóa toàn bộ quy trình: Chunking (AI) -> Tagging (AI) -> Query Rewriting (AI)
-Sử dụng Groq API để tối ưu tốc độ và chi phí.
+Sử dụng Groq API.
 """
 
-import os
 import json
 import re
+import os
 import requests
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 from dotenv import load_dotenv
 
+from config import get_admission_year
+
 load_dotenv()
+GROQ_API_KEY = (os.getenv('GROQ_API_KEY') or '').strip()
+GROQ_MODEL_TEXT = (os.getenv('GROQ_MODEL_TEXT') or 'llama-3.3-70b-versatile').strip()
+ADMISSION_YEAR = get_admission_year()
+ADMISSION_YEAR_STR = str(ADMISSION_YEAR)
 
 # Cấu hình tập hợp nhãn (Metadata Keywords) cho tuyển sinh
 TOPIC_SET = {
@@ -26,40 +32,58 @@ TOPIC_SET = {
     'general': 'Thông tin chung khác'
 }
 
-class GroqService:
-    """Tương tác với Groq để xử lý AI-Tasks"""
-    def __init__(self):
-        self.api_key = os.getenv('GROQ_API_KEY')
-        self.url = "https://api.groq.com/openai/v1/chat/completions"
-        self.model = "llama-3.1-8b-instant" # Dùng bản 8B cho nhanh và tiết kiệm
+class AIService:
+    """Tương tác với Groq để xử lý AI-Tasks."""
 
     def call(self, system_prompt: str, user_prompt: str, json_mode: bool = False) -> str:
-        headers = {
-            "Authorization": f"Bearer {self.api_key}",
-            "Content-Type": "application/json"
-        }
-        payload = {
-            "model": self.model,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ],
-            "temperature": 0.1,
-            "response_format": {"type": "json_object"} if json_mode else None
-        }
-        try:
-            response = requests.post(self.url, headers=headers, json=payload, timeout=30)
-            if response.status_code == 200:
-                return response.json()['choices'][0]['message']['content']
+        if not GROQ_API_KEY:
+            print("[AI ERROR] missing_GROQ_API_KEY")
             return ""
+
+        payload = {
+            'model': GROQ_MODEL_TEXT,
+            'temperature': 0.1,
+            'max_tokens': 1200,
+            'messages': [
+                {'role': 'system', 'content': (system_prompt + "\n\nTrả về JSON object hợp lệ." if json_mode else system_prompt)},
+                {'role': 'user', 'content': user_prompt}
+            ]
+        }
+
+        try:
+            response = requests.post(
+                'https://api.groq.com/openai/v1/chat/completions',
+                headers={
+                    'Authorization': f'Bearer {GROQ_API_KEY}',
+                    'content-type': 'application/json'
+                },
+                json=payload,
+                timeout=45
+            )
+            if response.status_code == 429:
+                print("[AI ERROR] quota")
+                return ""
+            if response.status_code != 200:
+                print(f"[AI ERROR] API {response.status_code}: {response.text[:300]}")
+                return ""
+
+            result = response.json()
+            choices = result.get('choices') or []
+            if not choices:
+                print("[AI ERROR] empty_choices")
+                return ""
+            text = ((choices[0].get('message') or {}).get('content') or '').strip()
+            return text
         except Exception as e:
             print(f"[AI ERROR] {e}")
             return ""
 
+
 class AIAutomation:
     """Class điều phối toàn bộ quy trình Automation"""
+
     def __init__(self):
-        self.ai = GroqService()
+        self.ai = AIService()
         
     # --- BƯỚC 1: AI HIERARCHICAL CHUNKING (Advanced Granular) ---
     def auto_hierarchical_scan(self, raw_text: str, source: str) -> List[Dict]:
@@ -152,7 +176,16 @@ Trả về định dạng JSON:
             
         try:
             return json.loads(result_json)
-        except:
+        except Exception:
+            # Model có thể trả prose + JSON; cố gắng tách object JSON đầu tiên.
+            try:
+                start = result_json.find('{')
+                end = result_json.rfind('}')
+                if start >= 0 and end > start:
+                    payload = result_json[start:end + 1]
+                    return json.loads(payload)
+            except Exception:
+                pass
             return {"refined_query": query, "detected_topic": "general"}
 
 # Dùng thử nhanh
@@ -168,7 +201,7 @@ if __name__ == "__main__":
     print(f"Tag: {processed['detected_topic']}")
     
     # Test thử AI Chunking
-    test_text = "Học phí năm 2025 là 7.000.000đ. Thí sinh nộp hồ sơ tại phòng A1 từ ngày 1/1/2025."
+    test_text = f"Học phí năm {ADMISSION_YEAR_STR} là 7.000.000đ. Thí sinh nộp hồ sơ tại phòng A1 từ ngày 1/1/{ADMISSION_YEAR_STR}."
     chunks = auto.auto_scan_and_chunk(test_text, "test_file.txt")
     print(f"\n[AI CHUNKS CREATED]: {len(chunks)}")
     for c in chunks:

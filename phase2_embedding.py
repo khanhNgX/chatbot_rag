@@ -2,27 +2,30 @@
 """
 PHASE 2: Embedding & Storage (Pure REST Version)
 Module để tạo embeddings bằng Gemini API qua REST và lưu vào file JSON
-Loại bỏ hoàn toàn thư viện google-generativeai để tránh lỗi pydantic-core/grpcio
 """
 
 import json
 import os
+import hashlib
 import numpy as np
-import requests
 from dotenv import load_dotenv
 from typing import List, Dict, Any, Optional
+import requests
 
 # Load biến môi trường
 load_dotenv()
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+GEMINI_MODEL_EMBED = (os.getenv('GEMINI_MODEL_EMBED') or 'gemini-embedding-001').strip()
 
 class EmbeddingGenerator:
-    """Tạo embeddings sử dụng Gemini API qua REST (Pure Python)"""
-    
+    """Tạo embeddings sử dụng Gemini API qua REST (Pure Python)."""
+
     def __init__(self, api_key: Optional[str] = None):
-        self.api_key = api_key or GEMINI_API_KEY
+        self.api_key = (api_key or GEMINI_API_KEY or '').strip()
+        self.embed_model = GEMINI_MODEL_EMBED
+        self._last_dim = 1024
         if not self.api_key:
-            print("[WARNING] Cảnh báo: Chưa cấu hình GEMINI_API_KEY. Việc tạo embedding sẽ thất bại.")
+            print("[WARNING] Missing GEMINI_API_KEY. Embedding generation will fail.")
     
     def prepare_text_for_embedding(self, chunk: Dict[str, Any]) -> str:
         """Chuẩn bị text để embed theo template"""
@@ -44,45 +47,56 @@ class EmbeddingGenerator:
             metadata_parts.append(f"Major: {chunk['major']}")
         
         # Combine
+        canonical_nav_id = chunk.get('canonical_nav_id') or (chunk.get('metadata', {}) or {}).get('canonical_nav_id')
+        section_id = chunk.get('section_id') or (chunk.get('metadata', {}) or {}).get('section_id')
+        step_id = chunk.get('step_id') or (chunk.get('metadata', {}) or {}).get('step_id')
+
         text = f"[TYPE: {chunk_type}] [YEAR: {year}] {title}\n{content}"
+        if canonical_nav_id:
+            metadata_parts.append(f"CanonicalNav: {canonical_nav_id}")
+        if section_id:
+            metadata_parts.append(f"SectionID: {section_id}")
+        if step_id:
+            metadata_parts.append(f"StepID: {step_id}")
+
         if metadata_parts:
             text += f"\nMetadata: {', '.join(metadata_parts)}"
         return text
     
     def generate_embedding(self, text: str) -> List[float]:
-        """Tạo embedding vector qua REST call"""
+        """Tạo embedding vector qua Gemini Embeddings API."""
         if not self.api_key:
-            return [0.0] * 3072
-            
-        models_to_try = ["text-embedding-004", "gemini-embedding-001"]
-        headers = {"Content-Type": "application/json"}
+            return [0.0] * self._last_dim
+
         payload = {
-            "content": {"parts": [{"text": text}]},
-            "task_type": "RETRIEVAL_DOCUMENT"
+            'model': f"models/{self.embed_model}",
+            'content': {
+                'parts': [{'text': text or ''}]
+            }
         }
-        
-        response = None
-        for model in models_to_try:
-            for version in ["v1beta", "v1"]:
-                url = f"https://generativelanguage.googleapis.com/{version}/models/{model}:embedContent?key={self.api_key}"
-                try:
-                    res = requests.post(url, headers=headers, json=payload, timeout=20)
-                    if res.status_code == 200:
-                        response = res
-                        break
-                except:
-                    continue
-            if response: break
-            
+
         try:
-            if not response:
-                raise Exception("Không thể kết nối tới các endpoint Embedding.")
-                
+            response = requests.post(
+                f"https://generativelanguage.googleapis.com/v1beta/models/{self.embed_model}:embedContent?key={self.api_key}",
+                headers={'content-type': 'application/json'},
+                json=payload,
+                timeout=45
+            )
+
+            if response.status_code == 429:
+                raise Exception('quota')
+            if response.status_code != 200:
+                raise Exception(f"API {response.status_code}: {response.text[:300]}")
+
             result = response.json()
-            return result.get('embedding', {}).get('values', [])
+            emb = ((result.get('embedding') or {}).get('values') or [])
+            if emb:
+                self._last_dim = len(emb)
+                return emb
+            raise Exception('embedding_not_found_in_response')
         except Exception as e:
             print(f"[WARNING] REST Embedding error: {e}")
-            return [0.0] * 3072
+            return [0.0] * self._last_dim
 
 
 class VectorStorage:

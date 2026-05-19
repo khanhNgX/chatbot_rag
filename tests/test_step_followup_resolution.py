@@ -19,6 +19,9 @@ class TestStepFollowupResolution(unittest.TestCase):
         self._patch_vs = patch('automation_retriever.VectorStorage', return_value=_DummyVectorStorage())
         self._patch_vs.start()
         self.addCleanup(self._patch_vs.stop)
+        self._patch_ai = patch('automation_retriever.AIAutomation.process_user_query', side_effect=lambda query: {'refined_query': query, 'detected_topic': 'general'})
+        self._patch_ai.start()
+        self.addCleanup(self._patch_ai.stop)
         self.retriever = AutomationRetriever()
 
     def test_buoc_dau_global_maps_to_section_1(self):
@@ -255,6 +258,54 @@ class TestStepFollowupResolution(unittest.TestCase):
         self.assertEqual(frame.get("nav_target_type"), "unknown")
         self.assertEqual(frame.get("nav_target_candidates"), [])
         self.assertEqual(frame.get("scope"), "local_section")
+
+    def test_tom_tat_thu_tuc_nhap_hoc_maps_to_global_overview(self):
+        analysis = self.retriever.analyze("tóm tắt thủ tục nhập học", chat_history=[])
+        entities = analysis.get("entities") or {}
+        frame = analysis.get("query_frame") or {}
+        self.assertEqual(analysis.get("intent"), "admission_procedure")
+        self.assertTrue(entities.get("ask_steps_overview_global"))
+        self.assertEqual(frame.get("nav_target_type"), "unknown")
+        self.assertEqual(frame.get("scope"), "global")
+
+    def test_tong_quan_thu_tuc_nhap_hoc_maps_to_global_overview(self):
+        analysis = self.retriever.analyze("cho tôi tổng quan thủ tục nhập học", chat_history=[])
+        entities = analysis.get("entities") or {}
+        frame = analysis.get("query_frame") or {}
+        self.assertEqual(analysis.get("intent"), "admission_procedure")
+        self.assertTrue(entities.get("ask_steps_overview_global"))
+        self.assertEqual(frame.get("nav_target_type"), "unknown")
+        self.assertEqual(frame.get("scope"), "global")
+
+    def test_tom_tat_nop_ho_so_keeps_local_overview(self):
+        analysis = self.retriever.analyze("tóm tắt các bước nộp hồ sơ", chat_history=[])
+        entities = analysis.get("entities") or {}
+        frame = analysis.get("query_frame") or {}
+        self.assertEqual(analysis.get("intent"), "admission_procedure")
+        self.assertTrue(entities.get("ask_steps_overview_local"))
+        self.assertFalse(bool(entities.get("ask_steps_overview_global")))
+        self.assertEqual(frame.get("scope"), "local_section")
+
+    def test_phan_3_cua_phan_nop_ho_so_maps_to_local_step_b3(self):
+        analysis = self.retriever.analyze("viết chi tiết phần 3 của phần nộp hồ sơ", chat_history=[])
+        entities = analysis.get("entities") or {}
+        frame = analysis.get("query_frame") or {}
+        self.assertEqual(analysis.get("intent"), "step")
+        self.assertEqual(entities.get("step_number"), 3)
+        self.assertIsNone(entities.get("section_number"))
+        self.assertEqual(frame.get("nav_target_type"), "local_step")
+        self.assertEqual((frame.get("nav_target_candidates") or [None])[0], "b3_phan_4")
+        self.assertEqual(frame.get("scope"), "local_section")
+
+    def test_phan_3_cua_thu_tuc_nhap_hoc_keeps_global_section_3(self):
+        analysis = self.retriever.analyze("viết chi tiết phần 3 của thủ tục nhập học", chat_history=[])
+        entities = analysis.get("entities") or {}
+        frame = analysis.get("query_frame") or {}
+        self.assertEqual(analysis.get("intent"), "admission_procedure")
+        self.assertEqual(entities.get("section_number"), 3)
+        self.assertEqual(frame.get("nav_target_type"), "section")
+        self.assertEqual((frame.get("nav_target_candidates") or [None])[0], "phan_3")
+        self.assertEqual(frame.get("scope"), "global")
 
     def test_buoc_thu_hai_nop_hoc_phi_maps_to_b2_local_flow(self):
         analysis = self.retriever.analyze("bước thứ hai nộp học phí", chat_history=[])

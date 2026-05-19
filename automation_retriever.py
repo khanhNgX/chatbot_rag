@@ -84,6 +84,12 @@ class AutomationRetriever:
         filtered_chunks = self._format_results(filtered_results)
         broad_chunks = self._format_results(broad_results)
 
+        # Ưu tiên chunks đúng năm tuyển sinh
+        from config import get_admission_year
+        target_year = get_admission_year()
+        filtered_chunks = self._prefer_year(filtered_chunks, target_year)
+        broad_chunks = self._prefer_year(broad_chunks, target_year)
+
         filtered_score = self._aggregate_quality(query, refined_query, filtered_chunks, intent, entities)
         broad_score = self._aggregate_quality(query, refined_query, broad_chunks, intent, entities)
 
@@ -100,7 +106,7 @@ class AutomationRetriever:
         elif strict_nav and filtered_chunks:
             print("[FILTER LOCK] Giữ filtered theo nav_target để tránh lệch trục ngữ nghĩa")
 
-        reranked = self._rerank_chunks(query, refined_query, best_chunks, intent, entities)
+        reranked = self._rerank_chunks(query, refined_query, best_chunks, intent, entities, query_frame=query_frame)
         enriched = self._enrich_with_hierarchy(reranked, intent=intent)
         final_chunks = self._dedupe_and_cap_context(enriched, top_k=top_k, intent=intent)
 
@@ -127,6 +133,39 @@ class AutomationRetriever:
                     have_sections.add(sid)
 
             final_chunks = self._dedupe_and_cap_context(enriched + final_chunks, top_k=max(top_k, 12), intent=intent)
+
+        # Đảm bảo tất cả nav_candidates đều có ít nhất 1 chunk trong kết quả
+        nav_targets = query_frame.get('nav_target_candidates') or []
+        if len(nav_targets) > 1:
+            seen_ids = {c.get('chunk_id') for c in final_chunks}
+            have_navs = set()
+            for c in final_chunks:
+                md = c.get('metadata', {}) or {}
+                sid = md.get('section_id') or c.get('section_id', '')
+                nav = md.get('canonical_nav_id') or c.get('canonical_nav_id', '')
+                if sid in nav_targets:
+                    have_navs.add(sid)
+                if nav in nav_targets:
+                    have_navs.add(nav)
+
+            extra = []
+            for target in nav_targets:
+                if target in have_navs:
+                    continue
+                for c in broad_chunks:
+                    md = c.get('metadata', {}) or {}
+                    sid = md.get('section_id') or c.get('section_id', '')
+                    nav = md.get('canonical_nav_id') or c.get('canonical_nav_id', '')
+                    if (sid == target or nav == target) and c.get('chunk_id') not in seen_ids:
+                        extra.append(c)
+                        seen_ids.add(c.get('chunk_id'))
+                        have_navs.add(target)
+                        break
+
+            if extra:
+                final_chunks = self._dedupe_and_cap_context(
+                    extra + final_chunks, top_k=max(top_k, len(nav_targets) * 3), intent=intent
+                )
 
         return final_chunks
 
@@ -185,9 +224,18 @@ class AutomationRetriever:
         # 6) vệ sinh xung đột
         if merged.get('ask_steps_overview_local'):
             merged.pop('step_number', None)
+            merged.pop('section_number', None)
         if merged.get('ask_steps_overview_global'):
             merged.pop('section_number', None)
             merged.pop('section_id', None)
+
+        # local step rõ ràng trong PHẦN 4 vẫn giữ section_id để formatter/retriever biết trục hồ sơ.
+        if merged.get('step_number') and merged.get('local_step_scope'):
+            if raw.get('section_id') == 'phan_4' or merged.get('fee_step_scope'):
+                merged['section_id'] = 'phan_4'
+            elif merged.get('section_id') != 'phan_4':
+                merged.pop('section_number', None)
+                merged.pop('section_id', None)
 
         return merged
 
@@ -195,8 +243,10 @@ class AutomationRetriever:
         qn = self._normalize(query)
         entities: Dict[str, Any] = {}
 
-        local_step_scope = any(k in qn for k in ['phan 4', 'phần 4', 'ho so', 'hồ sơ', 'nop ho so', 'nộp hồ sơ'])
+        local_step_scope = any(k in qn for k in ['phan 4', 'phần 4', 'ho so', 'hồ sơ', 'hso', 'nop ho so', 'nộp hồ sơ'])
         has_fee_words = any(k in qn for k in ['hoc phi', 'học phí', 'le phi', 'lệ phí', 'nop hoc phi', 'nộp học phí'])
+        step_num_pattern = r'\bbuoc(?:\s*(?:thu|so|thu\s*tu))?\s*([1-4])\b'
+        step_word_pattern = r'\bbuoc(?:\s*(?:thu|so|thu\s*tu))?\s*(mot|hai|ba|bon|tu)\b'
 
         # Với câu hỏi theo dạng "bước ... nộp học phí", người dùng đang hỏi quy trình thao tác (B1-B4)
         # nên map về local step flow của PHẦN 4 thay vì PHẦN 1/2/3 theo trục thủ tục tổng quát.
@@ -213,29 +263,39 @@ class AutomationRetriever:
         if entities.get('next_step') and entities.get('prev_step'):
             entities.pop('prev_step', None)
 
-        m_section = re.search(r'\bphan\s*([1-4])\b|\bphần\s*([1-4])\b|\bmuc\s*([1-4])\b|\bmục\s*([1-4])\b', qn)
-        if m_section:
-            section_no = next((int(g) for g in m_section.groups() if g), None)
-            if section_no:
-                entities['section_number'] = section_no
-                entities['section_id'] = f"phan_{section_no}"
-                if section_no == 4 and 'buoc' in qn:
-                    local_step_scope = True
+        m_sections = re.findall(r'\bphan\s*([1-4])\b|\bphần\s*([1-4])\b|\bmuc\s*([1-4])\b|\bmục\s*([1-4])\b', qn)
+        found_sections = sorted(set(int(g) for groups in m_sections for g in groups if g))
+        if found_sections:
+            entities['section_number'] = found_sections[0]
+            entities['section_id'] = f"phan_{found_sections[0]}"
+            if len(found_sections) > 1:
+                entities['section_numbers'] = found_sections
+            if found_sections[0] == 4 and 'buoc' in qn:
+                local_step_scope = True
 
-        m_b_step = re.search(r'\bb\s*([1-4])\b', qn)
-        if m_b_step:
-            entities['step_number'] = int(m_b_step.group(1))
+        m_b_step = re.findall(r'\bb\s*([1-4])\b', qn)
+        found_b_steps = sorted(set(int(x) for x in m_b_step))
+        if found_b_steps:
+            entities['step_number'] = found_b_steps[0]
+            if len(found_b_steps) > 1:
+                entities['step_numbers'] = found_b_steps
             local_step_scope = True
 
         if 'step_number' not in entities:
-            m_word_step = re.search(r'\bbuoc(?:\s*thu)?\s*([1-4])\b', qn)
-            if m_word_step:
-                n = int(m_word_step.group(1))
-                if local_step_scope:
-                    entities['step_number'] = n
-                elif 'section_number' not in entities:
-                    entities['section_number'] = n
-                    entities['section_id'] = f"phan_{n}"
+            m_word_steps = re.findall(step_num_pattern, qn)
+            if m_word_steps:
+                found_nums = [int(g) for g in m_word_steps if g]
+                if found_nums:
+                    n = found_nums[0]
+                    if local_step_scope:
+                        entities['step_number'] = n
+                        if len(found_nums) > 1:
+                            entities['step_numbers'] = sorted(set(found_nums))
+                    elif 'section_number' not in entities:
+                        entities['section_number'] = n
+                        entities['section_id'] = f"phan_{n}"
+                        if len(found_nums) > 1:
+                            entities['section_numbers'] = sorted(set(found_nums))
         if 'step_number' not in entities and any(k in qn for k in ['buoc dau', 'buoc dau tien', 'bước đầu', 'bước đầu tiên']):
             if local_step_scope:
                 entities['step_number'] = 1
@@ -246,20 +306,46 @@ class AutomationRetriever:
         ask_count = any(k in qn for k in ['may', 'bao nhieu', 'tong'])
         ask_steps = 'buoc' in qn
         ask_sections = 'phan' in qn
-        ask_all_steps = any(k in qn for k in ['cac buoc', 'nhung buoc', 'toan bo cac buoc', 'tat ca cac buoc'])
+        ask_all_steps = any(k in qn for k in ['cac buoc', 'ac buoc', 'nhung buoc', 'toan bo cac buoc', 'tat ca cac buoc'])
+        ask_summary = any(k in qn for k in ['tom tat', 'tong quan', 'khai quat', 'tong the'])
+        is_global_procedure_phrase = any(k in qn for k in ['thu tuc nhap hoc', 'quy trinh nhap hoc'])
+
+        # câu hỏi tổng quan thủ tục nhập học => trả trục PHẦN 1..4 (không rơi vào B1..B4)
+        if (
+            ask_summary
+            and is_global_procedure_phrase
+            and not local_step_scope
+            and 'step_number' not in entities
+            and 'section_number' not in entities
+        ):
+            entities['ask_steps_overview_global'] = True
+            entities['global_section_nav'] = True
 
         # map số bước dạng chữ: "bước thứ hai/ba/bốn..."
         if 'step_number' not in entities:
-            m_word_step_text = re.search(r'\bbuoc(?:\s*thu)?\s*(mot|hai|ba|bon|tu)\b', qn)
+            m_word_step_text = re.search(step_word_pattern, qn)
             if m_word_step_text:
                 w = m_word_step_text.group(1)
                 n = {'mot': 1, 'hai': 2, 'ba': 3, 'bon': 4, 'tu': 4}.get(w)
                 if n:
                     if local_step_scope:
                         entities['step_number'] = n
+                        entities['section_id'] = 'phan_4'
                     elif 'section_number' not in entities:
                         entities['section_number'] = n
                         entities['section_id'] = f"phan_{n}"
+
+        # "phần 3 của phần nộp hồ sơ" => local step B3 (không phải PHẦN 3 global)
+        if (
+            local_step_scope
+            and 'step_number' not in entities
+            and isinstance(entities.get('section_number'), int)
+            and entities.get('section_number') in {1, 2, 3, 4}
+            and re.search(r'\bphan\s*[1-4]\s*(cua|trong)\s*(phan\s*)?(nop\s*)?ho\s*so\b', qn)
+        ):
+            entities['step_number'] = int(entities['section_number'])
+            entities.pop('section_number', None)
+            entities.pop('section_id', None)
 
         if local_step_scope and ask_all_steps and 'step_number' not in entities:
             entities['ask_steps_overview_local'] = True
@@ -271,6 +357,7 @@ class AutomationRetriever:
 
         if entities.get('ask_steps_overview_local'):
             entities.pop('step_number', None)
+            entities.pop('section_number', None)
         if entities.get('ask_steps_overview_global'):
             entities.pop('section_number', None)
             entities.pop('section_id', None)
@@ -289,7 +376,7 @@ class AutomationRetriever:
             entities['ask_step_count'] = True
 
         if (
-            'buoc' in qn
+            ('buoc' in qn or re.search(r'\bb\s*$', qn))
             and not entities.get('next_step')
             and not entities.get('prev_step')
             and not ask_count
@@ -551,13 +638,15 @@ class AutomationRetriever:
 
             if has_local_scope and step_number in {1, 2, 3, 4}:
                 nav_target_type = 'local_step'
-                nav_candidates = [f"b{step_number}_phan_4"]
+                step_numbers = entities.get('step_numbers') or [step_number]
+                nav_candidates = [f"b{n}_phan_4" for n in step_numbers if n in {1, 2, 3, 4}]
                 scope = 'local_section'
                 if not debug_reason.startswith('relative_'):
                     debug_reason = 'explicit_local_step_mention'
             elif section_number in {1, 2, 3, 4}:
                 nav_target_type = 'section'
-                nav_candidates = [f"phan_{section_number}"]
+                section_numbers = entities.get('section_numbers') or [section_number]
+                nav_candidates = [f"phan_{n}" for n in section_numbers if n in {1, 2, 3, 4}]
                 scope = 'global'
                 if not debug_reason.startswith('relative_'):
                     debug_reason = 'explicit_section_mention'
@@ -587,7 +676,9 @@ class AutomationRetriever:
 
 
         task_type = 'ask_what'
-        if any(k in q for k in ['khi nao', 'deadline', 'han', 'moc thoi gian']):
+        if any(k in q for k in ['phan', 'muc', 'buoc', 'b1', 'b2', 'b3', 'b4']):
+            task_type = 'ask_navigation'
+        elif any(k in q for k in ['khi nao', 'deadline', 'han', 'moc thoi gian']):
             task_type = 'ask_when'
         elif any(k in q for k in ['o dau', 'dia diem']):
             task_type = 'ask_where'
@@ -595,8 +686,6 @@ class AutomationRetriever:
             task_type = 'ask_payment'
         elif any(k in q for k in ['ho so', 'giay to', 'can gi']):
             task_type = 'ask_documents'
-        elif any(k in q for k in ['phan', 'muc', 'buoc', 'b1', 'b2', 'b3', 'b4']):
-            task_type = 'ask_navigation'
         elif any(k in q for k in ['lien he', 'dien thoai', 'email']):
             task_type = 'ask_contact'
         elif any(k in q for k in ['lich', 'nganh', 'sang', 'chieu']):
@@ -711,6 +800,10 @@ class AutomationRetriever:
         nav_candidates = query_frame.get('nav_target_candidates') or []
 
         if nav_candidates:
+            # Nhiều nav targets -> không filter cứng, để broad search + rerank xử lý
+            if len(nav_candidates) > 1:
+                return None
+
             primary_nav = str(nav_candidates[0])
             if primary_nav.startswith('b') and '_phan_4' in primary_nav:
                 return {'canonical_nav_id': primary_nav}
@@ -757,8 +850,10 @@ class AutomationRetriever:
         refined_query: str,
         chunks: List[Dict[str, Any]],
         intent: str,
-        entities: Dict[str, Any]
+        entities: Dict[str, Any],
+        query_frame: Optional[Dict[str, Any]] = None
     ) -> List[Dict[str, Any]]:
+        query_frame = query_frame or {}
         query_tokens = self._tokenize(query)
         refined_tokens = self._tokenize(refined_query)
 
@@ -793,6 +888,19 @@ class AutomationRetriever:
                     bonus += 0.20
                 if intent == 'docs_later' and 'later' in subtype:
                     bonus += 0.20
+
+            from config import get_admission_year
+            chunk_year = chunk.get('year') or metadata.get('year')
+            if chunk_year == get_admission_year():
+                bonus += 0.20
+
+            # Boost chunks thuộc nav_target_candidates được hỏi
+            nav_targets = query_frame.get('nav_target_candidates') or []
+            if nav_targets:
+                chunk_section = metadata.get('section_id') or chunk.get('section_id', '')
+                chunk_nav = metadata.get('canonical_nav_id') or chunk.get('canonical_nav_id', '')
+                if chunk_section in nav_targets or chunk_nav in nav_targets:
+                    bonus += 0.25
 
             chunk['grounding_score'] = (base * 0.70) + (lexical_score * 0.30) + bonus
 
@@ -926,6 +1034,21 @@ class AutomationRetriever:
         if not query_tokens or not content_tokens:
             return 0.0
         return len(query_tokens & content_tokens) / max(1, len(query_tokens))
+
+    @staticmethod
+    def _prefer_year(chunks: List[Dict[str, Any]], target_year: int) -> List[Dict[str, Any]]:
+        """Lọc ưu tiên chunks đúng năm tuyển sinh. Giữ chunks năm khác nếu không đủ."""
+        matched = []
+        others = []
+        for c in chunks:
+            y = c.get('year') or (c.get('metadata') or {}).get('year')
+            if y == target_year:
+                matched.append(c)
+            else:
+                others.append(c)
+        if matched:
+            return matched + others
+        return chunks
 
     def _format_results(self, results: Dict[str, Any]) -> List[Dict[str, Any]]:
         chunks = []

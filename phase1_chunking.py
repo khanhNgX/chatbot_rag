@@ -12,6 +12,13 @@ from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime
 from pathlib import Path
 
+from config import get_admission_year
+
+try:
+    DEFAULT_ADMISSION_YEAR = get_admission_year()
+except Exception:
+    DEFAULT_ADMISSION_YEAR = datetime.now().year
+
 
 class DocxProcessor:
     """Trích xuất text từ file Word (.docx)"""
@@ -87,12 +94,18 @@ class EnrollmentProcessor:
         self.raw_content = content
         self.file_name = file_name
         self.year = self._extract_year()
+        self.docs_later_start_day = 7
+        self.docs_later_end_day = 28
+        self.docs_later_start_month = 9
+        self.docs_later_end_month = 9
+        self.docs_later_start = f"{self.docs_later_start_day:02d}/{self.docs_later_start_month:02d}/{self.year}"
+        self.docs_later_end = f"{self.docs_later_end_day:02d}/{self.docs_later_end_month:02d}/{self.year}"
 
     def _extract_year(self) -> int:
         year_match = re.search(r'(\d{4})', self.file_name)
         if not year_match:
             year_match = re.search(r'năm\s+(\d{4})', self.raw_content, flags=re.IGNORECASE)
-        return int(year_match.group(1)) if year_match else 2025
+        return int(year_match.group(1)) if year_match else DEFAULT_ADMISSION_YEAR
 
     def _parse_level1_sections(self) -> List[Dict[str, Any]]:
         """Top-down step 1: tách Level 1 theo PHẦN 1..4"""
@@ -193,7 +206,7 @@ class EnrollmentProcessor:
         later = []
 
         same_day_match = re.search(
-            r'\+\s*Nộp\s+trong\s+ngày\s+nhập\s+học\s*:\s*(.*?)(?=\n\s*\+\s*Nộp\s*\(\s*từ\s*ngày\s*07\s*đến\s*28/9/2025\)|\Z)',
+            rf'\+\s*Nộp\s+trong\s+ngày\s+nhập\s+học\s*:\s*(.*?)(?=\n\s*\+\s*Nộp\s*\(\s*từ\s*ngày\s*{self.docs_later_start_day}\s*đến\s*{self.docs_later_end_day}/{self.docs_later_end_month}/{self.year}\)|\Z)',
             section4_text,
             re.DOTALL | re.IGNORECASE
         )
@@ -202,7 +215,7 @@ class EnrollmentProcessor:
                 same_day.append({'item_no': m.group(1), 'content': _normalize_text(m.group(2))})
 
         later_match = re.search(
-            r'\+\s*Nộp\s*\(\s*từ\s*ngày\s*07\s*đến\s*28/9/2025\)\s*theo\s+lớp\s+khi\s+đi\s+học\s+chính\s+thức\s*:\s*(.*?)(?=\n\s*Lưu\s+ý\s*:|\Z)',
+            rf'\+\s*Nộp\s*\(\s*từ\s*ngày\s*{self.docs_later_start_day}\s*đến\s*{self.docs_later_end_day}/{self.docs_later_end_month}/{self.year}\)\s*theo\s+lớp\s+khi\s+đi\s+học\s+chính\s+thức\s*:\s*(.*?)(?=\n\s*Lưu\s+ý\s*:|\Z)',
             section4_text,
             re.DOTALL | re.IGNORECASE
         )
@@ -223,6 +236,18 @@ class EnrollmentProcessor:
             contact = _normalize_text(m_contact.group(1))
         return {'notes': notes, 'contact': contact}
 
+    @staticmethod
+    def _section_id_from_number(section_number: Optional[int]) -> Optional[str]:
+        if section_number in {1, 2, 3, 4}:
+            return f"phan_{section_number}"
+        return None
+
+    @staticmethod
+    def _canonical_nav_from_scope(section_id: Optional[str], step_number: Optional[int]) -> Optional[str]:
+        if section_id == 'phan_4' and step_number in {1, 2, 3, 4}:
+            return f"b{step_number}_phan_4"
+        return section_id
+
     def _chunk(self,
                chunk_id: str,
                level: int,
@@ -233,6 +258,15 @@ class EnrollmentProcessor:
                title: str,
                content: str,
                extra: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        extra = extra or {}
+        section_number = extra.get('section_number')
+        step_number = extra.get('step_number')
+        section_id = extra.get('section_id') or self._section_id_from_number(section_number)
+        step_id = extra.get('step_id')
+        if not step_id and section_id == 'phan_4' and step_number in {1, 2, 3, 4}:
+            step_id = f"b{step_number}_phan_4"
+        canonical_nav_id = extra.get('canonical_nav_id') or self._canonical_nav_from_scope(section_id, step_number)
+
         base = {
             'chunk_id': chunk_id,
             'level': level,
@@ -245,6 +279,10 @@ class EnrollmentProcessor:
             'title': title,
             'content': _normalize_text(content),
             'source': self.file_name,
+            'section_id': section_id,
+            'step_id': step_id,
+            'canonical_nav_id': canonical_nav_id,
+            'ancestor_ids': extra.get('ancestor_ids', []),
             'metadata': {
                 'level': level,
                 'parent_id': parent_id,
@@ -252,14 +290,103 @@ class EnrollmentProcessor:
                 'subtype': subtype,
                 'intent_key': intent_key,
                 'source': self.file_name,
-                'year': self.year
+                'year': self.year,
+                'section_id': section_id,
+                'step_id': step_id,
+                'canonical_nav_id': canonical_nav_id,
+                'ancestor_ids': extra.get('ancestor_ids', [])
             }
         }
-        if extra:
-            for k, v in extra.items():
-                base[k] = v
-                base['metadata'][k] = v
+        for k, v in extra.items():
+            base[k] = v
+            base['metadata'][k] = v
         return base
+
+    @staticmethod
+    def _apply_ancestors(chunks: List[Dict[str, Any]]):
+        by_id = {c.get('chunk_id'): c for c in chunks if c.get('chunk_id')}
+
+        def build_ancestors(chunk: Dict[str, Any]) -> List[str]:
+            ancestors = []
+            parent_id = chunk.get('parent_id')
+            guard = 0
+            while parent_id and parent_id in by_id and guard < 20:
+                ancestors.insert(0, parent_id)
+                parent_id = by_id[parent_id].get('parent_id')
+                guard += 1
+            return ancestors
+
+        for c in chunks:
+            ancestors = build_ancestors(c)
+            c['ancestor_ids'] = ancestors
+            md = c.get('metadata', {}) or {}
+            md['ancestor_ids'] = ancestors
+            c['metadata'] = md
+
+            if not c.get('section_id'):
+                for anc_id in reversed(ancestors):
+                    anc = by_id.get(anc_id) or {}
+                    sec = anc.get('section_id')
+                    if sec:
+                        c['section_id'] = sec
+                        c['metadata']['section_id'] = sec
+                        break
+
+            if not c.get('canonical_nav_id'):
+                c['canonical_nav_id'] = c.get('step_id') or c.get('section_id')
+                c['metadata']['canonical_nav_id'] = c['canonical_nav_id']
+
+            if not c.get('step_id'):
+                st_match = re.search(r'\bstep_b([1-4])\b', c.get('subtype', ''), flags=re.IGNORECASE)
+                if st_match and c.get('section_id') == 'phan_4':
+                    c['step_id'] = f"b{st_match.group(1)}_phan_4"
+                    c['metadata']['step_id'] = c['step_id']
+                    c['canonical_nav_id'] = c['step_id']
+                    c['metadata']['canonical_nav_id'] = c['canonical_nav_id']
+
+            if c.get('section_id') == 'phan_4' and c.get('step_id') and not c.get('canonical_nav_id'):
+                c['canonical_nav_id'] = c['step_id']
+                c['metadata']['canonical_nav_id'] = c['canonical_nav_id']
+
+            c['metadata']['section_id'] = c.get('section_id')
+            c['metadata']['step_id'] = c.get('step_id')
+            c['metadata']['canonical_nav_id'] = c.get('canonical_nav_id')
+            c['metadata']['ancestor_ids'] = c.get('ancestor_ids', [])
+
+        return chunks
+
+    @staticmethod
+    def _assign_known_nav_ids(chunks: List[Dict[str, Any]]):
+        for c in chunks:
+            md = c.get('metadata', {}) or {}
+            section_no = md.get('section_number')
+            if section_no in {1, 2, 3, 4}:
+                sec_id = f"phan_{section_no}"
+                c['section_id'] = sec_id
+                md['section_id'] = sec_id
+                if not c.get('canonical_nav_id'):
+                    c['canonical_nav_id'] = sec_id
+                    md['canonical_nav_id'] = sec_id
+
+            st_no = md.get('step_number')
+            if st_no in {1, 2, 3, 4} and c.get('section_id') == 'phan_4':
+                step_id = f"b{st_no}_phan_4"
+                c['step_id'] = step_id
+                md['step_id'] = step_id
+                c['canonical_nav_id'] = step_id
+                md['canonical_nav_id'] = step_id
+
+            c['metadata'] = md
+        return chunks
+
+    @staticmethod
+    def _finalize_canonical_metadata(chunks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        chunks = EnrollmentProcessor._assign_known_nav_ids(chunks)
+        chunks = EnrollmentProcessor._apply_ancestors(chunks)
+        return chunks
+
+    def _inject_canonical_fields(self, chunks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        return self._finalize_canonical_metadata(chunks)
 
     def generate_chunks(self) -> List[Dict[str, Any]]:
         sections = self._parse_level1_sections()
@@ -688,8 +815,8 @@ class EnrollmentProcessor:
                 title='Hồ sơ nộp theo lớp sau nhập học',
                 content=' '.join([f"{d['item_no']}. {d['content']}" for d in doc_groups['later']]) or docs_block,
                 extra={
-                    'deadline_start': '07/09/2025',
-                    'deadline_end': '28/09/2025'
+                    'deadline_start': self.docs_later_start,
+                    'deadline_end': self.docs_later_end
                 }
             )
             chunks.append(c2_docs_later)
@@ -729,7 +856,7 @@ class EnrollmentProcessor:
                     intent_key='admission_procedure',
                     title='Hồ sơ nộp theo lớp (tóm tắt)',
                     content='; '.join([f"({d['item_no']}) {d['content']}" for d in doc_groups['later']]),
-                    extra={'deadline_start': '07/09/2025', 'deadline_end': '28/09/2025'}
+                    extra={'deadline_start': self.docs_later_start, 'deadline_end': self.docs_later_end}
                 ))
 
             # Level2 notes + level3 note item lines
@@ -806,6 +933,7 @@ class EnrollmentProcessor:
                     extra={'date': d}
                 ))
 
+        chunks = self._inject_canonical_fields(chunks)
         return chunks
 
 
@@ -1095,13 +1223,23 @@ def _is_enrollment_procedure_doc(file_name: str, content: str) -> bool:
 
 
 def process_all_data(data_dir: str = 'data') -> List[Dict[str, Any]]:
-    """Xử lý tất cả các file trong thư mục data"""
+    """Xử lý các file trong thư mục data theo ADMISSION_YEAR (nếu có)."""
     all_chunks = []
     files = []
     for ext in ['*.txt', '*.docx', '*.pdf']:
         files.extend(glob.glob(os.path.join(data_dir, ext)))
 
-    print(f"[DATA] Tìm thấy {len(files)} file tài liệu.")
+    year_str = str(get_admission_year())
+    # File có năm trong tên -> chỉ lấy đúng năm; file không có năm -> luôn include
+    import re as _re
+    year_pattern = _re.compile(r'\d{4}')
+    year_files = [f for f in files if year_str in os.path.basename(f)]
+    no_year_files = [f for f in files if not year_pattern.search(os.path.basename(f))]
+    if year_files:
+        files = year_files + no_year_files
+        print(f"[DATA] Lọc theo năm {year_str}: {len(year_files)} file năm + {len(no_year_files)} file chung.")
+    else:
+        print(f"[DATA] Không tìm thấy file năm {year_str}, xử lý tất cả {len(files)} file.")
 
     for file_path in files:
         file_name = os.path.basename(file_path)

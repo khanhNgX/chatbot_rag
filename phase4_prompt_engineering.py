@@ -5,6 +5,12 @@ Module xây dựng prompts tối ưu cho RAG
 
 from typing import List, Dict, Any
 
+from config import get_admission_year
+
+ADMISSION_YEAR = get_admission_year()
+ADMISSION_YEAR_STR = str(ADMISSION_YEAR)
+ADMISSION_YEAR_NEXT_STR = str(ADMISSION_YEAR + 1)
+
 
 class PromptEngineer:
     """Xây dựng các prompts tối ưu cho RAG chatbot"""
@@ -15,7 +21,7 @@ class PromptEngineer:
     
     def _create_system_prompt(self) -> str:
         """Tạo system prompt đầy đủ"""
-        return """Bạn là trợ lý tư vấn thủ tục nhập học của Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội.
+        return f"""Bạn là trợ lý tư vấn thủ tục nhập học của Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội.
 
 NHIỆM VỤ:
 - Trả lời câu hỏi của sinh viên dựa HOÀN TOÀN trên ngữ cảnh được cung cấp.
@@ -58,7 +64,7 @@ Phép tính: 50.000 + 150.000 + 800.000 = 1.000.000đ
 
 VÍ DỤ FORMAT TRẢ LỜI:
 Câu hỏi về học phí:
-"💰 Chi tiết các khoản phí cần nộp (năm 2025):
+"💰 Chi tiết các khoản phí cần nộp (năm {ADMISSION_YEAR_STR}):
 • Khoản 1: [Số tiền]
 • Khoản 2: [Số tiền]
 -----------------------
@@ -67,7 +73,7 @@ Câu hỏi về học phí:
 
 [TIME] Hạn nộp: [Ngày] | 📍 Địa điểm: [Địa điểm]"
 Câu hỏi về hồ sơ:
-"[FORM] Các loại hồ sơ bạn cần chuẩn bị (2025):
+"[FORM] Các loại hồ sơ bạn cần chuẩn bị ({ADMISSION_YEAR_STR}):
 
 BẮT BUỘC:
 • Giấy báo kết quả thi THPT (Bản chính)
@@ -85,7 +91,7 @@ Khi trả lời về lịch:
 📅 Ngày: [ngày tháng năm]
 🕐 Thời gian: [giờ]
 📍 Địa điểm: [địa chỉ]
-[SOURCE] Nguồn: PHẦN 4, Thủ tục nhập học năm 2025"
+[SOURCE] Nguồn: PHẦN 4, Thủ tục nhập học năm {ADMISSION_YEAR_STR}"
 
 LƯU Ý CUỐI:
 - Ưu tiên sự đầy đủ (Full content) đối với danh sách hồ sơ và các bước thực hiện.
@@ -288,24 +294,24 @@ def main():
     # Test context prompt với sample chunks
     sample_chunks = [
         {
-            'chunk_id': 'admission_2025_fees',
-            'content': """Chi tiết các khoản phí cần nộp:
+            'chunk_id': f'admission_{ADMISSION_YEAR_STR}_fees',
+            'content': f"""Chi tiết các khoản phí cần nộp:
 1. Tiền làm hồ sơ, tài liệu: 50.000đ
 2. Hồ sơ sức khỏe, khám sức khỏe: 180.000đ
 3. Bảo hiểm Y tế (bắt buộc): 789.750đ
-4. Tạm thu học phí học kì 1 năm 2025-2026: 6.000.000đ
+4. Tạm thu học phí học kì 1 năm {ADMISSION_YEAR_STR}-{ADMISSION_YEAR_NEXT_STR}: 6.000.000đ
 Tổng cộng: 7.019.750đ""",
             'metadata': {
                 'type': 'fee_info',
-                'year': 2025,
+                'year': ADMISSION_YEAR,
                 'title': 'Chi tiết học phí và các khoản phí',
                 'section_number': 3
             }
         }
     ]
-    
+
     # Create full prompt
-    query = "Học phí năm 2025 là bao nhiêu?"
+    query = f"Học phí năm {ADMISSION_YEAR_STR} là bao nhiêu?"
     full_prompt = engineer.create_full_prompt(query, sample_chunks)
     
     print("[DOCUMENT] Full Prompt Example:")

@@ -1,4 +1,4 @@
 flask>=2.3.0
 requests>=2.31.0
-# google-generativeai>=0.3.0 (Removed to fix binary loading errors)
+# Groq API is called via requests in claude_client.py (no provider SDK required)
 python-dotenv>=1.0.0

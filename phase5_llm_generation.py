@@ -11,11 +11,23 @@ from typing import List, Dict, Any, Optional, Tuple
 from dotenv import load_dotenv
 from phase4_prompt_engineering import PromptEngineer
 from response_cache import get_cache
+from config import get_admission_year
 import requests
 
 # Load biến môi trường
 load_dotenv()
 GROQ_MODEL_TEXT = (os.getenv('GROQ_MODEL_TEXT') or 'llama-3.3-70b-versatile').strip()
+GEMINI_API_KEY = (os.getenv('GEMINI_API_KEY') or '').strip()
+GEMINI_MODEL_TEXT = (os.getenv('GEMINI_MODEL_TEXT') or 'gemini-1.5-flash').strip()
+NATURALIZE_ENABLED = (os.getenv('NATURALIZE_ENABLED') or 'true').strip().lower() in {'1', 'true', 'yes', 'on'}
+NATURALIZE_MAX_CHARS = int((os.getenv('NATURALIZE_MAX_CHARS') or '2000').strip())
+ADMISSION_YEAR = get_admission_year()
+ADMISSION_YEAR_STR = str(ADMISSION_YEAR)
+PREVIOUS_YEAR_STR = str(max(ADMISSION_YEAR - 1, 2000))
+DOCS_LATER_START = f"07/09/{ADMISSION_YEAR_STR}"
+DOCS_LATER_END = f"28/09/{ADMISSION_YEAR_STR}"
+LOCAL_UPLOAD_DEADLINE = f"28/8/{ADMISSION_YEAR_STR}"
+LOCAL_PAPER_SUBMIT_WINDOW = f"27-28/8/{ADMISSION_YEAR_STR}"
 
 
 class ResponseValidator:
@@ -115,7 +127,10 @@ class ResponseValidator:
                 validation_result['warnings'].append(msg)
 
         if intent == 'docs_later':
-            allowed_docs_later_dates = {'7/9/2025', '28/9/2025'}
+            allowed_docs_later_dates = {
+                ResponseValidator._normalize_date_token(DOCS_LATER_START),
+                ResponseValidator._normalize_date_token(DOCS_LATER_END)
+            }
             suspicious_dates = [
                 d for d in suspicious_dates
                 if ResponseValidator._normalize_date_token(d) not in allowed_docs_later_dates
@@ -148,9 +163,15 @@ class ResponseValidator:
             validation_result['is_valid'] = False
             validation_result['errors'].append("Intent schedule nhưng không tìm thấy ngày tháng")
 
-        if intent == 'docs_later' and not (response_dates_norm or re.search(r'07\s*/\s*0?9\s*/\s*2025|28\s*/\s*0?9\s*/\s*2025', response)):
-            validation_result['is_valid'] = False
-            validation_result['errors'].append("Intent docs_later nhưng thiếu mốc 07-28/9/2025")
+        if intent == 'docs_later':
+            expected_start = ResponseValidator._normalize_date_token(DOCS_LATER_START)
+            expected_end = ResponseValidator._normalize_date_token(DOCS_LATER_END)
+            has_expected_window = expected_start in response_dates_norm and expected_end in response_dates_norm
+            if not (response_dates_norm and has_expected_window):
+                validation_result['is_valid'] = False
+                validation_result['errors'].append(
+                    f"Intent docs_later nhưng thiếu mốc {DOCS_LATER_START}-{DOCS_LATER_END}"
+                )
 
         if intent == 'notes' and ('Lưu ý' not in response and 'lưu ý' not in response):
             validation_result['warnings'].append("Intent notes nhưng thiếu tiêu đề/nhãn lưu ý")
@@ -192,7 +213,24 @@ class ResponseFormatter:
 
     @staticmethod
     def format_markdown(response: str) -> str:
-        return re.sub(r'\n{3,}', '\n\n', (response or '').strip())
+        text = (response or '').strip()
+
+        # Tách numbered items inline: "1. Abc 2. Def" -> newline trước mỗi số
+        text = re.sub(r'(?<!\n)\s+(\d+\.\s)', r'\n\1', text)
+
+        # Tách emoji + số inline: "📋 1. Abc 📋 2. Def"
+        text = re.sub(r'(?<!\n)\s+([\U0001F300-\U0001FFFF])\s*(\d+\.)', r'\n\1 \2', text)
+
+        # Tách bullet dạng inline: "• Item • Item" hoặc "- Item - Item"
+        text = re.sub(r'(?<!\n)\s+([•\-])\s+(?=\S)', r'\n\1 ', text)
+
+        # Đảm bảo [SOURCE] luôn có dòng trống trước
+        text = re.sub(r'\n(\[SOURCE\])', r'\n\n\1', text, count=1)
+
+        # Dọn dẹp quá nhiều dòng trống
+        text = re.sub(r'\n{3,}', '\n\n', text).strip()
+
+        return text
 
     @staticmethod
     def add_citations(response: str, chunks: List[Dict[str, Any]]) -> str:
@@ -252,7 +290,7 @@ class ResponseFormatter:
 
 [LÝ DO] {reason}
 [TIP] Gợi ý:
-- Kiểm tra lại năm học bạn đang hỏi (2025?)
+- Kiểm tra lại năm học bạn đang hỏi (ví dụ: {ADMISSION_YEAR_STR}?)
 - Thử diễn đạt câu hỏi khác đi
 - Liên hệ trực tiếp với nhà trường: 024.38581283 | ctsv@hus.edu.vn
 """
@@ -496,9 +534,9 @@ class ResponseFormatter:
                     if step_no == 2:
                         return "Chụp 01 ảnh chân dung 4x6 rõ nét và đặt tên file theo mã sinh viên."
                     if step_no == 3:
-                        return "Tải ảnh/hồ sơ lên hệ thống trực tuyến theo link của trường, hoàn thành trước 17:00 ngày 28/8/2025."
+                        return f"Tải ảnh/hồ sơ lên hệ thống trực tuyến theo link của trường, hoàn thành trước 17:00 ngày {LOCAL_UPLOAD_DEADLINE}."
                     if step_no == 4:
-                        return "Nộp hồ sơ bản giấy trực tiếp tại Trường theo lịch ngành trong ngày 27-28/8/2025."
+                        return f"Nộp hồ sơ bản giấy trực tiếp tại Trường theo lịch ngành trong ngày {LOCAL_PAPER_SUBMIT_WINDOW}."
                     if len(text) > 220:
                         return text[:220].rstrip(' ,.;:') + '...'
                     return text
@@ -513,10 +551,10 @@ class ResponseFormatter:
 
         if bool(entities.get('ask_steps_overview_global')):
             defaults = {
-                1: 'Tra cứu danh sách trúng tuyển và mã sinh viên.',
-                2: 'Xác nhận nhập học trực tuyến.',
-                3: 'Nộp học phí theo hướng dẫn.',
-                4: 'Chuẩn bị và nộp hồ sơ nhập học.'
+                1: 'Tra cứu kết quả trúng tuyển trên cổng tuyển sinh và ghi lại mã sinh viên.',
+                2: 'Xác nhận nhập học trực tuyến trên hệ thống Bộ GD&ĐT trước thời hạn quy định.',
+                3: 'Nộp học phí và các khoản lệ phí theo hướng dẫn chuyển khoản trong khung thời gian thông báo.',
+                4: 'Chuẩn bị đầy đủ hồ sơ, tải bản trực tuyến và nộp bản giấy trực tiếp theo lịch ngành.'
             }
             sections: Dict[int, str] = {}
 
@@ -537,7 +575,7 @@ class ResponseFormatter:
                     if desc:
                         sections[s_no] = desc + ('' if desc.endswith('.') else '.')
 
-            lines = ["Các phần của thủ tục nhập học gồm:"]
+            lines = ["Tóm tắt thủ tục nhập học (ngắn gọn) như sau:"]
             for s_no in [1, 2, 3, 4]:
                 lines.append(f"- PHẦN {s_no}: {sections.get(s_no, defaults[s_no])}")
             lines.append(self._source_line(chunks))
@@ -582,13 +620,23 @@ class ResponseFormatter:
                                 'source': c.get('source')
                             })
 
+                raw_q = ((analysis or {}).get('raw_query') or '').lower()
+                ask_detail = any(k in raw_q for k in ['chi tiết', 'chi tiet', 'nói chi tiết', 'trình bày chi tiết', 'day du', 'đầy đủ'])
+
                 section_lines = []
                 for c in section_chunks:
                     text = (c.get('content') or '').strip()
                     if not text:
                         continue
 
-                    # chỉ lấy dòng mô tả đầu tiên để ngắn gọn, đủ ý
+                    if ask_detail:
+                        full_text = re.sub(r'\s+', ' ', text)
+                        full_text = re.sub(rf'^PH[ẦA]N\s*{target_no}\s*:\s*', '', full_text, flags=re.IGNORECASE).strip()
+                        if full_text and full_text not in section_lines:
+                            section_lines.append(full_text)
+                        continue
+
+                    # mặc định: chỉ lấy dòng mô tả đầu tiên để ngắn gọn, đủ ý
                     first_line = next((ln.strip() for ln in text.splitlines() if ln.strip()), '')
                     if not first_line:
                         continue
@@ -607,6 +655,121 @@ class ResponseFormatter:
                         section_lines.append(first_line)
 
                 if section_lines:
+                    if ask_detail:
+                        if target_no == 3:
+                            fee_items = [
+                                c for c in chunks
+                                if (c.get('metadata', {}) or {}).get('section_id') == 'phan_3'
+                                and (c.get('metadata', {}) or {}).get('intent_key') == 'fee_info'
+                                and str((c.get('metadata', {}) or {}).get('subtype', '')).startswith('fee_item')
+                            ]
+                            pay_windows = [
+                                c for c in chunks
+                                if (c.get('metadata', {}) or {}).get('section_id') == 'phan_3'
+                                and (c.get('metadata', {}) or {}).get('intent_key') == 'fee_payment'
+                                and (c.get('metadata', {}) or {}).get('subtype') == 'payment_window'
+                            ]
+
+                            # fallback: parse trực tiếp từ text section nếu retrieval thiếu fee_item/payment_window
+                            section_text = section_lines[0]
+                            parsed_amount_rows = []
+                            for mm in re.finditer(r'(\d+)\s*\.\s*(.*?):\s*\.*\s*(\d{1,3}(?:[.,]\d{3})*)\s*đ', section_text, flags=re.IGNORECASE):
+                                name = re.sub(r'\s+', ' ', mm.group(2)).strip(' .;,-')
+                                amount_txt = mm.group(3)
+                                try:
+                                    amount_val = int(re.sub(r'[\.,\s]', '', amount_txt))
+                                except Exception:
+                                    amount_val = None
+                                parsed_amount_rows.append((int(mm.group(1)), name, amount_val))
+
+                            parsed_window = None
+                            m_window = re.search(r'từ\s+ngày\s*(\d{1,2}/\d{1,2}/\d{4})\s+đến(?:\s+hết)?\s+ngày\s*(\d{1,2}/\d{1,2}/\d{4})', section_text, flags=re.IGNORECASE)
+                            if m_window:
+                                parsed_window = (m_window.group(1), m_window.group(2))
+
+                            lines = ["Chi tiết PHẦN 3 (nộp học phí/lệ phí):"]
+                            summary_line = re.split(r'\bCác\s+khoản\s+tiền\s*:', section_text, maxsplit=1, flags=re.IGNORECASE)[0].strip(' .;,-')
+                            lines.append(f"- Nội dung chính: {summary_line}.")
+
+                            if pay_windows:
+                                window_md = pay_windows[0].get('metadata', {}) or {}
+                                s = window_md.get('deadline_start')
+                                e = window_md.get('deadline_end')
+                                if s and e:
+                                    lines.append(f"- Thời gian thực hiện: từ ngày {s} đến hết ngày {e}.")
+                            elif parsed_window:
+                                lines.append(f"- Thời gian thực hiện: từ ngày {parsed_window[0]} đến hết ngày {parsed_window[1]}.")
+
+                            lines.append("- Các khoản cần nộp:")
+                            if fee_items:
+                                for it in sorted(fee_items, key=lambda x: ((x.get('metadata', {}) or {}).get('item_no', 99), x.get('chunk_id', '')))[:8]:
+                                    md = it.get('metadata', {}) or {}
+                                    content = re.sub(r'\s+', ' ', it.get('content', '')).strip()
+                                    name = re.sub(r':\s*\d{1,3}(?:[.,]\d{3})*đ.*$', '', content).strip(' .;,-')
+                                    amount = md.get('amount')
+                                    if amount:
+                                        lines.append(f"  • {name}: {int(amount):,}đ")
+                                    else:
+                                        lines.append(f"  • {name}")
+                            elif parsed_amount_rows:
+                                for _, name, amount in sorted(parsed_amount_rows, key=lambda t: t[0]):
+                                    if amount:
+                                        lines.append(f"  • {name}: {amount:,}đ")
+                                    else:
+                                        lines.append(f"  • {name}")
+
+                            lines.append(self._source_line(section_chunks or chunks))
+                            return "\n".join(lines)
+
+                        if target_no == 4:
+                            step_chunks = [
+                                c for c in chunks
+                                if (c.get('metadata', {}) or {}).get('section_id') == 'phan_4'
+                                and str((c.get('metadata', {}) or {}).get('subtype', '')).startswith('step_b')
+                            ]
+
+                            # fallback parse B1..B4 từ text section khi thiếu step chunks
+                            section_text = section_lines[0]
+                            parsed_steps = []
+                            for mm in re.finditer(r'B\s*([1-4])\s*:\s*(.*?)(?=\s*B\s*[1-4]\s*:|$)', section_text, flags=re.IGNORECASE):
+                                sn = int(mm.group(1))
+                                txt = re.sub(r'\s+', ' ', mm.group(2)).strip(' .;,-')
+                                if txt:
+                                    parsed_steps.append((sn, txt))
+
+                            lines = ["Chi tiết PHẦN 4 (nộp hồ sơ):"]
+                            summary_line = re.split(r'\bB\s*1\s*:', section_text, maxsplit=1, flags=re.IGNORECASE)[0].strip(' .;,-')
+                            lines.append(f"- Nội dung chính: {summary_line}.")
+                            lines.append("- Trình tự thực hiện:")
+
+                            if step_chunks:
+                                seen = set()
+                                for sc in sorted(step_chunks, key=lambda x: ((x.get('metadata', {}) or {}).get('step_number') or 99, x.get('chunk_id', ''))):
+                                    md = sc.get('metadata', {}) or {}
+                                    sn = md.get('step_number')
+                                    if sn in seen:
+                                        continue
+                                    seen.add(sn)
+                                    txt = re.sub(r'\s+', ' ', sc.get('content', '')).strip()
+                                    txt = txt[:220].rstrip(' ,.;:') + ('...' if len(txt) > 220 else '')
+                                    lines.append(f"  • B{sn}: {txt}")
+
+                                # bù các bước còn thiếu từ parsed text
+                                parsed_map = {sn: txt for sn, txt in parsed_steps}
+                                for sn in [1, 2, 3, 4]:
+                                    if sn in seen or sn not in parsed_map:
+                                        continue
+                                    txt = parsed_map[sn][:220].rstrip(' ,.;:') + ('...' if len(parsed_map[sn]) > 220 else '')
+                                    lines.append(f"  • B{sn}: {txt}")
+                            else:
+                                for sn, txt in sorted(parsed_steps, key=lambda t: t[0]):
+                                    txt = txt[:220].rstrip(' ,.;:') + ('...' if len(txt) > 220 else '')
+                                    lines.append(f"  • B{sn}: {txt}")
+
+                            lines.append(self._source_line(section_chunks or chunks))
+                            return "\n".join(lines)
+
+                        return f"{section_lines[0]}\n{self._source_line(section_chunks or chunks)}"
                     line = section_lines[0]
                     return f"- {line}\n{self._source_line(section_chunks or chunks)}"
                 return None
@@ -861,7 +1024,7 @@ class ResponseFormatter:
         if not docs:
             return None
         docs = self._sort_items(docs)
-        lines = ["Hồ sơ nộp theo lớp khi học chính thức (từ ngày 07 đến 28/9/2025):"]
+        lines = [f"Hồ sơ nộp theo lớp khi học chính thức (từ ngày 07 đến 28/9/{ADMISSION_YEAR_STR}):"]
         for c in docs:
             md = c.get('metadata', {}) or {}
             lines.append(f"- ({md.get('item_no')}) {c.get('content', '')}")
@@ -1035,12 +1198,14 @@ class LLMGenerator:
             'dates': set(re.findall(r'\d{1,2}/\d{1,2}/\d{4}', text or '')),
             'money': set(re.findall(r'\d{1,3}(?:[.,]\d{3})*\s*đ', text or '', flags=re.IGNORECASE)),
             'urls': set(re.findall(r'https?://[^\s\)]+', text or '', flags=re.IGNORECASE)),
-            'steps': set(re.findall(r'\bB[1-4]\b', text or '', flags=re.IGNORECASE))
+            'steps': set(re.findall(r'\bB[1-4]\b', text or '', flags=re.IGNORECASE)),
+            'sections': set(re.findall(r'PH[ẦA]N\s*[1-4]', text or '', flags=re.IGNORECASE)),
+            'sources': set(re.findall(r'\[SOURCE\]', text or '', flags=re.IGNORECASE))
         }
 
     @staticmethod
     def _safe_style_variation(answer: str, style_id: str) -> str:
-        """Biến đổi văn phong nhẹ nhưng giữ nguyên facts (ngày, tiền, URL, B1-B4)."""
+        """Biến đổi văn phong nhẹ nhưng giữ nguyên facts (ngày, tiền, URL, PHẦN, B1-B4)."""
         if not answer:
             return answer
 
@@ -1055,38 +1220,155 @@ class LLMGenerator:
 
         header_map = {
             'formal': {
+                'Tóm tắt thủ tục nhập học (ngắn gọn) như sau:': f'Thủ tục nhập học gồm 4 phần chính. Theo tài liệu, bạn làm lần lượt như sau:{variant_suffix}',
                 'Lịch nộp hồ sơ bản giấy theo ngành:': f'Theo tài liệu, lịch nộp hồ sơ bản giấy theo ngành như sau:{variant_suffix}',
+                'Các bước nộp hồ sơ gồm:': f'Để nộp hồ sơ, bạn thực hiện theo các bước sau:{variant_suffix}',
                 'Các bước làm thủ tục nhập học:': f'Các bước thực hiện thủ tục nhập học được quy định như sau:{variant_suffix}',
+                'Các khoản phí cần nộp:': f'Theo tài liệu, các khoản phí cần nộp gồm:{variant_suffix}',
                 'Nộp học phí theo hình thức và thời gian sau:': f'Thông tin nộp học phí theo hình thức và thời gian như sau:{variant_suffix}',
+                'Hồ sơ nộp trong ngày nhập học gồm:': f'Trong ngày nhập học, bạn cần nộp các giấy tờ sau:{variant_suffix}',
                 'Tổng hợp các mốc thời gian quan trọng:': f'Các mốc thời gian quan trọng được tổng hợp như sau:{variant_suffix}'
             },
             'friendly': {
+                'Tóm tắt thủ tục nhập học (ngắn gọn) như sau:': f'Mình tóm tắt thủ tục nhập học thành 4 phần để bạn dễ theo dõi:{variant_suffix}',
                 'Lịch nộp hồ sơ bản giấy theo ngành:': f'Bạn có thể theo dõi lịch nộp hồ sơ bản giấy theo ngành như sau:{variant_suffix}',
+                'Các bước nộp hồ sơ gồm:': f'Bạn nộp hồ sơ theo các bước sau nhé:{variant_suffix}',
                 'Các bước làm thủ tục nhập học:': f'Bạn thực hiện thủ tục nhập học theo các bước sau:{variant_suffix}',
+                'Các khoản phí cần nộp:': f'Bạn cần chuẩn bị các khoản phí sau:{variant_suffix}',
                 'Nộp học phí theo hình thức và thời gian sau:': f'Bạn nộp học phí theo hình thức và thời gian như sau nhé:{variant_suffix}',
+                'Hồ sơ nộp trong ngày nhập học gồm:': f'Trong ngày nhập học, bạn chuẩn bị các giấy tờ này nhé:{variant_suffix}',
                 'Tổng hợp các mốc thời gian quan trọng:': f'Mình tổng hợp các mốc thời gian quan trọng cho bạn như sau:{variant_suffix}'
             },
             'concise': {
+                'Tóm tắt thủ tục nhập học (ngắn gọn) như sau:': f'Tóm tắt 4 phần nhập học:{variant_suffix}',
                 'Lịch nộp hồ sơ bản giấy theo ngành:': f'Lịch theo ngành:{variant_suffix}',
+                'Các bước nộp hồ sơ gồm:': f'Các bước nộp hồ sơ:{variant_suffix}',
                 'Các bước làm thủ tục nhập học:': f'Các bước nhập học:{variant_suffix}',
+                'Các khoản phí cần nộp:': f'Các khoản phí:{variant_suffix}',
                 'Nộp học phí theo hình thức và thời gian sau:': f'Hình thức và thời gian nộp học phí:{variant_suffix}',
+                'Hồ sơ nộp trong ngày nhập học gồm:': f'Hồ sơ nộp trong ngày nhập học:{variant_suffix}',
                 'Tổng hợp các mốc thời gian quan trọng:': f'Các mốc chính:{variant_suffix}'
             }
         }
 
         mapping = header_map.get(style_key, {})
         for old, new in mapping.items():
-            content = content.replace(old, new)
+            content = content.replace(old, new, 1)
+
+        m = re.match(r'^- ([^\n]+)\n(\[SOURCE\].*)$', content, flags=re.DOTALL)
+        if m and style_key != 'concise':
+            line = m.group(1).strip().rstrip('.')
+            source = m.group(2).strip()
+            if style_key == 'friendly':
+                content = f'Bạn cần lưu ý: {line}.\n{source}'
+            else:
+                content = f'Theo tài liệu: {line}.\n{source}'
+
+        content = re.sub(r'\n(\[SOURCE\])', r'\n\n\1', content, count=1)
+        content = re.sub(r'\n{3,}', '\n\n', content).strip()
 
         locked_old = LLMGenerator._extract_locked_tokens(original)
         locked_new = LLMGenerator._extract_locked_tokens(content)
 
         # Nếu biến đổi làm mất dữ kiện khóa thì rollback
-        for key in ['dates', 'money', 'urls', 'steps']:
+        for key in ['dates', 'money', 'urls', 'steps', 'sections', 'sources']:
             if not locked_old[key].issubset(locked_new[key]):
                 return original
 
         return content
+
+    def _call_gemini_naturalizer(self, answer: str, style_id: str) -> Dict[str, Any]:
+        if not NATURALIZE_ENABLED:
+            return {'status': 'disabled'}
+        if not GEMINI_API_KEY:
+            return {'status': 'disabled', 'reason': 'missing_GEMINI_API_KEY'}
+        if not answer or len(answer) > NATURALIZE_MAX_CHARS:
+            return {'status': 'skipped', 'reason': 'empty_or_too_long'}
+
+        style_key = (style_id or 'formal').split('_', 1)[0]
+        style_instruction = {
+            'friendly': 'Thân thiện, tự nhiên, dễ hiểu, xưng hô "bạn" khi phù hợp.',
+            'concise': 'Ngắn gọn, tự nhiên, không dài dòng.',
+            'formal': 'Tự nhiên, rõ ràng, lịch sự.'
+        }.get(style_key, 'Tự nhiên, rõ ràng, lịch sự.')
+
+        prompt = f"""Bạn là bộ viết lại văn phong tiếng Việt cho chatbot tuyển sinh.
+
+Nhiệm vụ:
+- Viết lại câu trả lời dưới đây cho tự nhiên hơn theo phong cách: {style_instruction}
+- Chỉ thay đổi văn phong, KHÔNG thay đổi nội dung cốt lõi.
+- KHÔNG thêm thông tin mới.
+- KHÔNG xóa hoặc thay đổi bất kỳ số tiền, ngày tháng, URL, tên ngành, PHẦN, B1-B4, [SOURCE].
+- Giữ nguyên phạm vi câu trả lời.
+- Giữ dòng [SOURCE] ở cuối nếu có.
+- Trả về duy nhất câu trả lời đã viết lại, không giải thích.
+
+Câu trả lời gốc:
+{answer}
+"""
+
+        try:
+            response = requests.post(
+                f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL_TEXT}:generateContent?key={GEMINI_API_KEY}",
+                headers={'content-type': 'application/json'},
+                json={
+                    'contents': [{'role': 'user', 'parts': [{'text': prompt}]}],
+                    'generationConfig': {
+                        'temperature': 0.2,
+                        'topP': 0.8,
+                        'maxOutputTokens': 900,
+                    }
+                },
+                timeout=30
+            )
+            if response.status_code == 429:
+                return {'status': 'quota'}
+            if response.status_code != 200:
+                return {'status': 'error', 'error': f"API {response.status_code}: {response.text[:300]}"}
+
+            data = response.json()
+            candidates = data.get('candidates') or []
+            if not candidates:
+                return {'status': 'error', 'error': 'empty_candidates'}
+            parts = ((candidates[0].get('content') or {}).get('parts') or [])
+            text = ''.join((p.get('text') or '') for p in parts).strip()
+            if not text:
+                return {'status': 'error', 'error': 'empty_text'}
+            return {'status': 'ok', 'text': text}
+        except Exception as e:
+            return {'status': 'error', 'error': str(e)}
+
+    def _naturalize_answer(self, answer: str, style_id: str) -> Tuple[str, Dict[str, Any]]:
+        base = self._safe_style_variation(answer, style_id=style_id)
+        trace = {'rule_based_applied': base != answer, 'gemini_status': 'not_called'}
+
+        api_result = self._call_gemini_naturalizer(base, style_id=style_id)
+        trace['gemini_status'] = api_result.get('status')
+        if api_result.get('reason'):
+            trace['gemini_reason'] = api_result.get('reason')
+        if api_result.get('error'):
+            trace['gemini_error'] = api_result.get('error')
+
+        if api_result.get('status') != 'ok':
+            return base, trace
+
+        candidate = self.formatter.format_markdown(api_result.get('text', ''))
+        locked_base = self._extract_locked_tokens(base)
+        locked_candidate = self._extract_locked_tokens(candidate)
+        for key in ['dates', 'money', 'urls', 'steps', 'sections', 'sources']:
+            if not locked_base[key].issubset(locked_candidate[key]):
+                trace['gemini_rejected'] = f'missing_locked_tokens:{key}'
+                return base, trace
+
+        new_dates = locked_candidate['dates'] - locked_base['dates']
+        new_money = locked_candidate['money'] - locked_base['money']
+        new_urls = locked_candidate['urls'] - locked_base['urls']
+        if new_dates or new_money or new_urls:
+            trace['gemini_rejected'] = 'added_new_fact_tokens'
+            return base, trace
+
+        trace['gemini_applied'] = True
+        return candidate, trace
 
     @staticmethod
     def _extract_json_candidate(raw_text: str) -> str:
@@ -1225,7 +1507,7 @@ Trả về JSON object duy nhất, không kèm giải thích.
         deterministic = self.formatter.deterministic_answer(query, chunks, intent=intent, analysis=analysis) if should_use_deterministic else None
         if deterministic:
             context_text = self.prompt_engineer.create_context_prompt(chunks)
-            deterministic = self._safe_style_variation(deterministic, style_id=style_id)
+            deterministic, naturalize_trace = self._naturalize_answer(deterministic, style_id=style_id)
             deterministic = self.formatter.format_markdown(deterministic)
             val = self.validator.validate_response(deterministic, context_text, intent)
             if val['is_valid']:
@@ -1244,7 +1526,8 @@ Trả về JSON object duy nhất, không kèm giải thích.
                     'answer': deterministic,
                     'success': True,
                     'chunks_used': len(chunks),
-                    'source': 'deterministic'
+                    'source': 'deterministic',
+                    'naturalize': naturalize_trace
                 }
 
         # 2) fallback LLM (answer_generator_v1 JSON contract)
@@ -1359,7 +1642,8 @@ Trả về JSON object duy nhất."""
 
         response_text = self.formatter.add_citations(response_text, cited_chunks or chunks)
         response_text = self.formatter.format_markdown(response_text)
-        response_text = self._safe_style_variation(response_text, style_id=style_id)
+        response_text, naturalize_trace = self._naturalize_answer(response_text, style_id=style_id)
+        trace['naturalize'] = naturalize_trace
 
         validation = self.validator.validate_response(response_text, context_text, intent)
         if not validation['is_valid']:
@@ -1410,8 +1694,8 @@ def main():
     generator = LLMGenerator(GROQ_API_KEY)
     sample_chunks = [{
         'chunk_id': 'test_chunk',
-        'content': "Học phí năm 2025 là 7.019.750đ.",
-        'metadata': {'type': 'fee_info', 'year': 2025, 'source': 'Tài liệu nhập học', 'section_number': 1, 'intent_key': 'fee_info', 'subtype': 'fee_item', 'item_no': 1, 'amount': 7019750},
+        'content': f"Học phí năm {ADMISSION_YEAR_STR} là 7.019.750đ.",
+        'metadata': {'type': 'fee_info', 'year': ADMISSION_YEAR, 'source': 'Tài liệu nhập học', 'section_number': 1, 'intent_key': 'fee_info', 'subtype': 'fee_item', 'item_no': 1, 'amount': 7019750},
         'source': 'Tài liệu nhập học'
     }]
 

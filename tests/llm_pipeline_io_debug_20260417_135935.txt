@@ -1,0 +1,90 @@
+[NOTE] Script này gọi API thật (Groq/Gemini), có thể tốn quota.
+[NOTE] Log output file: D:\VSCode\project\tests\llm_pipeline_io_debug_20260417_135935.txt
+
+==========================================================================================
+FLOW 1/3 - EMBEDDING (Gemini)
+==========================================================================================
+[INPUT] prepare_text_for_embedding
+- chunk_id: Thủ tục nhập học 2025_l0_overview
+- text_len: 247
+- preview: [TYPE: overview] [YEAR: 2025] Tổng quan nhập học 2025 Tổng quan thủ tục nhập học năm 2025. Tài liệu có 4 phần chính (PHẦN 1-4), bao gồm tra cứu trúng tuyển, xác nhận trực tuyến, nộp học phí/lệ phí, quy trình B1-B4, lịch theo ngành, hồ sơ và lưu ý.
+[OUTPUT] generate_embedding
+- vector_dim: 3072
+- all_zero_vector: False
+- first_8_values: [0.014833408, -0.005292424, 0.009581943, -0.025201747, -0.014695699, 0.03635454, -0.0025158902, -0.019530252]
+[ASSESSMENT]
+- input_ok: True
+- output_ok: True
+
+==========================================================================================
+FLOW 2/3 - QUERY REWRITE/AUTOMATION (Groq)
+==========================================================================================
+[INPUT] AIService.call
+- json_mode: True
+- system_prompt_len: 371
+- system_prompt_preview: Nhiệm vụ: 1. Viết lại câu hỏi của người dùng cho rõ ràng, đầy đủ ý nghĩa (Query Expansion). 2. Phân loại câu hỏi vào các chủ đề tuyển sinh: ['fee', 'admission_docs', 'schedule', 'procedure', 'contact', 'major_info', 'location', 'general']  Trả về định dạng JSON: {   "refined_query": "câu hỏi đã viết lại",   "detected_topic": "nhãn phù hợp nhất",   "reason": "tại sao" }
+- user_prompt_len: 63
+- user_prompt_preview: Câu hỏi người dùng: Bước 1 của phần 4 là gì và cần giấy tờ nào?
+[RAW OUTPUT] AIService.call
+- raw_len: 276
+- raw_preview: {   "refined_query": "Bước đầu tiên của quy trình tuyển sinh phần 4 là gì và cần những loại giấy tờ nào?",   "detected_topic": "procedure",   "reason": "Câu hỏi người dùng liên quan đến quy trình tuyển sinh và yêu cầu về giấy tờ, phù hợp với chủ đề 'procedure' (quy trình)." }
+[OUTPUT] process_user_query
+{
+  "refined_query": "Bước đầu tiên của quy trình tuyển sinh phần 4 là gì và cần những loại giấy tờ nào?",
+  "detected_topic": "procedure",
+  "reason": "Câu hỏi người dùng liên quan đến quy trình tuyển sinh và yêu cầu về giấy tờ, phù hợp với chủ đề 'procedure' (quy trình)."
+}
+[ASSESSMENT]
+- input_ok: True
+- output_ok: True
+
+==========================================================================================
+FLOW 3/3 - ANSWER GENERATION (Groq)
+==========================================================================================
+[NOTE] Force generation path: intent=general (để đi nhánh LLM thay vì deterministic)
+[INPUT] prompt_engineer
+- chunks_count: 8
+- context_prompt_len: 8134
+- context_prompt_preview: [CONTEXT] C1 | chunk_id=Thủ tục nhập học 2025_l0_overview | source=Thủ tục nhập học 2025.txt | section= | year=2025 Nội dung: Tổng quan thủ tục nhập học năm 2025. Tài liệu có 4 phần chính (PHẦN 1-4), bao gồm tra cứu trúng tuyển, xác nhận trực tuyến, nộp học phí/lệ phí, quy trình B1-B4, lịch theo ngành, hồ sơ và lưu ý. C2 | chunk_id=Thủ tục nhập học 2025_l1_section_1 | source=Thủ tục nhập học 2025.txt | section=1 | year=2025 Nội dung: Tra cứu danh sách trúng tuyển (sau ngày 22/8/2025) tại cổng th ...
+- full_prompt_len: 8496
+- full_prompt_preview: [CONTEXT] C1 | chunk_id=Thủ tục nhập học 2025_l0_overview | source=Thủ tục nhập học 2025.txt | section= | year=2025 Nội dung: Tổng quan thủ tục nhập học năm 2025. Tài liệu có 4 phần chính (PHẦN 1-4), bao gồm tra cứu trúng tuyển, xác nhận trực tuyến, nộp học phí/lệ phí, quy trình B1-B4, lịch theo ngành, hồ sơ và lưu ý. C2 | chunk_id=Thủ tục nhập học 2025_l1_section_1 | source=Thủ tục nhập học 2025.txt | section=1 | year=2025 Nội dung: Tra cứu danh sách trúng tuyển (sau ngày 22/8/2025) tại cổng th ...
+[INPUT] _call_llm
+- llm_prompt_len: 12002
+- llm_prompt_preview: Bạn là trợ lý tư vấn thủ tục nhập học của Trường Đại học Khoa học Tự nhiên - ĐHQG Hà Nội.  NHIỆM VỤ: - Trả lời câu hỏi của sinh viên dựa HOÀN TOÀN trên ngữ cảnh được cung cấp. - Trả lời ĐẦY ĐỦ Ý - KHÔNG ĐƯỢC bỏ sót thông tin quan trọng. - [BẮT BUỘC] Mọi dữ kiện quan trọng (số tiền, ngày giờ, địa điểm, giấy tờ) phải bám đúng context; nếu không có bằng chứng thì ghi rõ: "Không tìm thấy trong tài liệu hiện có". - [BẮT BUỘC] Không tự suy diễn hoặc bổ sung thông tin ngoài context. - [QUAN TRỌNG] TÍNH TOÁN CHÍNH XÁC: Khi gặp các con số (học phí, lệ phí), hãy liệt kê từng mục và THỰC HIỆN PHÉP CỘNG BƯỚC-THEO-BƯỚC. Tuyệt đối không được sai sót số liệu tài chính. - Kiểm tra lại: Tổng số tiền = Khoản  ...
+[CALL] Calling Groq API...
+[RAW OUTPUT] _call_llm
+- status: ok
+- text_preview: {   "answer": "Thủ tục nhập học năm 2025 của Trường Đại học Khoa học Tự nhiên bao gồm 4 phần chính: tra cứu trúng tuyển, xác nhận trực tuyến, nộp học phí/lệ phí và quy trình nhập học. Thí sinh cần tra cứu danh sách trúng tuyển sau ngày 22/8/2025 tại https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html, xác nhận nhập học trực tuyến trước 17 giờ 00 ngày 30/8/2025 và nộp học phí/lệ phí từ ngày 25/8/2025 đến 05/9/2025.",   "used_chunk_ids": ["Thủ tục nhập học 2025_l0_overview", "Thủ tục nhập học 2025_l1_section_1", "Thủ tục nhập học 2025_l1_section_2", "Thủ tục nhập học 2025_l1_section_3"],   "grounded": true,   "uncertainty_note": "Không tìm thấy thông tin chi tiết về quy trình nhập học trong  ...
+[OUTPUT] generate
+- success: True
+- source: api
+- answer_len: 462
+- answer_preview: Thủ tục nhập học năm 2025 của Trường Đại học Khoa học Tự nhiên bao gồm 4 phần chính: tra cứu trúng tuyển, xác nhận trực tuyến, nộp học phí/lệ phí và quy trình nhập học. Thí sinh cần tra cứu danh sách trúng tuyển sau ngày 22/8/2025 tại https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html, xác nhận nhập học trực tuyến trước 17 giờ 00 ngày 30/8/2025 và nộp học phí/lệ phí từ ngày 25/8/2025 đến 05/9/2025.  --- [SOURCE] Nguồn: Thủ tục nhập học 2025.txt (Năm 2025)
+[ASSESSMENT]
+- input_ok: True
+- output_ok: True
+
+==========================================================================================
+FINAL SUMMARY
+==========================================================================================
+{
+  "embedding": {
+    "ok": true,
+    "input_ok": true,
+    "output_ok": true,
+    "vector_dim": 3072,
+    "all_zero": false
+  },
+  "rewrite": {
+    "ok": true,
+    "input_ok": true,
+    "output_ok": true,
+    "detected_topic": "procedure"
+  },
+  "generation": {
+    "ok": true,
+    "input_ok": true,
+    "output_ok": true,
+    "source": "api"
+  }
+}

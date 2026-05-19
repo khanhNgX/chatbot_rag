@@ -1,72 +1,402 @@
 {
-  "anonymous::session_1776273304156::admission_procedure::formal::tóm tắt thủ tục nhập học cho tôi": {
-    "response": "Các bước thực hiện thủ tục nhập học được quy định như sau:\n- B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có)\n- B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn)\n- B3: Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025)\n- B4: Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (Năm 2025)",
-    "timestamp": 1776273325.2695413,
-    "intent": "admission_procedure",
-    "source_type": "deterministic",
-    "quality": "high",
-    "session_id": "session_1776273304156",
-    "user_id": "anonymous",
-    "style_id": "formal"
-  },
-  "anonymous::session_1776273391351::admission_procedure::formal::phần 1 của thủ tục nhập học": {
-    "response": "Các bước thực hiện thủ tục nhập học được quy định như sau:\n- B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có)\n- B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn)\n- B3: Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025)\n- B4: Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (Năm 2025)",
-    "timestamp": 1776273411.7149296,
-    "intent": "admission_procedure",
-    "source_type": "deterministic",
-    "quality": "high",
-    "session_id": "session_1776273391351",
-    "user_id": "anonymous",
-    "style_id": "formal"
-  },
-  "anonymous::session_1776273787395::admission_procedure::formal::phần đầu tiên của thủ tục nhập học": {
-    "response": "Các bước thực hiện thủ tục nhập học được quy định như sau:\n- B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có)\n- B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn)\n- B3: Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025)\n- B4: Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (Năm 2025)",
-    "timestamp": 1776273809.4946518,
-    "intent": "admission_procedure",
-    "source_type": "deterministic",
-    "quality": "high",
-    "session_id": "session_1776273787395",
-    "user_id": "anonymous",
-    "style_id": "formal"
-  },
-  "anonymous::session_1776273787395::admission_procedure::friendly::phần 1": {
-    "response": "Bạn thực hiện thủ tục nhập học theo các bước sau:\n- B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có)\n- B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn)\n- B3: Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025)\n- B4: Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (Năm 2025)",
-    "timestamp": 1776273822.129484,
-    "intent": "admission_procedure",
-    "source_type": "deterministic",
-    "quality": "high",
-    "session_id": "session_1776273787395",
-    "user_id": "anonymous",
-    "style_id": "friendly"
-  },
-  "anonymous::session_1776273787395::admission_procedure::concise::phần 2": {
-    "response": "Các bước nhập học:\n- B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có)\n- B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn)\n- B3: Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025)\n- B4: Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (Năm 2025)",
-    "timestamp": 1776273838.0160108,
-    "intent": "admission_procedure",
-    "source_type": "deterministic",
-    "quality": "high",
-    "session_id": "session_1776273787395",
-    "user_id": "anonymous",
-    "style_id": "concise"
-  },
-  "anonymous::session_1776273915216::lookup::formal::hướng dẫn tra cứu danh sách trúng tuyển 2025": {
-    "response": "Tra cứu danh sách trúng tuyển như sau:\n- Thời điểm tra cứu: sau ngày 22/8/2025\n- Cổng tra cứu: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html\n- Lưu ý: ghi lại Mã số sinh viên trên kết quả tra cứu.\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (Năm 2025)",
-    "timestamp": 1776273918.752673,
+  "anonymous::session_1778825337349::lookup::concise_v0::hướng dẫn tra cứu danh sách trúng tuyển 2025": {
+    "response": "Tra cứu danh sách trúng tuyển như sau:\n- Thời điểm tra cứu: sau ngày 22/8/2025\n- Cổng tra cứu: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html\n- Lưu ý: ghi lại Mã số sinh viên trên kết quả tra cứu.\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 1, Năm 2025)",
+    "timestamp": 1778825346.9495592,
     "intent": "lookup",
     "source_type": "deterministic",
     "quality": "high",
-    "session_id": "session_1776273915216",
+    "session_id": "session_1778825337349",
     "user_id": "anonymous",
-    "style_id": "formal"
+    "style_id": "concise_v0"
   },
-  "anonymous::session_1776273929313::lookup::formal::hướng dẫn tra cứu danh sách trúng tuyển 2025": {
-    "response": "Tra cứu danh sách trúng tuyển như sau:\n- Thời điểm tra cứu: sau ngày 22/8/2025\n- Cổng tra cứu: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html\n- Lưu ý: ghi lại Mã số sinh viên trên kết quả tra cứu.\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (Năm 2025)",
-    "timestamp": 1776273932.9854581,
+  "anonymous::session_1778825337349::fee_info::formal_v1::các khoản tiền học phí và lệ phí nhập học cần nộp": {
+    "response": "Theo tài liệu, các khoản phí cần nộp gồm: \n- (1) Tiền làm hồ sơ, tài liệu cho sinh viên...: 50,000đ\n- (2) Hồ sơ sức khỏe, khám sức khỏe: 180,000đ\n- (3) Bảo hiểm Y tế (bắt buộc theo quy định của Nhà nước): 789,750đ\n- (4) Tạm thu học phí học kì 1 năm học 2025-2026 là: 6,000,000đ\n- Tổng cộng: 7,019,750đ\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 3, Năm 2025)",
+    "timestamp": 1778825351.8427322,
+    "intent": "fee_info",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "formal_v1"
+  },
+  "anonymous::session_1778825337349::schedule_by_major::concise_v0::lịch nhập học trực tiếp của các ngành": {
+    "response": "Lịch theo ngành:\n- Công nghệ kỹ thuật hạt nhân: Sáng ngày 27/8/2025\n- Khoa học vật liệu: Sáng ngày 27/8/2025\n- Kỹ thuật điện tử và tin học: Sáng ngày 27/8/2025\n- Quản lý tài nguyên và môi trường: Sáng ngày 27/8/2025\n- Địa chất học: Sáng ngày 27/8/2025\n- Công nghệ kĩ thuật môi trường: Chiều ngày 27/8/2025\n- Công nghệ sinh học: Chiều ngày 27/8/2025\n- Khoa học môi trường: Chiều ngày 27/8/2025\n- Khoa học và công nghệ thực phẩm: Chiều ngày 27/8/2025\n- Môi trường sức khỏe và an toàn: Chiều ngày 27/8/2025\n- Sinh dược học: Chiều ngày 27/8/2025\n- Sinh học: Chiều ngày 27/8/2025\n- Khoa học dữ liệu: Sáng ngày 28/8/2025\n- Khoa học máy tính và thông tin: Sáng ngày 28/8/2025\n- Quản lý phát triển đô thị và bất động sản: Sáng ngày 28/8/2025\n- Quản lý đất đai: Sáng ngày 28/8/2025\n- Toán Tin: Sáng ngày 28/8/2025\n- Toán học: Sáng ngày 28/8/2025\n- Địa lý tự nhiên: Sáng ngày 28/8/2025\n- Công nghệ kỹ thuật hóa học: Chiều ngày 28/8/2025\n- Hóa dược: Chiều ngày 28/8/2025\n- Hóa học: Chiều ngày 28/8/2025\n- Tài nguyên và môi trường nước: Chiều ngày 28/8/2025\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 4, Năm 2025)",
+    "timestamp": 1778825366.1677077,
+    "intent": "schedule_by_major",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "concise_v0"
+  },
+  "anonymous::session_1778825337349::fee_payment::formal_v1::hướng dẫn nộp học phí qua mã định danh bidv": {
+    "response": "Thông tin nộp học phí theo hình thức và thời gian như sau: \n- Hình thức nộp:\n  • Nộp học phí theo hình thức chuyển khoản.\n  • Sinh viên lựa chọn kênh thanh toán phù hợp: kênh chuyển tiền tại tất cả các\n  • Ngân hàng trên toàn quốc. Có thể thanh toán tại quầy giao dịch, Internet banking,\n  • Mobile banking, Thanh toán tự động (UNC tự động), chi tiết như sau:\n  • 1. CHUYỂN TIỀN TỪ NGÂN HÀNG BIDV ( Miễn phí):\n  • Vào app BIDV/Chuyển tiền/Nội bộ BIDV/Nhập số tài khoản:\n  • 2. CHUYỂN TIỀN TỪ NGÂN HÀNG KHÁC:\n  • => Chọn: Chuyển tiền\n- Khoảng thời gian:\n  • từ ngày 25/8/2025 đến 05/9/2025\n\n[SOURCE] Nguồn: data\\02.hd-nop-hoc-phi-qua-ma-dinh-danh.pdf (Năm 2026)",
+    "timestamp": 1778825371.332008,
+    "intent": "fee_payment",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "formal_v1"
+  },
+  "anonymous::session_1778825337349::online_confirmation::friendly_v2::thủ tục xác nhận nhập học trực tuyến": {
+    "response": "Xác nhận nhập học trực tuyến là bắt buộc trên hệ thống của Bộ GD&ĐT.\n- Hạn hoàn thành: trước 17 giờ 00 ngày 30/8/2025\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 2, Năm 2025)",
+    "timestamp": 1778825377.5807507,
+    "intent": "online_confirmation",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "friendly_v2"
+  },
+  "anonymous::session_1778825337349::admission_procedure::concise_v0::các bước nộp hô sơ nhập học": {
+    "response": "Các bước nộp hồ sơ:\n- B1: Chuẩn bị hồ sơ và tạo 01 file PDF duy nhất theo đúng thành phần giấy tờ yêu cầu.\n- B2: Chụp 01 ảnh chân dung 4x6 rõ nét và đặt tên file theo mã sinh viên.\n- B3: Tải ảnh/hồ sơ lên hệ thống trực tuyến theo link của trường, hoàn thành trước 17:00 ngày 28/8/2025.\n- B4: Nộp hồ sơ bản giấy trực tiếp tại Trường theo lịch ngành trong ngày 27-28/8/2025.\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 4)",
+    "timestamp": 1778825410.3256686,
+    "intent": "admission_procedure",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "concise_v0"
+  },
+  "anonymous::session_1778825337349::admission_procedure::formal_v1::chi tiết bước 1": {
+    "response": "Tra cứu danh sách trúng tuyển (sau ngày 22/8/2025) tại cổng thông tin tuyển sinh của nhà trường tại địa chỉ: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html (lưu ý thí sinh ghi lại Mã số sinh viên của mình trên kết quả tra cứu).\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 1, Năm 2025)",
+    "timestamp": 1778825418.6256783,
+    "intent": "admission_procedure",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "formal_v1"
+  },
+  "anonymous::session_1778825337349::step::friendly_v2::chi tiết bước 1 của nộp hồ sơ nhập học": {
+    "response": "B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có)\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 4, Năm 2025)",
+    "timestamp": 1778825449.999527,
+    "intent": "step",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "friendly_v2"
+  },
+  "anonymous::session_1778825337349::step::concise_v0::bước tiếp theo": {
+    "response": "B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn)\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 4, Năm 2025)",
+    "timestamp": 1778825459.9679396,
+    "intent": "step",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "concise_v0"
+  },
+  "anonymous::session_1778825337349::admission_procedure::formal_v1::các bước của thủ tục nhập học": {
+    "response": "Thủ tục nhập học gồm 4 phần chính. Theo tài liệu, bạn làm lần lượt như sau: \n- PHẦN 1: Tra cứu kết quả trúng tuyển trên cổng tuyển sinh và ghi lại mã sinh viên.\n- PHẦN 2: Xác nhận nhập học trực tuyến trên hệ thống Bộ GD&ĐT trước thời hạn quy định.\n- PHẦN 3: Nộp học phí và các khoản lệ phí theo hướng dẫn chuyển khoản trong khung thời gian thông báo.\n- PHẦN 4: Chuẩn bị đầy đủ hồ sơ, tải bản trực tuyến và nộp bản giấy trực tiếp theo lịch ngành.\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 4, Năm 2025)",
+    "timestamp": 1778825473.252266,
+    "intent": "admission_procedure",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "formal_v1"
+  },
+  "anonymous::session_1778825337349::admission_procedure::formal_v1::chi tiết bước 3": {
+    "response": "Chi tiết PHẦN 3 (nộp học phí/lệ phí):\n- Nội dung chính: Nộp học phí tạm thu, lệ phí nhập học...theo hình thức chuyển khoản (thực hiện từ ngày 25/8/2025 đến hết ngày 05/9/2025) theo hướng dẫn download tại đây.\n- Thời gian thực hiện: từ ngày 25/8/2025 đến hết ngày 05/9/2025.\n- Các khoản cần nộp:\n  • Bảo hiểm Y tế (bắt buộc theo quy định của Nhà nước): 789,750đ\n  • Tạm thu học phí học kì 1 năm học 2025-2026 là: 6,000,000đ\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 3, Năm 2025)",
+    "timestamp": 1778825485.2797298,
+    "intent": "admission_procedure",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "formal_v1"
+  },
+  "anonymous::session_1778825337349::admission_procedure::formal_v1::chi tiết bước 4 thủ tục nhập học": {
+    "response": "Chi tiết PHẦN 4 (nộp hồ sơ):\n- Nội dung chính: Chuẩn bị hồ sơ; nộp hồ sơ trực tuyến (trước 17 giờ ngày 28/8/2025) và nộp hồ sơ trực tiếp (trong ngày 27-28/8/2025) tại Trường Đại học Khoa học Khoa học Tự nhiên theo hướng dẫn gồm các bước sau:.\n- Trình tự thực hiện:\n  • B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng...\n  • B2: Sinh viên chụp 01 ảnh chân dung, áo sơmi (4x6) rõ nét; lưu file trên máy tính hoặc điện thoại và đặt tên file là mã sinh viên của mình (có thể tra cứu mã sinh viên tại http://tuyensinh.hus.vnu.edu.vn)\n  • B3: Sinh viên tải ảnh / hồ sơ về: https://bit.ly/nhaphochus2025 hoặc https://bit.ly/nhaphocdhkhtn2025 hoặc link dự phòng tại đây (Bước 1, 2, 3 của phần 4 hoàn thành trước 17 giờ 00 ngày 28/8/2025)\n  • B4: Nộp hồ sơ bản giấy trực tiếp theo các ngành học đã trúng tuyển tại Trường Đại học Khoa học Tự nhiên, số 334 Nguyễn Trãi, Thanh Xuân, Hà Nội Sáng từ 7 giờ 30 ÷ 11 giờ 00; Chiều từ 13 giờ 30 ÷ 17 giờ 00 Sáng thứ Tư, ngày 2...\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 4, Năm 2025)",
+    "timestamp": 1778825501.5026145,
+    "intent": "admission_procedure",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "formal_v1"
+  },
+  "anonymous::session_1778825337349::notes::formal_v1::cần lưu ý những gì": {
+    "response": "Các lưu ý quan trọng:\n- (1) Sinh viên tập trung gặp gỡ các khoa đào tạo, giáo viên chủ nhiệm theo các ngành học, tập trung học nội quy, tuần sinh hoạt đầu năm học từ ngày 27 đến ngày 29/8/2025 theo khung giờ quy định có trong tài liệu hướng dẫn ngày nhập học (file đính kèm) và bắt đầu học tập theo thời khóa biểu trên giảng đường (download tại đây) từ ngày 03 tháng 9 năm\n- (3) Chỉ những thí sinh hoàn thành đầy đủ các bước trên mới được công nhận chính thức là sinh viên của Trường.\n- (4) Một số mục hồ sơ còn thiếu, sinh viên nộp bổ sung tại phòng Công tác sinh viên và truyền thông (phòng 320 tầng 3 nhà T1) theo lớp trước ngày 28/9/2025.\n- (5) Sinh viên thường xuyên kiểm tra email cá nhân để nhận các thông tin hướng dẫn đầu năm học.\n- (2025) 2. Sinh viên theo dõi thông báo tuyển sinh vào học chương trình đào tạo đặc biệt (tài năng, chất lượng cao) theo thông báo cụ thể từ ngày 28 tháng 8 năm 2025 hoặc (download tại đây).\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 4, Năm 2025)",
+    "timestamp": 1778825515.3451753,
+    "intent": "notes",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "formal_v1"
+  },
+  "anonymous::session_1778825337349::document_required::formal_v1::danh mục hồ sơ nhập học cần chuẩn bị": {
+    "response": "Dưới đây là danh mục hồ sơ nhập học cần chuẩn bị:\n\n---\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (phan_4, Năm 2025)",
+    "timestamp": 1778825533.1519692,
+    "intent": "document_required",
+    "source_type": "api",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "formal_v1"
+  },
+  "anonymous::session_1778825337349::document_required::formal_v1::hồ sơ nhập học bao gồm những tài liệu gì": {
+    "response": "Hồ sơ nhập học bao gồm các tài liệu sau: \n1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025 \n2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025).\n3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra.\n4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có).\n5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học).\n6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm.\n7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội.\n8. Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức).\n9. Bản sao Giấy khai sinh\n10. Bản photo hai mặt căn cước công dân\n11. Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức).\n12. Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức).\n13. Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp.\n\n---\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (phan_4, Năm 2025)",
+    "timestamp": 1778825574.4048123,
+    "intent": "document_required",
+    "source_type": "api",
+    "quality": "high",
+    "session_id": "session_1778825337349",
+    "user_id": "anonymous",
+    "style_id": "formal_v1"
+  },
+  "anonymous::session_1778825644440::document_required::concise_v0::hồ sơ nhập học gồm những tài liệu gì": {
+    "response": "Để nhập học, thí sinh cần nộp các hồ sơ sau: 1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025 2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025). 3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra. 4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có). 5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học). 6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm. 7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội.\n\n---\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (phan_4, Năm 2025)",
+    "timestamp": 1778825659.2877798,
+    "intent": "document_required",
+    "source_type": "api",
+    "quality": "high",
+    "session_id": "session_1778825644440",
+    "user_id": "anonymous",
+    "style_id": "concise_v0"
+  },
+  "anonymous::session_1778825715105::document_required::formal_v2::hồ sơ nhập học cần những tài liệu gì": {
+    "response": "Để nhập học, thí sinh cần chuẩn bị các hồ sơ sau: 📋 1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025 📋 2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025) 📋 3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra 📋 4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có) 📋 5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học) 📋 6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm 📍 Địa điểm nộp: Nộp trong ngày nhập học hoặc nộp (từ ngày 07 đến 28/9/2025) theo lớp khi đi học chính thức\n\n---\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (phan_4, Năm 2025)",
+    "timestamp": 1778825759.2159224,
+    "intent": "document_required",
+    "source_type": "api",
+    "quality": "high",
+    "session_id": "session_1778825715105",
+    "user_id": "anonymous",
+    "style_id": "formal_v2"
+  },
+  "anonymous::session_1778825715105::document_required::friendly_v0::danh mục hồ sơ nhập học cần chuẩn bị": {
+    "response": "Để nhập học, thí sinh cần chuẩn bị các hồ sơ sau: 📋 1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025 📋 2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025) 📋 3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra 📋 4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có) 📋 5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học) 📋 6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm\n\n---\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (phan_4, Năm 2025)",
+    "timestamp": 1778825792.2237484,
+    "intent": "document_required",
+    "source_type": "api",
+    "quality": "high",
+    "session_id": "session_1778825715105",
+    "user_id": "anonymous",
+    "style_id": "friendly_v0"
+  },
+  "anonymous::session_1778825715105::lookup::concise_v1::hướng dẫn tra cứu danh sách trúng tuyển 2025": {
+    "response": "Tra cứu danh sách trúng tuyển như sau:\n- Thời điểm tra cứu: sau ngày 22/8/2025\n- Cổng tra cứu: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html\n- Lưu ý: ghi lại Mã số sinh viên trên kết quả tra cứu.\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 1, Năm 2025)",
+    "timestamp": 1778825799.8866012,
     "intent": "lookup",
     "source_type": "deterministic",
     "quality": "high",
-    "session_id": "session_1776273929313",
+    "session_id": "session_1778825715105",
     "user_id": "anonymous",
-    "style_id": "formal"
+    "style_id": "concise_v1"
+  },
+  "anonymous::session_1778825715105::schedule_by_major::formal_v2::lịch nhập học trực tiếp của các ngành": {
+    "response": "Theo tài liệu, lịch nộp hồ sơ bản giấy theo ngành như sau:  \n- Công nghệ kỹ thuật hạt nhân: Sáng ngày 27/8/2025\n- Kỹ thuật điện tử và tin học: Sáng ngày 27/8/2025\n- Quản lý tài nguyên và môi trường: Sáng ngày 27/8/2025\n- Địa chất học: Sáng ngày 27/8/2025\n- Công nghệ kĩ thuật môi trường: Chiều ngày 27/8/2025\n- Khoa học và công nghệ thực phẩm: Chiều ngày 27/8/2025\n- Sinh học: Chiều ngày 27/8/2025\n- Khoa học dữ liệu: Sáng ngày 28/8/2025\n- Công nghệ kỹ thuật hóa học: Chiều ngày 28/8/2025\n- Hóa dược: Chiều ngày 28/8/2025\n- Hóa học: Chiều ngày 28/8/2025\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 4, Năm 2025)",
+    "timestamp": 1778825806.0557888,
+    "intent": "schedule_by_major",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825715105",
+    "user_id": "anonymous",
+    "style_id": "formal_v2"
+  },
+  "anonymous::session_1778825715105::fee_payment::friendly_v0::hướng dẫn nộp học phí qua mã định danh bidv": {
+    "response": "Bạn nộp học phí theo hình thức và thời gian như sau nhé:\n- Hình thức nộp:\n  • Nộp học phí theo hình thức chuyển khoản.\n  • Sinh viên lựa chọn kênh thanh toán phù hợp: kênh chuyển tiền tại tất cả các\n  • Ngân hàng trên toàn quốc. Có thể thanh toán tại quầy giao dịch, Internet banking,\n  • Mobile banking, Thanh toán tự động (UNC tự động), chi tiết như sau:\n  • 1. CHUYỂN TIỀN TỪ NGÂN HÀNG BIDV ( Miễn phí):\n  • Vào app BIDV/Chuyển tiền/Nội bộ BIDV/Nhập số tài khoản:\n  • 2. CHUYỂN TIỀN TỪ NGÂN HÀNG KHÁC:\n  • => Chọn: Chuyển tiền\n- Khoảng thời gian:\n  • từ ngày 25/8/2025 đến 05/9/2025\n\n[SOURCE] Nguồn: data\\02.hd-nop-hoc-phi-qua-ma-dinh-danh.pdf (Năm 2026)",
+    "timestamp": 1778825825.5622058,
+    "intent": "fee_payment",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778825715105",
+    "user_id": "anonymous",
+    "style_id": "friendly_v0"
+  },
+  "anonymous::session_1778826288199::lookup::friendly_v2::hướng dẫn tra cứu danh sách trúng tuyển 2025": {
+    "response": "Tra cứu danh sách trúng tuyển như sau:\n- Thời điểm tra cứu: sau ngày 22/8/2025\n- Cổng tra cứu: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html\n- Lưu ý: ghi lại Mã số sinh viên trên kết quả tra cứu.\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 1, Năm 2025)",
+    "timestamp": 1778826291.701874,
+    "intent": "lookup",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778826288199",
+    "user_id": "anonymous",
+    "style_id": "friendly_v2"
+  },
+  "anonymous::session_1778826288199::fee_info::concise_v0::các khoản tiền học phí và lệ phí nhập học cần nộp": {
+    "response": "Các khoản phí:\n- (1) Tiền làm hồ sơ, tài liệu cho sinh viên...: 50,000đ\n- (2) Hồ sơ sức khỏe, khám sức khỏe: 180,000đ\n- (3) Bảo hiểm Y tế (bắt buộc theo quy định của Nhà nước): 789,750đ\n- (4) Tạm thu học phí học kì 1 năm học 2025-2026 là: 6,000,000đ\n- Tổng cộng: 7,019,750đ\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 3, Năm 2025)",
+    "timestamp": 1778826296.302449,
+    "intent": "fee_info",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778826288199",
+    "user_id": "anonymous",
+    "style_id": "concise_v0"
+  },
+  "anonymous::session_1778826288199::document_required::formal_v1::danh mục hồ sơ nhập học cần chuẩn bị": {
+    "response": "Để chuẩn bị hồ sơ nhập học, bạn cần nộp các giấy tờ sau:\n1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025\n2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025)\n3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra\n4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có)\n5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học)\n6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm\n7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội\n8. Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức)\n9. Bản sao Giấy khai sinh\n10. Bản photo hai mặt căn cước công dân\n11. Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức)\n12. Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức)\n13. Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp\n\n---\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (phan_4, Năm 2025)",
+    "timestamp": 1778826302.8051105,
+    "intent": "document_required",
+    "source_type": "api",
+    "quality": "high",
+    "session_id": "session_1778826288199",
+    "user_id": "anonymous",
+    "style_id": "formal_v1"
+  },
+  "anonymous::session_1778826315966::document_required::formal_v1::danh mục hồ sơ nhập học cần chuẩn bị": {
+    "response": "Để chuẩn bị hồ sơ nhập học, thí sinh cần nộp các giấy tờ sau:\n1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025\n2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025).\n3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra.\n4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có).\n5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học).\n6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm.\n7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội.\n8. Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức).\n9. Bản sao Giấy khai sinh\n10. Bản photo hai mặt căn cước công dân\n11. Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức).\n12. Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức).\n13. Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp.\n\n---\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (phan_4, Năm 2025)",
+    "timestamp": 1778826321.2372148,
+    "intent": "document_required",
+    "source_type": "api",
+    "quality": "high",
+    "session_id": "session_1778826315966",
+    "user_id": "anonymous",
+    "style_id": "formal_v1"
+  },
+  "anonymous::session_1778826315966::fee_info::concise_v0::các khoản tiền học phí và lệ phí nhập học cần nộp": {
+    "response": "Các khoản phí:\n- (1) Tiền làm hồ sơ, tài liệu cho sinh viên...: 50,000đ\n- (2) Hồ sơ sức khỏe, khám sức khỏe: 180,000đ\n- (3) Bảo hiểm Y tế (bắt buộc theo quy định của Nhà nước): 789,750đ\n- (4) Tạm thu học phí học kì 1 năm học 2025-2026 là: 6,000,000đ\n- Tổng cộng: 7,019,750đ\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 3, Năm 2025)",
+    "timestamp": 1778826350.4807012,
+    "intent": "fee_info",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778826315966",
+    "user_id": "anonymous",
+    "style_id": "concise_v0"
+  },
+  "anonymous::session_1778826288199::fee_payment::friendly_v2::hướng dẫn nộp học phí qua mã định danh bidv": {
+    "response": "Bạn nộp học phí theo hình thức và thời gian như sau nhé:\n- Hình thức nộp:\n• Nộp học phí theo hình thức chuyển khoản.\n• Sinh viên lựa chọn kênh thanh toán phù hợp: kênh chuyển tiền tại tất cả các\n• Ngân hàng trên toàn quốc. Có thể thanh toán tại quầy giao dịch, Internet banking,\n• Mobile banking, Thanh toán tự động (UNC tự động), chi tiết như sau:\n• 1. CHUYỂN TIỀN TỪ NGÂN HÀNG BIDV ( Miễn phí):\n• Vào app BIDV/Chuyển tiền/Nội bộ BIDV/Nhập số tài khoản:\n• 2. CHUYỂN TIỀN TỪ NGÂN HÀNG KHÁC:\n• => Chọn: Chuyển tiền\n- Khoảng thời gian:\n• từ ngày 25/8/2025 đến 05/9/2025\n\n[SOURCE] Nguồn: data\\02.hd-nop-hoc-phi-qua-ma-dinh-danh.pdf (Năm 2026)",
+    "timestamp": 1778826367.7631836,
+    "intent": "fee_payment",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778826288199",
+    "user_id": "anonymous",
+    "style_id": "friendly_v2"
+  },
+  "anonymous::session_1778826288199::step::concise_v0::chi tiết bước đầu của nộp hồ sơ nhập học": {
+    "response": "B1: Chuẩn bị hồ sơ để thực hiện tạo file dữ liệu lưu trên máy tính (thí sinh có thể sử dụng ứng dụng Camscanner (hoặc Microsoft Lens) trên điện thoại di động để scan hồ sơ) tạo 01 file dữ liệu duy nhất theo thứ tự sau (dạng pdf với tên file là mã sinh viên của mình) gồm có: + Bản chính Giấy chứng nhận kết quả thi tốt nghiệp THPT năm 2025 + Giấy chứng nhận tốt nghiệp THPT năm 2025 (hoặc bằng Tốt nghiệp đối với thí sinh tốt nghiệp trước năm 2025) + Học bạ THPT (tất cả các trang) + Các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có)\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 4, Năm 2025)",
+    "timestamp": 1778826913.0018892,
+    "intent": "step",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778826288199",
+    "user_id": "anonymous",
+    "style_id": "concise_v0"
+  },
+  "anonymous::session_1778826288199::admission_procedure::friendly_v2::bước 1 và bước 2 của thủ tục nhập học": {
+    "response": "Bạn cần lưu ý: Tra cứu danh sách trúng tuyển (sau ngày 22/8/2025) tại cổng thông tin tuyển sinh của nhà trường tại địa chỉ: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html (lưu ý thí sinh ghi lại Mã số sinh viên của mình trên kết quả tra cứu).\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 1, Năm 2025)",
+    "timestamp": 1778829106.536681,
+    "intent": "admission_procedure",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778826288199",
+    "user_id": "anonymous",
+    "style_id": "friendly_v2"
+  },
+  "anonymous::session_1778829732490::document_required::friendly_v1::danh mục hồ sơ nhập học cần chuẩn bị": {
+    "response": "Để chuẩn bị hồ sơ nhập học, thí sinh cần nộp các giấy tờ sau:\n1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025\n2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025).\n3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra.\n4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có).\n5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học).\n6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm.\n7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội.\n8. Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức).\n9. Bản sao Giấy khai sinh\n10. Bản photo hai mặt căn cước công dân\n11. Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức).\n12. Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức).\n13. Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp.\n\n---\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (phan_4, Năm 2025)",
+    "timestamp": 1778829769.8475482,
+    "intent": "document_required",
+    "source_type": "api",
+    "quality": "high",
+    "session_id": "session_1778829732490",
+    "user_id": "anonymous",
+    "style_id": "friendly_v1"
+  },
+  "anonymous::session_1778829732490::lookup::concise_v2::hướng dẫn tra cứu danh sách trúng tuyển 2025": {
+    "response": "Tra cứu danh sách trúng tuyển như sau:\n- Thời điểm tra cứu: sau ngày 22/8/2025\n- Cổng tra cứu: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html\n- Lưu ý: ghi lại Mã số sinh viên trên kết quả tra cứu.\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 1, Năm 2025)",
+    "timestamp": 1778829774.8287902,
+    "intent": "lookup",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778829732490",
+    "user_id": "anonymous",
+    "style_id": "concise_v2"
+  },
+  "anonymous::session_1778829732490::fee_payment::formal_v0::hướng dẫn nộp học phí qua mã định danh bidv": {
+    "response": "Thông tin nộp học phí theo hình thức và thời gian như sau:\n- Hình thức nộp:\n• Nộp học phí theo hình thức chuyển khoản.\n• Sinh viên lựa chọn kênh thanh toán phù hợp: kênh chuyển tiền tại tất cả các\n• Ngân hàng trên toàn quốc. Có thể thanh toán tại quầy giao dịch, Internet banking,\n• Mobile banking, Thanh toán tự động (UNC tự động), chi tiết như sau:\n• 1. CHUYỂN TIỀN TỪ NGÂN HÀNG BIDV ( Miễn phí):\n• Vào app BIDV/Chuyển tiền/Nội bộ BIDV/Nhập số tài khoản:\n• 2. CHUYỂN TIỀN TỪ NGÂN HÀNG KHÁC:\n• => Chọn: Chuyển tiền\n- Khoảng thời gian:\n• từ ngày 25/8/2025 đến 05/9/2025\n\n[SOURCE] Nguồn: data\\02.hd-nop-hoc-phi-qua-ma-dinh-danh.pdf (Năm 2026)",
+    "timestamp": 1778829778.478702,
+    "intent": "fee_payment",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778829732490",
+    "user_id": "anonymous",
+    "style_id": "formal_v0"
+  },
+  "anonymous::session_1778829732490::online_confirmation::friendly_v1::thủ tục xác nhận nhập học trực tuyến": {
+    "response": "Xác nhận nhập học trực tuyến là bắt buộc trên hệ thống của Bộ GD&ĐT.\n- Hạn hoàn thành: trước 17 giờ 00 ngày 30/8/2025\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 2, Năm 2025)",
+    "timestamp": 1778829791.0940173,
+    "intent": "online_confirmation",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778829732490",
+    "user_id": "anonymous",
+    "style_id": "friendly_v1"
+  },
+  "anonymous::session_1778829732490::fee_info::concise_v2::các khoản tiền học phí và lệ phí nhập học cần nộp": {
+    "response": "Các khoản phí:\n- (1) Tiền làm hồ sơ, tài liệu cho sinh viên...: 50,000đ\n- (2) Hồ sơ sức khỏe, khám sức khỏe: 180,000đ\n- (3) Bảo hiểm Y tế (bắt buộc theo quy định của Nhà nước): 789,750đ\n- (4) Tạm thu học phí học kì 1 năm học 2025-2026 là: 6,000,000đ\n- Tổng cộng: 7,019,750đ\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 3, Năm 2025)",
+    "timestamp": 1778829799.9343362,
+    "intent": "fee_info",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778829732490",
+    "user_id": "anonymous",
+    "style_id": "concise_v2"
+  },
+  "anonymous::session_1778829732490::admission_procedure::formal_v0::các bước của thủ tục nhập học": {
+    "response": "Thủ tục nhập học gồm 4 phần chính. Theo tài liệu, bạn làm lần lượt như sau:\n- PHẦN 1: Tra cứu kết quả trúng tuyển trên cổng tuyển sinh và ghi lại mã sinh viên.\n- PHẦN 2: Xác nhận nhập học trực tuyến trên hệ thống Bộ GD&ĐT trước thời hạn quy định.\n- PHẦN 3: Nộp học phí và các khoản lệ phí theo hướng dẫn chuyển khoản trong khung thời gian thông báo.\n- PHẦN 4: Chuẩn bị đầy đủ hồ sơ, tải bản trực tuyến và nộp bản giấy trực tiếp theo lịch ngành.\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 4, Năm 2025)",
+    "timestamp": 1778830710.0919976,
+    "intent": "admission_procedure",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778829732490",
+    "user_id": "anonymous",
+    "style_id": "formal_v0"
+  },
+  "anonymous::session_1778829732490::document_required::formal_v0::danh mục hồ sơ nhập học cần chuẩn bị": {
+    "response": "Để chuẩn bị hồ sơ nhập học, bạn cần nộp các giấy tờ sau:\n1. Bản chính Giấy báo kết quả thi của kì thi tốt nghiệp THPT năm 2025\n2. Bản chính Giấy chứng nhận tốt nghiệp tạm thời (đối với thí sinh tốt nghiệp năm 2025) hoặc 01 bản photocopy có công chứng Bằng tốt nghiệp THPT hoặc tương đương (đối với thí sinh tốt nghiệp trước năm 2025)\n3. Học bạ THPT hoặc tương đương: 01 bản photocopy có công chứng (hoặc xác nhận của trường nơi tốt nghiệp) và bản chính để kiểm tra\n4. Bản sao công chứng các giấy tờ hưởng chế độ ưu tiên, cộng điểm (con thương binh, hộ nghèo, chứng chỉ ngoại ngữ, chứng nhận HSA, giấy chứng nhận đạt giải học sinh giỏi...nếu có)\n5. 01 ảnh 3x4, chụp không quá 1 năm tính đến thời điểm nhập học (mặt sau ghi rõ họ tên, ngày tháng năm sinh, nơi sinh, ngành học)\n6. Bảo hiểm thân thể (tự nguyện): 320.000đ/4 năm\n7. Sinh viên ở Ký túc xá (đối với sinh viên thuộc diện được xét vào ở ký túc xá, thực hiện đăng kí trực tuyến theo hướng dẫn tại đây) được xét theo quy định của Đại học Quốc gia Hà Nội\n8. Bản sơ yếu lý lịch theo mẫu tại đây, có dán ảnh đóng dấu giáp lai và chứng nhận của chính quyền địa phương hoặc thủ trưởng cơ quan nơi bố (hoặc mẹ) công tác (nộp theo lớp khi học chính thức)\n9. Bản sao Giấy khai sinh\n10. Bản photo hai mặt căn cước công dân\n11. Lý lịch và giấy chuyển sinh hoạt Đảng, Đoàn (nếu có, thu khi học chính thức)\n12. Giấy chuyển đăng ký nghĩa vụ quân sự (đối với nam, trong độ tuổi nghĩa vụ quân sự, nộp theo lớp khi học chính thức)\n13. Để làm thẻ sinh viên, thu học phí và trả học bổng qua hệ thống tài khoản của ngân hàng BIDV; nhà trường sẽ thông báo hồ sơ (gồm mẫu đơn, bản sao căn cước công dân) thu theo lớp sau khi học tập trực tiếp trên lớp\n\n---\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (phan_4, Năm 2025)",
+    "timestamp": 1778830771.3776443,
+    "intent": "document_required",
+    "source_type": "api",
+    "quality": "high",
+    "session_id": "session_1778829732490",
+    "user_id": "anonymous",
+    "style_id": "formal_v0"
+  },
+  "anonymous::session_1778829732490::schedule_by_major::friendly_v1::năm hai thì sao": {
+    "response": "Bạn có thể theo dõi lịch nộp hồ sơ bản giấy theo ngành như sau:\n- Khoa học vật liệu: Sáng ngày 27/8/2025\n- Kỹ thuật điện tử và tin học: Sáng ngày 27/8/2025\n- Vật lý học: Sáng ngày 27/8/2025\n- Khoa học và công nghệ thực phẩm: Chiều ngày 27/8/2025\n- Sinh học: Chiều ngày 27/8/2025\n- Khoa học máy tính và thông tin: Sáng ngày 28/8/2025\n- Toán Tin: Sáng ngày 28/8/2025\n- Công nghệ kỹ thuật hóa học: Chiều ngày 28/8/2025\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 4, Năm 2025)",
+    "timestamp": 1778830784.053237,
+    "intent": "schedule_by_major",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778829732490",
+    "user_id": "anonymous",
+    "style_id": "friendly_v1"
+  },
+  "anonymous::session_1778829732490::admission_procedure::concise_v2::chi tiết bước 1 của thủ tục nhập học": {
+    "response": "Tra cứu danh sách trúng tuyển (sau ngày 22/8/2025) tại cổng thông tin tuyển sinh của nhà trường tại địa chỉ: https://tuyensinh.hus.vnu.edu.vn/tra-cuu-dai-hoc.html (lưu ý thí sinh ghi lại Mã số sinh viên của mình trên kết quả tra cứu).\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 1, Năm 2025)",
+    "timestamp": 1778830819.4761739,
+    "intent": "admission_procedure",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778829732490",
+    "user_id": "anonymous",
+    "style_id": "concise_v2"
+  },
+  "anonymous::session_1778829732490::admission_procedure::concise_v2::bước tiếp theo": {
+    "response": "- Thí sinh bắt buộc phải thực hiện xác nhận nhập học trực tuyến trên hệ thống tuyển sinh của Bộ Giáo dục và Đào tạo theo quy định (trước 17 giờ 00 thứ bảy, ngày 30/8/2025).\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 2, Năm 2025)",
+    "timestamp": 1778830842.3018608,
+    "intent": "admission_procedure",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778829732490",
+    "user_id": "anonymous",
+    "style_id": "concise_v2"
+  },
+  "anonymous::session_1778829732490::admission_procedure::concise_v2::sau đó làm gì": {
+    "response": "- Nộp học phí tạm thu, lệ phí nhập học...theo hình thức chuyển khoản (thực hiện từ ngày 25/8/2025 đến hết ngày 05/9/2025)\n\n[SOURCE] Nguồn: Thủ tục nhập học 2025.txt (PHẦN 3, Năm 2025)",
+    "timestamp": 1778830858.7658184,
+    "intent": "admission_procedure",
+    "source_type": "deterministic",
+    "quality": "high",
+    "session_id": "session_1778829732490",
+    "user_id": "anonymous",
+    "style_id": "concise_v2"
   }
 }
